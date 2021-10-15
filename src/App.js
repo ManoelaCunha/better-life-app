@@ -5,7 +5,6 @@ function App() {
   return (
     <div>
       <GlobalStyle />
-      <h1>Better Life</h1>
       <Routes />
     </div>
   )
