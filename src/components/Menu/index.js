@@ -1,9 +1,22 @@
 import { MenuContainer } from "./style"
+import { MdGroups } from "react-icons/md"
+import { BiLogOutCircle } from "react-icons/bi"
+import { FaHeartbeat } from "react-icons/fa"
+import Button from "../Button"
 
 const Menu = () => {
   return (
     <MenuContainer>
-      <h1>Better Life</h1>
+      <button>
+        <FaHeartbeat />
+      </button>
+      <button>
+        <MdGroups />
+      </button>
+      <Button text='+' size='small' />
+      <button>
+        <BiLogOutCircle />
+      </button>
     </MenuContainer>
   )
 }
