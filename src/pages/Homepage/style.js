@@ -18,30 +18,32 @@ export const Content = styled.div`
   max-height: 150px auto;
 
   img {
-    max-width: 300px;
-    margin-bottom: 1rem;
+    max-width: 250px;
+    margin-bottom: 5px;
   }
   span {
-    font-size: 1rem;
-    color: #8b8b8b;
-    width: 300px;
+    font-size: 16px;
+    color: #3b3b3b;
+    width: 250px;
+    margin-bottom: 10px ;
+    opacity: 0.8;
   }
   div {
     display: flex;
     flex-direction: column;
     
-    @media (min-width: 1100px) {
+    @media (min-width: 768px) {
       flex: 1;
       display: flex;
       flex-direction: row;
-      margin-top: 1.5rem;
+      margin-top: 10px;
     }
     button + button {
-      margin-left: 1rem;
+      margin-right: 1.5rem;
     }
     span {
       margin-bottom: 2rem;
-      font-size: 2rem;
+      font-size: 10px;
       flex-wrap: wrap;
       color: #fff;
     }

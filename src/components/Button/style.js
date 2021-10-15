@@ -1,22 +1,22 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const ButtonContainer = styled.div`
   margin: 10px auto;
   width: fit-content;
 
   button {
-    width: 350px;
-    height: 50px;
+    width: 210px;
+    height: 40px;
     border-radius: 30px;
     border: none;
     color: #ffffff;
     text-transform: capitalize;
     font-size: 18px;
     font-family: "Poppins", sans-serif;
-    background: rgb(21, 48, 100);
-    background: -moz-linear-gradient(180deg, rgba(21, 48, 110, 1) 27%, rgba(32, 58, 119, 1) 57%, rgba(41, 77, 159, 1) 84%);
-    background: -webkit-linear-gradient(180deg, rgba(21, 48, 110, 1) 27%, rgba(32, 58, 119, 1) 57%, rgba(41, 77, 159, 1) 84%);
-    background: linear-gradient(180deg, rgba(21, 48, 110, 1) 27%, rgba(32, 58, 119, 1) 57%, rgba(41, 77, 159, 1) 84%);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      linear-gradient(274.42deg, #495c89 0%, #3c60b3 67.41%, #967aa1 124.45%);
+    /* blue-shadow */
+    box-shadow: 0px 10px 22px rgba(149, 173, 254, 0.3);
     transition: ease all 0.3s;
 
     &:hover {
@@ -27,8 +27,8 @@ export const ButtonContainer = styled.div`
 
   @media screen and (min-width: 500px) {
     button {
-      width: 260px;
-      margin: 0 10px;
+      height: 50px;
+      width: 250px;
     }
   }
-`
+`;

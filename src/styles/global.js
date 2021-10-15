@@ -16,6 +16,10 @@ export default createGlobalStyle`
         min-width: 320px;
         width: 100%;
         height: 100%;
+        font-family: "Poppins", sans-serif;
+    }
+    h1,h2,h3,h4,h5{
+        font-family: 'Montserrat', sans-serif;
     }
     body, input, button {
         font-family: 'Poppins', sans-serif;
