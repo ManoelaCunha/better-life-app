@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import ImgHome from "../../assets/img/Vector.png";
 
 export const Container = styled.div`
   display: flex;
@@ -25,21 +24,21 @@ export const Content = styled.div`
     font-size: 16px;
     color: #3b3b3b;
     width: 250px;
-    margin-bottom: 10px ;
+    margin-bottom: 10px;
     opacity: 0.8;
   }
   div {
     display: flex;
     flex-direction: column;
-    
+
     @media (min-width: 768px) {
       flex: 1;
       display: flex;
       flex-direction: row;
       margin-top: 10px;
     }
-    button + button {
-      margin-right: 1.5rem;
+    button {
+      margin: 0 10px;
     }
     span {
       margin-bottom: 2rem;

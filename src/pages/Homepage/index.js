@@ -7,7 +7,7 @@ import { useHistory } from "react-router";
 const Homepage = ({ authenticated }) => {
   const history = useHistory();
   const handleNavigation = (path) => {
-    // redirecionamento
+    // navegação
   }
   if (authenticated) {
     // Lógica para autenticar
