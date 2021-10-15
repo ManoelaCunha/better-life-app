@@ -5,18 +5,15 @@ import { FaHeartbeat } from "react-icons/fa"
 import Button from "../Button"
 
 const Menu = () => {
+  const handleTeste = () => {
+    alert("teste")
+  }
   return (
     <MenuContainer>
-      <button>
-        <FaHeartbeat />
-      </button>
-      <button>
-        <MdGroups />
-      </button>
+      <FaHeartbeat onClick={handleTeste} />
+      <MdGroups onClick={handleTeste} />
       <Button text='+' smaller />
-      <button>
-        <BiLogOutCircle />
-      </button>
+      <BiLogOutCircle onClick={handleTeste} />
     </MenuContainer>
   )
 }
