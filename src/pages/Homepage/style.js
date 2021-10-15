@@ -18,23 +18,30 @@ export const Content = styled.div`
   max-height: 150px auto;
 
   img {
-    max-width: 400px;
+    max-width: 300px;
     margin-bottom: 1rem;
   }
   span {
     font-size: 1rem;
     color: #8b8b8b;
+    width: 300px;
   }
   div {
-    flex: 1;
     display: flex;
-    margin-top: 1rem;
+    flex-direction: column;
+    
+    @media (min-width: 1100px) {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      margin-top: 1.5rem;
+    }
     button + button {
       margin-left: 1rem;
     }
     span {
       margin-bottom: 2rem;
-      font-size: 1.8rem;
+      font-size: 2rem;
       flex-wrap: wrap;
       color: #fff;
     }
