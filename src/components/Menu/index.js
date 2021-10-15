@@ -13,7 +13,7 @@ const Menu = () => {
       <button>
         <MdGroups />
       </button>
-      <Button text='+' size='small' />
+      <Button text='+' smaller />
       <button>
         <BiLogOutCircle />
       </button>
