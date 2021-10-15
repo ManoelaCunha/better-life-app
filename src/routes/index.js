@@ -1,8 +1,8 @@
-import { useState } from "react"
+// import { useState } from "react"
 import { Route, Switch } from "react-router"
 
 const Routes = () => {
-  const [authenticated, setAuthenticated] = useState(false)
+  // const [authenticated, setAuthenticated] = useState(false)
 
   return (
     <Switch>

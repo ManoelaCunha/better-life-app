@@ -1,8 +1,10 @@
-const Button = ({ text, handleClick }) => {
+import { ButtonContainer } from "./style"
+
+const Button = ({ text }) => {
   return (
-    <Button>
-      <button onClick={handleClick}>{text}</button>
-    </Button>
+    <ButtonContainer>
+      <button>{text}</button>
+    </ButtonContainer>
   )
 }
 
