@@ -1,4 +1,6 @@
+import { GroupsProvider } from "./Groups";
+
 const Providers = ({ children }) => {
-  return <>{children}</>
-}
-export default Providers
+  return <GroupsProvider>{children}</GroupsProvider>;
+};
+export default Providers;
