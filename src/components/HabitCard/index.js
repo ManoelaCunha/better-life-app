@@ -2,7 +2,8 @@ import { CardContainer, TextContainer, IconButtonContainer, ButtonContainer } fr
 import Button from '../Button'
 import Chart from "react-google-charts";
 import { IoIosCloseCircle } from 'react-icons/io';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../providers/User";
 
 
 const HabitCard = ({ habit }) => {
