@@ -4,12 +4,20 @@ import Chart from "react-google-charts";
 import { IoIosCloseCircle } from 'react-icons/io';
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../providers/User";
+import { HabitsContext } from "../../providers/Habits";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 
 const HabitCard = ({ habit }) => {
     let { id, title, category, difficulty, how_much_achieved } = habit;
+    const { removeHabits, updateHabitProgress } = useContext(HabitsContext);
+    const matches = useMediaQuery('(min-width:768px)');
+    const [graphDimension, setGraphDimension] = useState('')
 
-    const [achieved, setAchieved] = useState(how_much_achieved);
+    useEffect(() => {
+        matches ? setGraphDimension('150px') : setGraphDimension('100px');
+        console.log('mudando')
+    }, [matches])
 
     const options = {
         pieHole: 0.7,
@@ -17,16 +25,21 @@ const HabitCard = ({ habit }) => {
         pieSliceText: 'none',
         backgroundColor: 'none',
         width: '100%',
+        colors: ['rgb(73, 92, 137)', '#fff'],
+        pieSliceBorderColor: 'none'
     };
     const data = [
         ['Tarefa', 'Porcentagem Concluidp'],
-        ['Concluido', achieved],
-        ['Faltante', (100 - achieved)],
+        ['Concluido', how_much_achieved],
+        ['Faltante', (100 - how_much_achieved)],
     ];
-    const handleClickAddAchieved = () => {
-        setAchieved(achieved + 10);
-    }
 
+    const handleClickAddAchieved = () => {
+        updateHabitProgress(how_much_achieved + 10);
+    }
+    const handleClickDeleteHabit = () => {
+        removeHabits(id);
+    };
 
     return (
         <CardContainer>
@@ -39,14 +52,15 @@ const HabitCard = ({ habit }) => {
                 </ButtonContainer>
             </TextContainer>
             <Chart
-                width={'100px'}
-                height={'100px'}
+                key={graphDimension}
+                width={graphDimension}
+                height={graphDimension}
                 chartType="PieChart"
                 loader={<div>Loading Chart</div>}
                 data={data}
                 options={options}
             />
-            <IconButtonContainer>
+            <IconButtonContainer onClick={handleClickDeleteHabit}>
                 <IoIosCloseCircle />
             </IconButtonContainer>
         </CardContainer>

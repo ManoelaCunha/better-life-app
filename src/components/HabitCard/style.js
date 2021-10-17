@@ -4,7 +4,8 @@ import styled from "styled-components"
 export const CardContainer = styled.div`
   margin: 10px auto;
   width: 300px;
-  background: linear-gradient(274.42deg, rgba(146, 163, 253, 0.2) 0%, rgba(157, 206, 255, 0.2) 124.45%);
+  background: linear-gradient(274.42deg, #92A3FD 0%, #9DCEFF 124.45%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 16px;
   padding: 15px;
   font-size: 12px;
@@ -12,11 +13,18 @@ export const CardContainer = styled.div`
   p { 
       margin: 5px 0 0 20px;
   }
+  @media screen and (min-width: 768px) {
+    width: 600px; 
+    font-size: 18px;
+  }
+
 `;
 
 export const TextContainer = styled.div`
     width:200px;
-
+    @media screen and (min-width: 768px) {
+    width: 400px
+  }
 `;
 
 export const IconButtonContainer = styled.button`
