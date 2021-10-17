@@ -16,7 +16,6 @@ const HabitCard = ({ habit }) => {
 
     useEffect(() => {
         matches ? setGraphDimension('150px') : setGraphDimension('100px');
-        console.log('mudando')
     }, [matches])
 
     const options = {
