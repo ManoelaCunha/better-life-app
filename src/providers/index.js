@@ -1,6 +1,11 @@
+import { HabitProvider } from "./Habits"
 import { UserProvider } from "./User"
 
 const Providers = ({ children }) => {
-  return <UserProvider>{children}</UserProvider>
+  return (<UserProvider>
+    <HabitProvider>
+      {children}
+    </HabitProvider>
+  </UserProvider>)
 }
 export default Providers

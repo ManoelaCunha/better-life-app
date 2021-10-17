@@ -35,8 +35,6 @@ export const HabitProvider = ({ children }) => {
         api.patch(`/habits/${id}`, updatedHabit, header);
     };
 
-
-
     return (
         <HabitsContext.Provider value={{ habits, getHabits, updateHabitProgress, removeHabits }}>
             {children}
