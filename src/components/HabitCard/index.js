@@ -1,4 +1,4 @@
-import { CardContainer, TextContainer, IconButtonContainer, ButtonContainer } from "./style";
+import { CardContainer, TextContainer, IconButtonContainer, ButtonContainer, ChartContainer } from "./style";
 import Button from '../Button'
 import Chart from "react-google-charts";
 import { IoIosCloseCircle } from 'react-icons/io';
@@ -15,7 +15,7 @@ const HabitCard = ({ habit }) => {
     const [graphDimension, setGraphDimension] = useState('')
 
     useEffect(() => {
-        matches ? setGraphDimension('150px') : setGraphDimension('100px');
+        matches ? setGraphDimension('150px') : setGraphDimension('120px');
     }, [matches])
 
     const options = {
@@ -25,7 +25,8 @@ const HabitCard = ({ habit }) => {
         backgroundColor: 'none',
         width: '100%',
         colors: ['rgb(73, 92, 137)', '#fff'],
-        pieSliceBorderColor: 'none'
+        pieSliceBorderColor: 'none',
+        chartArea: { width: '70%', height: '70%' }
     };
     const data = [
         ['Tarefa', 'Porcentagem Concluidp'],
@@ -50,15 +51,18 @@ const HabitCard = ({ habit }) => {
                     <Button smaller text={'Feito!'} onClick={handleClickAddAchieved} />
                 </ButtonContainer>
             </TextContainer>
-            <Chart
-                key={graphDimension}
-                width={graphDimension}
-                height={graphDimension}
-                chartType="PieChart"
-                loader={<div>Loading Chart</div>}
-                data={data}
-                options={options}
-            />
+            <ChartContainer >
+                <Chart
+                    key={graphDimension}
+                    width={graphDimension}
+                    height={graphDimension}
+                    chartType="PieChart"
+                    loader={<div>Loading Chart</div>}
+                    data={data}
+                    options={options}
+                />
+                <span>{`${how_much_achieved}%`}</span>
+            </ChartContainer>
             <IconButtonContainer onClick={handleClickDeleteHabit}>
                 <IoIosCloseCircle />
             </IconButtonContainer>

@@ -10,20 +10,21 @@ export const CardContainer = styled.div`
   padding: 15px;
   font-size: 12px;
   display:flex;
+  justify-content: space-between;
   p { 
       margin: 5px 0 0 20px;
   }
   @media screen and (min-width: 768px) {
-    width: 600px; 
-    font-size: 18px;
+    width: 600px
   }
 
 `;
 
 export const TextContainer = styled.div`
-    width:200px;
+    width:150px;
     @media screen and (min-width: 768px) {
-    width: 400px
+    width: 400px;
+    font-size: 18px;
   }
 `;
 
@@ -38,4 +39,20 @@ export const IconButtonContainer = styled.button`
 
 export const ButtonContainer = styled.div`
     width: 50px;
+`;
+
+export const ChartContainer = styled.div`
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    span {
+        position: absolute;
+    }
+    @media screen and (min-width: 768px) {
+   span {
+       font-size: 18px
+   }
+  }
 `;
