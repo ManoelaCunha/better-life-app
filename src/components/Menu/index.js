@@ -1,4 +1,4 @@
-import { MenuContainer, LogoutContainer, IconsContainer } from "./style"
+import { MenuContainer, LogoutContainer, IconsContainer, ImageContainer } from "./style"
 import { MdGroups } from "react-icons/md"
 import { BiLogOutCircle } from "react-icons/bi"
 import { FaHeartbeat } from "react-icons/fa"
@@ -8,7 +8,9 @@ import Logo from "../../assets/img/logo.png"
 const Menu = ({ handleHabits, handleGroups, handleAdd, handleLogout }) => {
   return (
     <MenuContainer>
-      <img alt='logo' src={Logo} />
+      <ImageContainer>
+        <img alt='logo' src={Logo} />
+      </ImageContainer>
 
       <IconsContainer>
         <span>

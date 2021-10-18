@@ -1,17 +1,18 @@
 import styled from "styled-components"
+import App from "../../App"
 
 export const MenuContainer = styled.div`
   position: fixed;
   bottom: 0;
   width: 100%;
+  height: 100%;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  align-content: space-between;
   font-size: 40px;
-  padding: 0px 20px 5px;
+  padding-bottom: 5px;
 
-  img {
-    display: none;
-  }
   p {
     display: none;
   }
@@ -38,17 +39,12 @@ export const MenuContainer = styled.div`
     position: fixed;
     top: 0;
     float: left;
-    width: 200px;
+    width: 150px;
 
     Button {
       display: none;
     }
-    img {
-      display: block;
-      width: 200px;
-      position: absolute;
-      top: 10px;
-    }
+
     span {
       display: flex;
     }
@@ -69,6 +65,7 @@ export const MenuContainer = styled.div`
 `
 
 export const LogoutContainer = styled.div`
+  margin-right: 20px;
   @media screen and (min-width: 768px) {
     position: absolute;
     bottom: 20px;
@@ -85,11 +82,40 @@ export const LogoutContainer = styled.div`
   }
 `
 export const IconsContainer = styled.div`
+  margin-left: 20px;
   @media screen and (min-width: 768px) {
     position: absolute;
     top: 100px;
+    left: -5px;
+    svg {
+      width: 30px;
+    }
     span {
       margin: 35px 0;
+    }
+    p {
+      position: relative;
+      left: -5px;
+    }
+  }
+`
+export const ImageContainer = styled.div`
+  width: 100%;
+  background-color: #f2f9fe;
+  margin: 0;
+
+  img {
+    display: block;
+    width: 260px;
+    margin: 0 auto;
+  }
+  @media screen and (min-width: 768px) {
+    img {
+      display: block;
+      width: 150px;
+      position: absolute;
+      top: 10px;
+      margin: 0 auto;
     }
   }
 `
