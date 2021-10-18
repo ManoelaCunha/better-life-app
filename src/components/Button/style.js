@@ -5,8 +5,8 @@ export const ButtonContainer = styled.div`
   width: fit-content;
 
   button {
-    width: 210px;
-    height: 40px;
+    width: ${(props) => (props.smaller ? "50px" : "210px")};
+    height: 50px;
     border-radius: 30px;
     border: none;
     color: #ffffff;
@@ -28,7 +28,7 @@ export const ButtonContainer = styled.div`
   @media screen and (min-width: 500px) {
     button {
       height: 50px;
-      width: 250px;
+      width: ${(props) => (props.smaller ? "50px" : "250px")};
     }
   }
 `

@@ -1,11 +1,10 @@
 import { ButtonContainer } from "./style"
 
-const Button = ({ text }) => {
+const Button = ({ text, smaller, ...attrs }) => {
   return (
-    <ButtonContainer>
-      <button>{text}</button>
+    <ButtonContainer smaller={smaller}>
+      <button {...attrs}>{text}</button>
     </ButtonContainer>
   )
 }
-
 export default Button
