@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 
-import axios from "axios";
+import api from "../../services/api";
 
 export const GroupsContext = createContext();
 
@@ -9,10 +9,10 @@ export const GroupsProvider = ({ children }) => {
   const [next, setNext] = useState(1);
 
   const getGroups = () => {
-    axios
-      .get(`https://kenzie-habits.herokuapp.com/groups/?page=${next}`)
+    api
+      .get(`groups/?page=${next}`)
       .then((response) => {
-        setGroups([...groups, response.data.results]);
+        setGroups([...groups, ...response.data.results]);
         response.data.next !== null && setNext(next + 1);
       })
       .catch((error) => console.log(error));
