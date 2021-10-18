@@ -7,32 +7,34 @@ import Logo from "../../assets/img/logo.png"
 
 const Menu = ({ handleHabits, handleGroups, handleAdd, handleLogout }) => {
   return (
-    <MenuContainer>
+    <>
       <ImageContainer>
         <img alt='logo' src={Logo} />
       </ImageContainer>
 
-      <IconsContainer>
-        <span>
-          <FaHeartbeat onClick={handleHabits} />
-          <p>Hábitos</p>
-        </span>
+      <MenuContainer>
+        <IconsContainer>
+          <span>
+            <FaHeartbeat onClick={handleHabits} />
+            <p>Hábitos</p>
+          </span>
 
-        <span>
-          <MdGroups onClick={handleGroups} />
-          <p>Grupos</p>
-        </span>
-      </IconsContainer>
+          <span>
+            <MdGroups onClick={handleGroups} />
+            <p>Grupos</p>
+          </span>
+        </IconsContainer>
 
-      <Button text='+' smaller onClick={handleAdd} />
+        <Button text='+' smaller onClick={handleAdd} />
 
-      <LogoutContainer>
-        <span>
-          <BiLogOutCircle onClick={handleLogout} />
-          <p>Sair</p>
-        </span>
-      </LogoutContainer>
-    </MenuContainer>
+        <LogoutContainer>
+          <span>
+            <BiLogOutCircle onClick={handleLogout} />
+            <p>Sair</p>
+          </span>
+        </LogoutContainer>
+      </MenuContainer>
+    </>
   )
 }
 
