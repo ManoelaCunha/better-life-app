@@ -3,27 +3,27 @@ import App from "../../App"
 
 export const MenuContainer = styled.div`
   position: fixed;
-  bottom: 0;
+  bottom: 0px;
   width: 100%;
-  height: 100%;
+  height: 65px;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  align-content: space-between;
   font-size: 40px;
-  padding-bottom: 5px;
-
+  background-color: #f2f9fe;
   p {
     display: none;
   }
   Button {
     position: relative;
-    top: -10px;
+    top: -5px;
     transform: translateX(-50%);
     margin: 0;
     font-size: 28px;
   }
   svg {
+    width: 40px;
+    position: relative;
+    top: 5px;
     margin: 0px 10px 0px 10px;
   }
   @media only screen and (max-width: 374px) {
@@ -40,6 +40,7 @@ export const MenuContainer = styled.div`
     top: 0;
     float: left;
     width: 150px;
+    height: 100%;
 
     Button {
       display: none;
@@ -54,7 +55,7 @@ export const MenuContainer = styled.div`
       font-weight: 500;
       color: #444444;
       position: relative;
-      top: 10px;
+      top: 15px;
     }
     svg {
       position: relative;
@@ -72,12 +73,11 @@ export const LogoutContainer = styled.div`
 
     svg {
       position: relative;
-      left: -25px;
+      left: -15px;
     }
     p {
       position: relative;
       left: -20px;
-      top: 10px;
     }
   }
 `
@@ -99,22 +99,28 @@ export const IconsContainer = styled.div`
     }
   }
 `
+
 export const ImageContainer = styled.div`
+  position: fixed;
+  top: 0px;
   width: 100%;
   background-color: #f2f9fe;
-  margin: 0;
 
   img {
     display: block;
-    width: 260px;
+    width: 200px;
     margin: 0 auto;
   }
+
   @media screen and (min-width: 768px) {
+    background-color: transparent;
+    width: fit-content;
+    position: fixed;
+    top: 10px;
+    z-index: 1;
     img {
       display: block;
       width: 150px;
-      position: absolute;
-      top: 10px;
       margin: 0 auto;
     }
   }
