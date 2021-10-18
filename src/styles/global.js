@@ -8,7 +8,7 @@ export default createGlobalStyle`
         outline: 0;
     }
     :root {
-        --background-color: #ffff;
+        --background-color: #F2F9FE;
     }
     body{
         background-color: var(--background-color);
