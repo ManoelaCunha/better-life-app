@@ -7,7 +7,6 @@ function App() {
     <div>
       <GlobalStyle />
       <div><Toaster /></div>
-
       <h1>Better Life</h1>
       <Routes />
     </div>
