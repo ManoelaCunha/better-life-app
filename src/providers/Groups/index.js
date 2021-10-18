@@ -11,7 +11,7 @@ export const GroupsProvider = ({ children }) => {
   const [next, setNext] = useState(1);
 
   const [token] = useState(
-    JSON.parse(window.localStorage.getItem("@BetterLife:user")) || ""
+    JSON.parse(window.localStorage.getItem("@BetterLife:token")) || ""
   );
 
   const getGroups = () => {
@@ -36,7 +36,7 @@ export const GroupsProvider = ({ children }) => {
       .then((response) => {
         console.log(response.data);
         setGroups([...groups, response.data]);
-        toast("Grupo criado com sucesso!");
+        toast.success("Grupo criado com sucesso!");
       })
       .catch((error) => console.log(error));
   };
