@@ -1,20 +1,19 @@
-// import { useState } from "react"
 import { Route, Switch } from "react-router"
-import Signup from "../pages/Signup"
+import SignUp from "../components/SignUp"
+import Homepage from "../pages/Homepage/index"
 
 const Routes = () => {
-  // const [authenticated, setAuthenticated] = useState(false)
 
   return (
     <Switch>
       <Route exact path='/'>
-        Homepage
+        <Homepage />
       </Route>
       <Route exact path='/login'>
         Login
       </Route>
       <Route exact path='/signup'>
-        <Signup/>
+        <SignUp/>
       </Route>
       <Route exact path='/dashboard'>
         Dashboard
