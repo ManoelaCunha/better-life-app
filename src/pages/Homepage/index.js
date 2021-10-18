@@ -18,8 +18,8 @@ const Homepage = ({ authenticated }) => {
         <img src={Logo} alt="Logo Better Life" />
         <span>Melhore sua vida com hábitos saudáveis</span>
         <div>
-          <Button text="Cadastre"></Button>
-          <Button text="Login">Login</Button>
+          <Button onClick = {() => handleNavigation("/signup")}text="Cadastre"></Button>
+          <Button onClick = {() => handleNavigation("/login")} text="Login">Login</Button>
         </div>
       </Content>
 
