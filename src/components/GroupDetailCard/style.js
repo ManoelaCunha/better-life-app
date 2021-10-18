@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from '../Button';
 
 export const CardGroupDetailContainer = styled.div`
     
@@ -12,5 +13,13 @@ export const CardGroupDetailBody = styled.div`
     padding: 15px;
     p {
         color: #7B6F72;
+    };
+
+    Button {
+        width: 100px;
+        font-size: 12px;
+        margin: 0;
+        height: 25px;
     }
+
 `;

@@ -1,10 +1,13 @@
+import { GoalsProvider } from "./Goals"
 import { HabitProvider } from "./Habits"
 import { UserProvider } from "./User"
 
 const Providers = ({ children }) => {
   return (<UserProvider>
     <HabitProvider>
-      {children}
+      <GoalsProvider>
+        {children}
+      </GoalsProvider>
     </HabitProvider>
   </UserProvider>)
 }
