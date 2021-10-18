@@ -41,7 +41,9 @@ export const IconButtonContainer = styled.button`
   width:fit-content;
   height:fit-content;
   background: none;
-
+  &:hover {
+    color: #ad000d;
+  }
 `;
 
 export const ButtonContainer = styled.div`

@@ -6,7 +6,10 @@ export const GoalsContext = createContext();
 
 export const GoalsProvider = ({ children }) => {
     const [goals, setGoals] = useState([]);
-    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0OTIxNDMwLCJqdGkiOiI2NWVkY2I5ZDA5MDI0NzdkOGRkNjg4YWFkYjQxN2YwZCIsInVzZXJfaWQiOjE1M30.f5mSz1IpeRJKWtI9xdWObepZrJsG9b1qFTmCnxw6bt4';
+    const [token] = useState(
+        JSON.parse(window.localStorage.getItem("@BetterLife:token")) || ""
+    );
+
     const header = {
         headers: {
             Authorization: `Bearer ${token}`

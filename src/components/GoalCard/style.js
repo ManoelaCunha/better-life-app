@@ -20,13 +20,16 @@ export const CardContainer = styled.div`
       width: 10px;
       font-size: 20px;
   }
+  #closeIcon:hover {
+    color: #ad000d;
+  }
   @media screen and (min-width: 768px) {
     font-size: 14px;
     background: linear-gradient(274.42deg, #92A3FD 0%, #9DCEFF 124.45%);
     p {
       color: #fff;
     }
-    h3 {
+    h4 {
       color:#fff;
     }
   }

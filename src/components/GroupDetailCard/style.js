@@ -20,6 +20,14 @@ export const CardGroupDetailBody = styled.div`
         font-size: 12px;
         margin: 0;
         height: 25px;
+    };
+
+    h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
     }
 
+    li {
+        margin: 5px 0 0 20px;
+    }
 `;
