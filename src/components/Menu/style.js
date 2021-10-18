@@ -1,28 +1,29 @@
 import styled from "styled-components"
+import App from "../../App"
 
 export const MenuContainer = styled.div`
   position: fixed;
-  bottom: 0;
+  bottom: 0px;
   width: 100%;
+  height: 65px;
   display: flex;
   align-items: center;
   font-size: 40px;
-  padding: 0px 20px 5px;
-
-  img {
-    display: none;
-  }
+  background-color: #f2f9fe;
   p {
     display: none;
   }
   Button {
     position: relative;
-    top: -10px;
+    top: -5px;
     transform: translateX(-50%);
     margin: 0;
     font-size: 28px;
   }
   svg {
+    width: 40px;
+    position: relative;
+    top: 5px;
     margin: 0px 10px 0px 10px;
   }
   @media only screen and (max-width: 374px) {
@@ -38,17 +39,13 @@ export const MenuContainer = styled.div`
     position: fixed;
     top: 0;
     float: left;
-    width: 200px;
+    width: 150px;
+    height: 100%;
 
     Button {
       display: none;
     }
-    img {
-      display: block;
-      width: 200px;
-      position: absolute;
-      top: 10px;
-    }
+
     span {
       display: flex;
     }
@@ -58,7 +55,7 @@ export const MenuContainer = styled.div`
       font-weight: 500;
       color: #444444;
       position: relative;
-      top: 10px;
+      top: 15px;
     }
     svg {
       position: relative;
@@ -69,27 +66,62 @@ export const MenuContainer = styled.div`
 `
 
 export const LogoutContainer = styled.div`
+  margin-right: 20px;
   @media screen and (min-width: 768px) {
     position: absolute;
     bottom: 20px;
 
     svg {
       position: relative;
-      left: -25px;
+      left: -15px;
     }
     p {
       position: relative;
       left: -20px;
-      top: 10px;
     }
   }
 `
 export const IconsContainer = styled.div`
+  margin-left: 20px;
   @media screen and (min-width: 768px) {
     position: absolute;
     top: 100px;
+    left: -5px;
+    svg {
+      width: 30px;
+    }
     span {
       margin: 35px 0;
+    }
+    p {
+      position: relative;
+      left: -5px;
+    }
+  }
+`
+
+export const ImageContainer = styled.div`
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  background-color: #f2f9fe;
+
+  img {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+  }
+
+  @media screen and (min-width: 768px) {
+    background-color: transparent;
+    width: fit-content;
+    position: fixed;
+    top: 10px;
+    z-index: 1;
+    img {
+      display: block;
+      width: 150px;
+      margin: 0 auto;
     }
   }
 `
