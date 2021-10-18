@@ -1,4 +1,4 @@
-import { CardContainer, TextContainer, IconButtonContainer, ButtonContainer, ChartContainer } from "./style";
+import { CardContainer, TextContainer, IconButtonContainer, ButtonContainer, ChartContainer, HabitCardButton } from "./style";
 import Button from '../Button'
 import { IoIosCloseCircle } from 'react-icons/io';
 import { useContext, useEffect, useState } from "react";
@@ -11,6 +11,9 @@ const HabitCard = ({ habit }) => {
     const { removeHabits, updateHabitProgress } = useContext(HabitsContext);
     const matches = useMediaQuery('(min-width:768px)');
     const [achieved, setAchieved] = useState(how_much_achieved);
+    const [progressBarSize, setProgressBarSize] = useState(75);
+
+    useEffect(() => { matches ? setProgressBarSize(100) : setProgressBarSize(75); }, [matches])
 
     const handleClickAddAchieved = () => {
         updateHabitProgress(id, achieved + 10);
@@ -24,14 +27,14 @@ const HabitCard = ({ habit }) => {
         <CardContainer>
             <TextContainer>
                 <h3>{title}</h3>
-                <p> {category}</p>
-                <p> {difficulty}</p>
+                <p>Categoria - {category}</p>
+                <p>Dificuldade - {difficulty}</p>
                 {achieved < 100 && <ButtonContainer>
-                    <Button smaller text={'Feito!'} onClick={handleClickAddAchieved} />
+                    <Button text={'Feito!'} onClick={handleClickAddAchieved} />
                 </ButtonContainer>}
             </TextContainer>
             <ChartContainer >
-                <CircularProgressBar percentage={achieved} size={100} strokeWidth={10} />
+                <CircularProgressBar percentage={achieved} size={progressBarSize} strokeWidth={10} />
             </ChartContainer>
             <IconButtonContainer onClick={handleClickDeleteHabit}>
                 <IoIosCloseCircle />
