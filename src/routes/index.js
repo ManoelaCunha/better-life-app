@@ -1,5 +1,6 @@
 // import { useState } from "react"
 import { Route, Switch } from "react-router"
+import Signup from "../pages/Signup"
 
 const Routes = () => {
   // const [authenticated, setAuthenticated] = useState(false)
@@ -13,7 +14,7 @@ const Routes = () => {
         Login
       </Route>
       <Route exact path='/signup'>
-        Cadastrar
+        <Signup/>
       </Route>
       <Route exact path='/dashboard'>
         Dashboard
