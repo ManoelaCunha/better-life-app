@@ -1,27 +1,32 @@
-// import { useState } from "react"
 import { Route, Switch } from "react-router";
+import SignUp from "../components/SignUp";
+import Login from "../pages/Login";
+import Homepage from "../pages/Homepage/index";
 import Groups from "../pages/Groups";
 import Dashboard from "../pages/Dashboard";
-import Homepage from "../pages/Homepage/index";
+import { useState } from "react";
 
 const Routes = () => {
-  // const [authenticated, setAuthenticated] = useState(false)
-
+  const [authenticated, setAuthenticated] = useState(false);
   return (
     <Switch>
-      <Route exact path="/">
+      <Route exact path='/'>
         <Homepage />
       </Route>
-      <Route exact path="/login">
-        Login
+
+      <Route exact path='/login'>
+        <Login authenticated={authenticated} setAuthenticated={setAuthenticated} />
       </Route>
-      <Route exact path="/signup">
-        Cadastrar
+
+      <Route exact path='/signup'>
+        <SignUp />
       </Route>
-      <Route exact path="/dashboard">
+
+      <Route exact path='/dashboard'>
         <Dashboard />
       </Route>
-      <Route exact path="/groups">
+
+      <Route exact path='/groups'>
         <Groups />
       </Route>
     </Switch>
