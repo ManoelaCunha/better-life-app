@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import Homepage from "../pages/Homepage/index";
 import Groups from "../pages/Groups";
 import Dashboard from "../pages/Dashboard";
+import Welcome from "../pages/Welcome";
 import { useState } from "react";
 
 const Routes = () => {
@@ -16,6 +17,9 @@ const Routes = () => {
 
       <Route exact path='/login'>
         <Login authenticated={authenticated} setAuthenticated={setAuthenticated} />
+      </Route>
+      <Route path = "/welcome" >
+        <Welcome />
       </Route>
 
       <Route exact path='/signup'>

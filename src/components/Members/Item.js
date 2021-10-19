@@ -6,7 +6,7 @@ export default styled.div`
   flex-direction: column;
   height: 450px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
-  width: 300px;
+  width: 400px;
   background-color:#dfe6e9;
  
   text-align: center;
@@ -22,19 +22,20 @@ export default styled.div`
   div {
    
     display: flex;
+    flex-wrap: wrap;
     justify-content:space-between;
     align-items: center;
-    width: 40%;
+    width: 25%;
   }
 
   h3 {
     margin-top: 20px;
-    font-size: 18px;
+    font-size: 20px;
     color: #2c3e50;
     text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
   }
   p {
-    font-size: 16px;
+    font-size: 18px;
     color: #2c3e50;
     margin-top: 20px;
     text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);

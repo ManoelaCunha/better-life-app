@@ -15,12 +15,13 @@ const Members = () => {
     { width: 1, itemsToShow: 1 },
     { width: 550, itemsToShow: 2 },
     { width: 768, itemsToShow: 3 },
+    {width: 1100,  itemsToShow: 4 }
   ];
 
   return (
     <Container>
       <h1 style={{ textAlign: "center" }}>Nosso time</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adip</p>
+      <p>Somos o Grupo 01 do projeto Gestão de hábitos proporcionado pela Kenzie Academy Brasil durante o módulo Q2 - Turma Mai/21.</p>
       <div>
         <Carousel breakPoints={breakPoints}>
           <Item>

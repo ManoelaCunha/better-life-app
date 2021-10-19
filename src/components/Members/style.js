@@ -12,10 +12,12 @@ export const Container = styled.section`
 
     h1 {
         margin-top: 30px;
+        margin-bottom: 20px;
         font-weight: 400;
         font-size: 36px;
     }
     p{
+        font-size:20px;
         text-align: center;
         margin-bottom: 30px;
     }
