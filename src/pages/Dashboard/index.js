@@ -51,7 +51,6 @@ const Dashboard = () => {
           </ButtonContainerDashboard>
         </Box>
         {habits.map((habit) => <HabitCard key={habit.id} habit={habit} />)}
-        <GroupDetailCard />
       </Container>
     </>
 

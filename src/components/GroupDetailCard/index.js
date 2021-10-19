@@ -7,7 +7,7 @@ import { ButtonContainer } from '../HabitCard/style';
 import { ActivitiesContext } from '../../providers/Activities';
 import { GroupsContext } from '../../providers/Groups';
 
-const GroupDetailCard = ({ groupId = 16 }) => {
+const GroupDetailCard = ({ groupId }) => {
     const { goals, getGoals } = useContext(GoalsContext);
     const { activities, getActivities } = useContext(ActivitiesContext);
     const { subscribedGroups, subscribeGroup, unsubscribeGroup } = useContext(GroupsContext);
