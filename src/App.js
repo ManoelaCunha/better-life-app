@@ -6,10 +6,10 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <div>
+    <div>
         <Toaster />
-      </div>
-      <Routes />
+     </div>
+     <Routes />
     </>
   )
 }
