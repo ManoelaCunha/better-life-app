@@ -21,17 +21,20 @@ import { Redirect, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const Dashboard = ({ authenticated }) => {
-  const { getUser, userName, getUserName } = useContext(UserContext);
+  const { getUser, userName, getUserName, user } = useContext(UserContext);
   const { getHabits, habits, addNewHabit } = useContext(HabitsContext);
   const { getSubscribedGroups } = useContext(GroupsContext);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     getUser();
+  }, []);
+
+  useEffect(() => {
     getHabits();
     getSubscribedGroups();
     getUserName();
-  }, []);
+  }, [user]);
 
   const schema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),

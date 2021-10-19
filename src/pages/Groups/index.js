@@ -5,11 +5,10 @@ import GroupList from "../../components/GroupsList";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import Menu from "../../components/Menu";
-
 import { GroupsContext } from "../../providers/Groups";
 import { UserContext } from "../../providers/User";
 
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 
 import * as yup from "yup";
