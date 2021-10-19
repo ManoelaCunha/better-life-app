@@ -1,4 +1,9 @@
 import HabitCard from "../../components/HabitCard";
+import { TextField, FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext, useEffect } from "react";
 import Menu from "../../components/Menu";
 import Modal from "../../components/Modal";
 import Button from "../../components/Button";
@@ -7,12 +12,10 @@ import { UserContext } from "../../providers/User";
 import { HabitsContext } from "../../providers/Habits";
 import { GroupsContext } from "../../providers/Groups";
 import { Box, Container, Text, ButtonContainerDashboard } from "./style";
-import { TextField, FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { Redirect, useHistory } from "react-router-dom";
 
-const Dashboard = () => {
+const Dashboard = ({ authenticated }) => {
+
   const { getUser, userName, getUserName } = useContext(UserContext);
   const { getHabits, habits, addNewHabit } = useContext(HabitsContext);
   const { getSubscribedGroups } = useContext(GroupsContext);
@@ -25,6 +28,10 @@ const Dashboard = () => {
     getUserName();
   }, []);
 
+  if (!authenticated) {
+    return <Redirect to="/" />;
+  }
+  
   const schema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
     category: yup.string().required("Campo obrigatório"),
@@ -97,6 +104,7 @@ const Dashboard = () => {
           <HabitCard key={habit.id} habit={habit} />
         ))}
       </Container>
+
       <Modal
         modalIsOpen={modalIsOpen}
         setIsOpen={setIsOpen}
