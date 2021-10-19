@@ -4,8 +4,16 @@ import { BiLogOutCircle } from "react-icons/bi"
 import { FaHeartbeat } from "react-icons/fa"
 import Button from "../Button"
 import Logo from "../../assets/img/logo.png"
+import { useHistory } from "react-router-dom"
 
-const Menu = ({ handleHabits, handleGroups, handleAdd, handleLogout }) => {
+const Menu = ({ handleAdd }) => {
+
+  const history = useHistory()
+  const handleLogout = () => {
+    history.push('/');
+    localStorage.clear();
+  }
+
   return (
     <>
       <ImageContainer>
@@ -15,12 +23,12 @@ const Menu = ({ handleHabits, handleGroups, handleAdd, handleLogout }) => {
       <MenuContainer>
         <IconsContainer>
           <span>
-            <FaHeartbeat onClick={handleHabits} />
+            <FaHeartbeat onClick={() => history.push('/dashboard')} />
             <p>Hábitos</p>
           </span>
 
           <span>
-            <MdGroups onClick={handleGroups} />
+            <MdGroups onClick={() => history.push('/groups')} />
             <p>Grupos</p>
           </span>
         </IconsContainer>

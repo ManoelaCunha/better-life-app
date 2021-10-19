@@ -7,7 +7,7 @@ import { ButtonContainer } from '../HabitCard/style';
 import { ActivitiesContext } from '../../providers/Activities';
 import { GroupsContext } from '../../providers/Groups';
 
-const GroupDetailCard = ({ groupId }) => {
+const GroupDetailCard = ({ groupId = 16 }) => {
     const { goals, getGoals } = useContext(GoalsContext);
     const { activities, getActivities } = useContext(ActivitiesContext);
     const { subscribedGroups, subscribeGroup, unsubscribeGroup } = useContext(GroupsContext);
@@ -20,6 +20,7 @@ const GroupDetailCard = ({ groupId }) => {
             <li key={activity.id}>
                 <h4>{activity.title}</h4>
                 <p>Data Limite: {newDate}</p>
+                <hr style={{ opacity: 0.2, margin: "5px" }} />
             </li>
         );
     });
