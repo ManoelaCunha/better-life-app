@@ -26,6 +26,9 @@ const Routes = () => {
           setAuthenticated={setAuthenticated}
         />
       </Route>
+      <Route path = "/welcome" >
+        <Welcome />
+      </Route>
 
       <Route exact path="/signup">
         <SignUp authenticated={authenticated} />
