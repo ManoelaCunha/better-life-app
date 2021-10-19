@@ -13,17 +13,20 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const Dashboard = () => {
-  const { getUser, userName, getUserName } = useContext(UserContext);
+  const { getUser, userName, getUserName, user } = useContext(UserContext);
   const { getHabits, habits, addNewHabit } = useContext(HabitsContext);
   const { getSubscribedGroups } = useContext(GroupsContext);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     getUser();
+  }, []);
+
+  useEffect(() => {
     getHabits();
     getSubscribedGroups();
     getUserName();
-  }, []);
+  }, [user]);
 
   const schema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),

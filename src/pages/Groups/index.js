@@ -1,7 +1,7 @@
 import { ButtonContainer } from "../../components/Button/style";
 import GroupList from "../../components/GroupsList";
 import Menu from "../../components/Menu";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { GroupsContext } from "../../providers/Groups";
 import { Box, Container, Text } from "./style";
 import Modal from "../../components/Modal";
@@ -11,9 +11,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TextField } from "@material-ui/core";
 import Button from "../../components/Button";
+import { UserContext } from "../../providers/User";
 
 const Groups = () => {
   const { createGroup } = useContext(GroupsContext);
+  const { userName } = useContext(UserContext);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const schema = yup.object().shape({
@@ -51,7 +53,7 @@ const Groups = () => {
       <Menu />
       <Container>
         <Text>
-          Bem vinda(o) de volta, <strong>Stefani Wong</strong>
+          Bem vinda(o) de volta, <strong>{userName}</strong>
         </Text>
         <Box>
           <h1>GRUPOS</h1>

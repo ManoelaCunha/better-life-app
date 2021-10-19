@@ -5,6 +5,7 @@ import Homepage from "../pages/Homepage/index";
 import Groups from "../pages/Groups";
 import Dashboard from "../pages/Dashboard";
 import { useState } from "react";
+import GroupDetails from "../pages/GroupDetails";
 
 const Routes = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -29,6 +30,11 @@ const Routes = () => {
       <Route exact path='/groups'>
         <Groups />
       </Route>
+      <Route exact path='/groups/:idGroup'>
+        <GroupDetails />
+      </Route>
+
+
     </Switch>
   );
 };
