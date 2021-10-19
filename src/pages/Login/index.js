@@ -28,7 +28,6 @@ const Login = ({ authenticated, setAuthenticated }) => {
 
   const onSubmitFunction = (data) => {
     // Lógica para fazer as requisições / errors
-    console.log(data);
     api
       .post("/sessions/", data)
       .then((response) => {

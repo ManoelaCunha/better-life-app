@@ -26,13 +26,23 @@ export const Container = styled.div`
 `;
 
 export const Text = styled.p`
-  margin-top: 20px;
+  margin-top: 115px;
+  margin-left: 10px;
   width: 185px;
-  height: 100px;
+  height: 80px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 20px;
+    height: 100px;
+  }
 `;
 
 export const Box = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;

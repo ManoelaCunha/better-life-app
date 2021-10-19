@@ -8,7 +8,7 @@ const GroupList = () => {
   return (
     <>
       {groups.map((group) => (
-        <Group key={group.id} group={group} />
+        <Group key={group.id} group={group} groupId={group.id} />
       ))}
     </>
   );

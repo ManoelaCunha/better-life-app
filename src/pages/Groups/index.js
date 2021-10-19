@@ -1,23 +1,30 @@
 import { ButtonContainer } from "../../components/Button/style";
-import GroupList from "../../components/GroupsList";
-import Menu from "../../components/Menu";
-import { useContext } from "react";
-import { GroupsContext } from "../../providers/Groups";
 import { Box, Container, Text } from "./style";
-import Modal from "../../components/Modal";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { TextField } from "@material-ui/core";
-import Button from "../../components/Button";
 
-const Groups = () => {
+import GroupList from "../../components/GroupsList";
+import Button from "../../components/Button";
+import Modal from "../../components/Modal";
+import Menu from "../../components/Menu";
+
+import { GroupsContext } from "../../providers/Groups";
+import { UserContext } from "../../providers/User";
+
+import { useContext, useState } from "react";
+import { Redirect } from "react-router-dom";
+
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import { TextField } from "@material-ui/core";
+
+const Groups = ({ authenticated }) => {
+  const { userName } = useContext(UserContext);
   const { createGroup } = useContext(GroupsContext);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const schema = yup.object().shape({
-    title: yup.string().required("Campo obrigatório"),
+    name: yup.string().required("Campo obrigatório"),
     description: yup.string().required("Campo obrigatório"),
     category: yup.string().required("Campo obrigatório"),
   });
@@ -28,13 +35,8 @@ const Groups = () => {
     formState: { errors },
   } = useForm(yupResolver(schema));
 
-  const handleCreateGroup = ({ title, description, category }) => {
-    const newGroup = {
-      title: title,
-      description: description,
-      category: category,
-    };
-    createGroup(newGroup);
+  const handleCreateGroup = (data) => {
+    createGroup(data);
   };
 
   const openModal = () => {
@@ -51,12 +53,16 @@ const Groups = () => {
     width: "100%",
   };
 
+  if (!authenticated) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <>
       <Menu />
       <Container>
         <Text>
-          Bem vinda(o) de volta, <strong>Stefani Wong</strong>
+          Bem vinda(o) de volta, <strong>{userName}</strong>
         </Text>
         <Box>
           <h1>GRUPOS</h1>
@@ -82,16 +88,38 @@ const Groups = () => {
       <Modal
         modalIsOpen={modalIsOpen}
         setIsOpen={setIsOpen}
-        title='Cadastrar novo grupo'
+        title="Cadastrar novo grupo"
         content={
           <form style={formStyle} onSubmit={handleSubmit(handleCreateGroup)}>
-            <TextField label='Título' variant='filled' style={inputStyle} {...register("title")} helperText={errors.title?.message} />
+            <TextField
+              label="Nome"
+              variant="filled"
+              style={inputStyle}
+              {...register("name")}
+              helperText={errors.name?.message}
+            />
 
-            <TextField label='Descrição' variant='filled' style={inputStyle} {...register("description")} helperText={errors.description?.message} />
+            <TextField
+              label="Descrição"
+              variant="filled"
+              style={inputStyle}
+              {...register("description")}
+              helperText={errors.description?.message}
+            />
 
-            <TextField label='Categoria' variant='filled' style={inputStyle} {...register("category")} helperText={errors.category?.message} />
+            <TextField
+              label="Categoria"
+              variant="filled"
+              style={inputStyle}
+              {...register("category")}
+              helperText={errors.category?.message}
+            />
 
-            <Button text='Criar grupo' style={{ width: "150px", fontSize: "16px" }} type='submit' />
+            <Button
+              text="Criar grupo"
+              style={{ width: "150px", fontSize: "16px" }}
+              type="submit"
+            />
           </form>
         }
       />

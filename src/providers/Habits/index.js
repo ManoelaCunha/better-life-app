@@ -7,10 +7,8 @@ export const HabitsContext = createContext();
 export const HabitProvider = ({ children }) => {
   const [habits, setHabits] = useState([]);
 
-
-
   const getHabits = () => {
-    const token = localStorage.getItem("@BetterLife:token") || "";
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token")) || "";
     api
       .get("/habits/personal/", {
         headers: {
@@ -24,7 +22,7 @@ export const HabitProvider = ({ children }) => {
   };
 
   const removeHabits = (id) => {
-    const token = localStorage.getItem("@BetterLife:token") || "";
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token")) || "";
     api
       .delete(`/habits/${id}/`, {
         headers: {
@@ -38,7 +36,7 @@ export const HabitProvider = ({ children }) => {
   };
 
   const updateHabitProgress = (id, newProgress) => {
-    const token = localStorage.getItem("@BetterLife:token") || "";
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token")) || "";
     let isAchieved = false;
     if (newProgress >= 100) {
       isAchieved = true;
@@ -58,15 +56,24 @@ export const HabitProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then(() => toast.success("Progresso do Habito incrementado."))
+      .then(() => toast.success("Progresso do hábito atualizado!"))
       .catch((err) => console.log(err));
   };
 
-  return (
-    <HabitsContext.Provider
-      value={{ habits, getHabits, updateHabitProgress, removeHabits }}
-    >
-      {children}
-    </HabitsContext.Provider>
-  );
+  const addNewHabit = (data) => {
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token")) || "";
+    api
+      .post("/habits/", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setHabits([response.data]);
+        toast.success("Hábito cadastrado com sucesso!");
+      })
+      .catch((error) => console.log(error));
+  };
+
+  return <HabitsContext.Provider value={{ habits, getHabits, updateHabitProgress, removeHabits, addNewHabit }}>{children}</HabitsContext.Provider>;
 };
