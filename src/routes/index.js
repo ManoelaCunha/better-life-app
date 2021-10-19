@@ -5,6 +5,7 @@ import Homepage from "../pages/Homepage/index";
 import Groups from "../pages/Groups";
 import Dashboard from "../pages/Dashboard";
 import { useState, useEffect } from "react";
+import Welcome from "../pages/Welcome";
 
 const Routes = () => {
   const [authenticated, setAuthenticated] = useState(false);

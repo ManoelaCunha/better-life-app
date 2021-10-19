@@ -15,13 +15,16 @@ export const Content = styled.div`
   align-items: center;
   max-width: 1100px;
   max-height: 150px auto;
-
+ h2 {
+     font-weight: 400;
+     font-size: 20px;
+ }
   img {
-    max-width: 250px;
+    max-width: 350px;
     margin-bottom: 5px;
   }
   span {
-    font-size: 16px;
+    font-size: 13px;
     color: #3b3b3b;
     width: 250px;
     margin-bottom: 10px;
