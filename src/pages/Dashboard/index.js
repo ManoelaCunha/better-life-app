@@ -1,4 +1,4 @@
-import HabitCard from "../../components/HabitCard"
+import HabitCard from "../../components/HabitCard";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../providers/User";
 import { HabitsContext } from "../../providers/Habits";
@@ -8,9 +8,7 @@ import { Box, Container, Text, ButtonContainerDashboard } from "./style";
 import Menu from "../../components/Menu";
 import { Redirect, useHistory } from "react-router-dom";
 
-
-const Dashboard = () => {
-
+const Dashboard = ({ authenticated }) => {
   const { getUser, userName, getUserName } = useContext(UserContext);
   const { getHabits, habits } = useContext(HabitsContext);
   const { getSubscribedGroups } = useContext(GroupsContext);
@@ -23,12 +21,14 @@ const Dashboard = () => {
     getUserName();
   }, []);
 
+  if (!authenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <>
       <Menu />
       <Container>
-
         <Text>
           Bem vinda(o) de volta, <strong>{userName}</strong>
         </Text>
@@ -50,11 +50,12 @@ const Dashboard = () => {
             </button>
           </ButtonContainerDashboard>
         </Box>
-        {habits.map((habit) => <HabitCard key={habit.id} habit={habit} />)}
+        {habits.map((habit) => (
+          <HabitCard key={habit.id} habit={habit} />
+        ))}
       </Container>
     </>
+  );
+};
 
-  )
-}
-
-export default Dashboard
+export default Dashboard;
