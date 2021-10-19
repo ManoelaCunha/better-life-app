@@ -6,11 +6,12 @@ import GoalCard from '../GoalCard';
 import { ButtonContainer } from '../HabitCard/style';
 import { ActivitiesContext } from '../../providers/Activities';
 import { GroupsContext } from '../../providers/Groups';
+import { FormControlUnstyledContext } from '@material-ui/unstyled';
 
 const GroupDetailCard = ({ groupId }) => {
     const { goals, getGoals } = useContext(GoalsContext);
     const { activities, getActivities } = useContext(ActivitiesContext);
-    const { subscribedGroups, subscribeGroup, unsubscribeGroup } = useContext(GroupsContext);
+    const { subscribedGroups, subscribeGroup, unsubscribeGroup, getSubscribedGroups } = useContext(GroupsContext);
     const [isSubscribed, setIsSubscribed] = useState(false);
 
     const activityList = activities.map((activity) => {
@@ -28,13 +29,15 @@ const GroupDetailCard = ({ groupId }) => {
     useEffect(() => {
         getGoals(groupId);
         getActivities(groupId);
+        getSubscribedGroups();
         subscribedGroups.includes(Number(groupId)) ? setIsSubscribed(true) : setIsSubscribed(false);
     }, [])
 
     useEffect(() => {
         subscribedGroups.includes(Number(groupId)) ? setIsSubscribed(true) : setIsSubscribed(false);
+        console.log(subscribedGroups, groupId)
+        console.log(subscribedGroups.includes(Number(groupId)))
     }, [subscribedGroups])
-
 
     return (
         <CardGroupDetailBody>
