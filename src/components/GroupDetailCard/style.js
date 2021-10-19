@@ -28,6 +28,6 @@ export const CardGroupDetailBody = styled.div`
     }
 
     li {
-        margin: 5px 0 0 20px;
+        margin: 5px 0 5px 20px;
     }
 `;

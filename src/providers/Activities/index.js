@@ -8,16 +8,6 @@ export const ActivitiesProvider = ({ children }) => {
 
     const [activities, setActivities] = useState([]);
 
-    const [token] = useState(
-        JSON.parse(window.localStorage.getItem("@BetterLife:token")) || ""
-    );
-
-    const header = {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    };
-
     const getActivities = (group) => {
         api.get(`/activities/?group=${group}`).then((resp) => {
             setActivities(resp.data.results);
@@ -26,7 +16,12 @@ export const ActivitiesProvider = ({ children }) => {
     };
 
     const removeActivity = (id) => {
-        api.delete(`/activities/${id}/`, header).then(() => toast.success('Atividade deletada com sucesso.')
+        const token = localStorage.getItem("@BetterLife:token") || "";
+        api.delete(`/activities/${id}/`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(() => toast.success('Atividade deletada com sucesso.')
         ).catch((err) => console.log(err));
         const newActivities = activities.filter((goal) => goal.id !== id);
         setActivities(newActivities);

@@ -7,11 +7,22 @@ import { ButtonContainer } from '../HabitCard/style';
 import { ActivitiesContext } from '../../providers/Activities';
 import { GroupsContext } from '../../providers/Groups';
 
-const GroupDetailCard = ({ groupId = 16 }) => {
+const GroupDetailCard = ({ groupId }) => {
     const { goals, getGoals } = useContext(GoalsContext);
     const { activities, getActivities } = useContext(ActivitiesContext);
     const { subscribedGroups, subscribeGroup, unsubscribeGroup } = useContext(GroupsContext);
     const [isSubscribed, setIsSubscribed] = useState(false);
+
+    const activityList = activities.map((activity) => {
+        const date = new Date(activity.realization_time);
+        const newDate = [date.getDate(), date.getMonth(), date.getFullYear()].join('/');
+        return (
+            <li key={activity.id}>
+                <h4>{activity.title}</h4>
+                <p>Data Limite: {newDate}</p>
+            </li>
+        );
+    });
 
     useEffect(() => {
         getGoals(groupId);
@@ -22,6 +33,7 @@ const GroupDetailCard = ({ groupId = 16 }) => {
     useEffect(() => {
         subscribedGroups.includes(groupId) ? setIsSubscribed(true) : setIsSubscribed(false);
     }, [subscribedGroups])
+
 
     return (
         <CardGroupDetailBody>
@@ -39,7 +51,7 @@ const GroupDetailCard = ({ groupId = 16 }) => {
             <div>
                 <h3>Atividades</h3>
                 <ul>
-                    {activities.map((activity) => <li key={activity.id}>{activity.title}</li>)}
+                    {activityList}
                 </ul>
             </div>
         </CardGroupDetailBody>

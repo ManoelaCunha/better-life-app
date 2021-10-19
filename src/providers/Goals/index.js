@@ -6,15 +6,6 @@ export const GoalsContext = createContext();
 
 export const GoalsProvider = ({ children }) => {
     const [goals, setGoals] = useState([]);
-    const [token] = useState(
-        JSON.parse(window.localStorage.getItem("@BetterLife:token")) || ""
-    );
-
-    const header = {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    };
 
     const getGoals = (group) => {
         api.get(`/goals/?group=${group}`).then((resp) => {
@@ -24,7 +15,12 @@ export const GoalsProvider = ({ children }) => {
     };
 
     const removeGoal = (id) => {
-        api.delete(`/goals/${id}/`, header).then(() => toast.success('Meta deletada com sucesso.')
+        const token = localStorage.getItem("@BetterLife:token") || "";
+        api.delete(`/goals/${id}/`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(() => toast.success('Meta deletada com sucesso.')
         ).catch((err) => console.log(err));
         const newGoals = goals.filter((goal) => goal.id !== id);
         setGoals(newGoals);
@@ -32,6 +28,8 @@ export const GoalsProvider = ({ children }) => {
 
     const updateGoalProgress = (id, newProgress) => {
         let isAchieved = false;
+        const token = localStorage.getItem("@BetterLife:token") || "";
+
         if (newProgress >= 100) {
             isAchieved = true;
             newProgress = 100;
@@ -44,7 +42,11 @@ export const GoalsProvider = ({ children }) => {
             "how_much_achieved": newProgress,
             "achieved": isAchieved
         }
-        api.patch(`/goals/${id}/`, updatedGoal, header).then(() => toast.success('Progresso da meta incrementada.')).catch((err) => console.log(err));
+        api.patch(`/goals/${id}/`, updatedGoal, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(() => toast.success('Progresso da meta incrementada.')).catch((err) => console.log(err));
     };
 
     return (
