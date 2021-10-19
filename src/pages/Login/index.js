@@ -28,7 +28,6 @@ const Login = ({ authenticated, setAuthenticated }) => {
 
   const onSubmitFunction = (data) => {
     // Lógica para fazer as requisições / errors
-    console.log(data);
     api
       .post("/sessions/", data)
       .then((response) => {
@@ -83,7 +82,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
                 helperText={errors.password?.message}
               />
             </div>
-            <Button  type="submit" text="Login">
+            <Button type="submit" text="Login">
               {" "}
               Login{" "}
             </Button>

@@ -20,6 +20,7 @@ const GroupDetailCard = ({ groupId }) => {
             <li key={activity.id}>
                 <h4>{activity.title}</h4>
                 <p>Data Limite: {newDate}</p>
+                <hr style={{ opacity: 0.2, margin: "5px" }} />
             </li>
         );
     });

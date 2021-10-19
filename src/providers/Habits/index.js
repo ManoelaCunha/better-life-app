@@ -7,10 +7,8 @@ export const HabitsContext = createContext();
 export const HabitProvider = ({ children }) => {
   const [habits, setHabits] = useState([]);
 
-
-
   const getHabits = () => {
-    const token = localStorage.getItem("@BetterLife:token") || "";
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token")) || "";
     api
       .get("/habits/personal/", {
         headers: {
@@ -24,7 +22,7 @@ export const HabitProvider = ({ children }) => {
   };
 
   const removeHabits = (id) => {
-    const token = localStorage.getItem("@BetterLife:token") || "";
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token")) || "";
     api
       .delete(`/habits/${id}/`, {
         headers: {
@@ -38,7 +36,7 @@ export const HabitProvider = ({ children }) => {
   };
 
   const updateHabitProgress = (id, newProgress) => {
-    const token = localStorage.getItem("@BetterLife:token") || "";
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token")) || "";
     let isAchieved = false;
     if (newProgress >= 100) {
       isAchieved = true;
