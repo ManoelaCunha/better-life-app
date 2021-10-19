@@ -9,7 +9,7 @@ import Larissa from "../../assets/MembersImg/larissa.jpeg";
 import Manoela from "../../assets/MembersImg/manoela.jpeg";
 import Emily from "../../assets/MembersImg/emily.jpeg";
 import { BsGithub } from "react-icons/bs";
-import { FaLinkedinIn } from "react-icons/fa";
+import { FaLinkedinIn} from "react-icons/fa";
 const Members = () => {
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
