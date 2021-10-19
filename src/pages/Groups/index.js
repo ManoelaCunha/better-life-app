@@ -5,7 +5,7 @@ import Button from "../../components/Button";
 import { useState, useContext } from "react";
 import { GroupsContext } from "../../providers/Groups";
 import { Box, Container, Text, CloseModal, ModalContent } from "./style";
-import { TextField, FormControl } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import Modal from "react-modal";
 import { FaWindowClose } from "react-icons/fa";
 import { useForm } from "react-hook-form";
@@ -14,7 +14,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 const Groups = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const { handleCreateGroup } = useContext(GroupsContext);
+  const { createGroup } = useContext(GroupsContext);
 
   const schema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
@@ -28,13 +28,13 @@ const Groups = () => {
     formState: { errors },
   } = useForm(yupResolver(schema));
 
-  const createGroup = ({ title, description, category }) => {
+  const handleCreateGroup = ({ title, description, category }) => {
     const newGroup = {
       title: title,
       description: description,
       category: category,
     };
-    handleCreateGroup(newGroup);
+    createGroup(newGroup);
   };
 
   const openModal = () => {
@@ -64,7 +64,7 @@ const Groups = () => {
   const inputStyle = {
     margin: "10px auto",
     width: "100%",
-    maxWidth: "500px",
+    maxWidth: "350px",
   };
 
   return (
@@ -103,7 +103,7 @@ const Groups = () => {
         <ModalContent>
           <h2>Cadastrar novo grupo</h2>
 
-          <form style={formStyle} onSubmit={handleSubmit(createGroup)}>
+          <form style={formStyle} onSubmit={handleSubmit(handleCreateGroup)}>
             <TextField label='Título' variant='filled' style={inputStyle} {...register("title")} helperText={errors.title?.message} />
 
             <TextField label='Descrição' variant='filled' style={inputStyle} {...register("description")} helperText={errors.description?.message} />
