@@ -36,13 +36,31 @@ export const GroupsProvider = ({ children }) => {
       .then((response) => {
         console.log(response.data);
         setGroups([...groups, response.data]);
-        toast.success("Grupo criado com sucesso!");
+        toast.success("Grupo criado com sucesso!", {
+          icon: "👏",
+        });
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const subscribeGroup = (groupId) => {
+    api
+      .post(`groups/${groupId}/subscribe/`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        console.log(response);
+        toast.success("Iscrição realizada com sucesso!", {
+          icon: "👏",
+        });
       })
       .catch((error) => console.log(error));
   };
 
   return (
-    <GroupsContext.Provider value={{ groups, handleCreateGroup }}>
+    <GroupsContext.Provider
+      value={{ groups, handleCreateGroup, subscribeGroup }}
+    >
       {children}
     </GroupsContext.Provider>
   );

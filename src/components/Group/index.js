@@ -3,8 +3,17 @@ import { Box, Card } from "./style";
 
 import img from "../../assets/img/star.gif";
 
-const Group = ({ group }) => {
+import { GroupsContext } from "../../providers/Groups";
+import { useContext } from "react";
+
+const Group = ({ group, groupId }) => {
   const { name, category, description } = group;
+  const { subscribeGroup } = useContext(GroupsContext);
+
+  const handleSubscribeGroup = () => {
+    console.log(groupId);
+    subscribeGroup(groupId);
+  };
 
   return (
     <Card>
@@ -31,6 +40,7 @@ const Group = ({ group }) => {
           </button>
 
           <button
+            onClick={handleSubscribeGroup}
             style={{
               width: "130px",
               height: "30px",
