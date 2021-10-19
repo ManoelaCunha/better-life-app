@@ -28,15 +28,16 @@ export const GroupsProvider = ({ children }) => {
     getGroups();
   }, [next]);
 
-  const handleCreateGroup = (data) => {
+  const createGroup = (data) => {
     api
       .post("groups/", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log(response.data);
         setGroups([...groups, response.data]);
-        toast("Grupo criado com sucesso!");
+        toast.success("Grupo criado com sucesso!", {
+          icon: "👏",
+        });
       })
       .catch((error) => console.log(error));
   };
@@ -68,7 +69,10 @@ export const GroupsProvider = ({ children }) => {
       })
       .then(() => {
         toast.success("Removido do grupo com sucesso!");
-        const newSubGroups = subscribedGroups.filter((groupId) => groupId !== id);
+        const newSubGroups = subscribedGroups.filter(
+          (groupId) => groupId !== id
+        );
+
         setSubscribedGroups(newSubGroups);
       })
       .catch((err) => console.log(err));
@@ -88,7 +92,16 @@ export const GroupsProvider = ({ children }) => {
   };
 
   return (
-    <GroupsContext.Provider value={{ groups, handleCreateGroup, subscribeGroup, unsubscribeGroup, getSubscribedGroups, subscribedGroups }}>
+    <GroupsContext.Provider
+      value={{
+        groups,
+        createGroup,
+        subscribeGroup,
+        unsubscribeGroup,
+        getSubscribedGroups,
+        subscribedGroups,
+      }}
+    >
       {children}
     </GroupsContext.Provider>
   );
