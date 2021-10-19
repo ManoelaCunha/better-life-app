@@ -1697,6 +1697,13 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
+"@lottiefiles/lottie-interactivity@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/lottie-interactivity/-/lottie-interactivity-1.1.0.tgz#7f66e41d4f1a71e216c715c3233754091d190f96"
+  integrity sha512-7FkLzQY6RpohJJgAqnbiilcm9F+AsBwuO5RtEPHEjmx1lj1KdHu6L9Lb6yuptveX1g1UAAYBKa3a5xO64vJORw==
+  dependencies:
+    core-js "3"
+
 "@material-ui/core@^5.0.0-beta.5":
   version "5.0.0-beta.5"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-5.0.0-beta.5.tgz#6ee717d4ec02b28d737fb4be42dbc3b345dccc7c"
@@ -4020,6 +4027,11 @@ core-js-pure@^3.0.0:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.9.0.tgz#326cc74e1fef8b7443a6a793ddb0adfcd81f9efb"
   integrity sha512-3pEcmMZC9Cq0D4ZBh3pe2HLtqxpGNJBLXF/kZ2YzK17RbKp94w0HFbdbSx8H8kAlZG5k76hvLrkPm57Uyef+kg==
+
+core-js@3:
+  version "3.18.3"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.18.3.tgz#86a0bba2d8ec3df860fefcc07a8d119779f01509"
+  integrity sha512-tReEhtMReZaPFVw7dajMx0vlsz3oOb8ajgPoHVYGxr8ErnZ6PcYEvvmjGmXlfpnxpkYSdOQttjB+MvVbCGfvLw==
 
 core-js@^2.4.0:
   version "2.6.12"
