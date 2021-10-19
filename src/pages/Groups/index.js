@@ -1,21 +1,25 @@
 import { ButtonContainer } from "../../components/Button/style";
-import GroupList from "../../components/GroupsList";
-import Menu from "../../components/Menu";
-import { useContext, useEffect } from "react";
-import { GroupsContext } from "../../providers/Groups";
 import { Box, Container, Text } from "./style";
-import Modal from "../../components/Modal";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { TextField } from "@material-ui/core";
+
+import GroupList from "../../components/GroupsList";
 import Button from "../../components/Button";
+import Modal from "../../components/Modal";
+import Menu from "../../components/Menu";
+import { GroupsContext } from "../../providers/Groups";
 import { UserContext } from "../../providers/User";
 
-const Groups = () => {
-  const { createGroup } = useContext(GroupsContext);
+import { useContext, useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
+
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import { TextField } from "@material-ui/core";
+
+const Groups = ({ authenticated }) => {
   const { userName } = useContext(UserContext);
+  const { createGroup } = useContext(GroupsContext);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const schema = yup.object().shape({
@@ -47,6 +51,10 @@ const Groups = () => {
   const formStyle = {
     width: "100%",
   };
+
+  if (!authenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <>

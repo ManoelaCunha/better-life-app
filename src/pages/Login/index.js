@@ -34,7 +34,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
         const { access } = response.data;
         localStorage.setItem("@BetterLife:token", JSON.stringify(access));
         setAuthenticated(true);
-        return history.push("/dashboard");
+        return history.push("/welcome");
       })
 
       .catch((_) => {
@@ -43,7 +43,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
   };
 
   if (authenticated) {
-    return <Redirect to="dashboard" />;
+    return <Redirect to="welcome" />;
   }
 
   return (
