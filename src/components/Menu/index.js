@@ -1,3 +1,4 @@
+
 import { MenuContainer, LogoutContainer, IconsContainer, ImageContainer } from "./style"
 import { MdGroups } from "react-icons/md"
 import { BiLogOutCircle } from "react-icons/bi"
@@ -29,6 +30,7 @@ const Menu = ({ handleAdd }) => {
 
           <span>
             <MdGroups onClick={() => history.push('/groups')} />
+
             <p>Grupos</p>
           </span>
         </IconsContainer>
@@ -36,14 +38,14 @@ const Menu = ({ handleAdd }) => {
         <Button text='+' smaller onClick={handleAdd} />
 
         <LogoutContainer>
-          <span>
-            <BiLogOutCircle onClick={handleLogout} />
+          <span onClick={handleLogout}>
+            <BiLogOutCircle />
             <p>Sair</p>
           </span>
         </LogoutContainer>
       </MenuContainer>
     </>
-  )
-}
+  );
+};
 
-export default Menu
+export default Menu;

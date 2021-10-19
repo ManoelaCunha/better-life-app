@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import App from "../../App"
+import styled from "styled-components";
+import App from "../../App";
 
 export const MenuContainer = styled.div`
   position: fixed;
@@ -48,6 +48,7 @@ export const MenuContainer = styled.div`
 
     span {
       display: flex;
+      cursor: pointer;
     }
     p {
       display: flex;
@@ -60,10 +61,9 @@ export const MenuContainer = styled.div`
     svg {
       position: relative;
       left: -10px;
-      cursor: pointer;
     }
   }
-`
+`;
 
 export const LogoutContainer = styled.div`
   margin-right: 20px;
@@ -80,7 +80,7 @@ export const LogoutContainer = styled.div`
       left: -20px;
     }
   }
-`
+`;
 export const IconsContainer = styled.div`
   margin-left: 20px;
   @media screen and (min-width: 768px) {
@@ -98,7 +98,7 @@ export const IconsContainer = styled.div`
       left: -5px;
     }
   }
-`
+`;
 
 export const ImageContainer = styled.div`
   position: fixed;
@@ -124,4 +124,4 @@ export const ImageContainer = styled.div`
       margin: 0 auto;
     }
   }
-`
+`;
