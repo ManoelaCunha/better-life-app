@@ -83,7 +83,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
                 helperText={errors.password?.message}
               />
             </div>
-            <Button  type="submit" text="Login">
+            <Button type="submit" text="Login">
               {" "}
               Login{" "}
             </Button>
