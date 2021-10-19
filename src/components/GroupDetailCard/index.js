@@ -28,11 +28,11 @@ const GroupDetailCard = ({ groupId }) => {
     useEffect(() => {
         getGoals(groupId);
         getActivities(groupId);
-        subscribedGroups.includes(groupId) ? setIsSubscribed(true) : setIsSubscribed(false);
+        subscribedGroups.includes(Number(groupId)) ? setIsSubscribed(true) : setIsSubscribed(false);
     }, [])
 
     useEffect(() => {
-        subscribedGroups.includes(groupId) ? setIsSubscribed(true) : setIsSubscribed(false);
+        subscribedGroups.includes(Number(groupId)) ? setIsSubscribed(true) : setIsSubscribed(false);
     }, [subscribedGroups])
 
 
