@@ -6,6 +6,7 @@ import Groups from "../pages/Groups";
 import Dashboard from "../pages/Dashboard";
 import { useState, useEffect } from "react";
 import Welcome from "../pages/Welcome";
+import GroupDetails from "../pages/GroupDetails";
 
 const Routes = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -42,6 +43,10 @@ const Routes = () => {
 
       <Route exact path="/groups">
         <Groups authenticated={authenticated} />
+      </Route>
+
+      <Route exact path="/groups/:idGroup">
+        <GroupDetails />
       </Route>
     </Switch>
   );

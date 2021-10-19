@@ -19,7 +19,6 @@ export const UserProvider = ({ children }) => {
             setUserName(resp.data.username);
         })
             .catch((err) => console.log(err));
-
     };
 
     return (

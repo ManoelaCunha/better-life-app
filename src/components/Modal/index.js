@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import { FaWindowClose } from "react-icons/fa";
 import { CloseModal, ModalContent } from "./style";
+
 const ModalComponent = ({ modalIsOpen, setIsOpen, title, content }) => {
   const closeModal = () => {
     setIsOpen(false);

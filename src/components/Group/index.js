@@ -4,12 +4,24 @@ import { Box, Card } from "./style";
 import img from "../../assets/img/star.gif";
 
 import { GroupsContext } from "../../providers/Groups";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router";
 
 const Group = ({ group, groupId }) => {
   const { name, category, description } = group;
-  const { subscribeGroup } = useContext(GroupsContext);
+  const { subscribedGroups, subscribeGroup, unsubscribeGroup } = useContext(GroupsContext);
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
+  useEffect(() => {
+    subscribedGroups.includes(groupId) ? setIsSubscribed(true) : setIsSubscribed(false);
+  }, [])
+
+  useEffect(() => {
+    subscribedGroups.includes(groupId) ? setIsSubscribed(true) : setIsSubscribed(false);
+  }, [subscribedGroups])
+
+
+  const history = useHistory();
   const handleSubscribeGroup = () => {
     subscribeGroup(groupId);
   };
@@ -28,6 +40,7 @@ const Group = ({ group, groupId }) => {
 
         <ButtonContainer style={{ margin: "15px" }}>
           <button
+            onClick={() => { history.push(`/groups/${groupId}`) }}
             style={{
               width: "130px",
               height: "30px",
@@ -38,7 +51,7 @@ const Group = ({ group, groupId }) => {
             Ver mais
           </button>
 
-          <button
+          {!isSubscribed && <button
             onClick={handleSubscribeGroup}
             style={{
               width: "130px",
@@ -46,7 +59,7 @@ const Group = ({ group, groupId }) => {
             }}
           >
             Inscreva-se
-          </button>
+          </button>}
         </ButtonContainer>
       </div>
       <Box>

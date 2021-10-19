@@ -5,7 +5,6 @@ import GroupList from "../../components/GroupsList";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import Menu from "../../components/Menu";
-
 import { GroupsContext } from "../../providers/Groups";
 import { UserContext } from "../../providers/User";
 

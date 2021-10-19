@@ -6,7 +6,6 @@ import {
   MenuItem,
   Select,
 } from "@material-ui/core";
-import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
@@ -18,19 +17,23 @@ import { HabitsContext } from "../../providers/Habits";
 import { GroupsContext } from "../../providers/Groups";
 import { Box, Container, Text, ButtonContainerDashboard } from "./style";
 import { Redirect, useHistory } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const Dashboard = ({ authenticated }) => {
-  const { getUser, userName, getUserName } = useContext(UserContext);
+  const { getUser, userName, getUserName, user } = useContext(UserContext);
   const { getHabits, habits, addNewHabit } = useContext(HabitsContext);
   const { getSubscribedGroups } = useContext(GroupsContext);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     getUser();
+  }, []);
+
+  useEffect(() => {
     getHabits();
     getSubscribedGroups();
     getUserName();
-  }, []);
+  }, [user]);
 
   const schema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
@@ -49,7 +52,9 @@ const Dashboard = ({ authenticated }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const handleNewHabit = ({ title, category, difficulty, frequency }) => {
     const userId = localStorage.getItem("@BetterLife:user");
@@ -71,10 +76,6 @@ const Dashboard = ({ authenticated }) => {
     setIsOpen(true);
   };
 
-  if (!authenticated) {
-    return <Redirect to="/" />;
-  }
-
   const inputStyle = {
     margin: "10px auto",
     width: "100%",
@@ -84,6 +85,11 @@ const Dashboard = ({ authenticated }) => {
   const formStyle = {
     width: "100%",
   };
+
+  if (!authenticated) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <>
       <Menu />
