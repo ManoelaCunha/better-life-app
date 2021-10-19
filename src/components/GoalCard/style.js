@@ -16,13 +16,20 @@ export const CardContainer = styled.div`
       margin: 5px 0 0 20px;
       color:#7B6F72;
   }
+  #closeIcon {
+      width: 10px;
+      font-size: 20px;
+  }
+  #closeIcon:hover {
+    color: #ad000d;
+  }
   @media screen and (min-width: 768px) {
     font-size: 14px;
     background: linear-gradient(274.42deg, #92A3FD 0%, #9DCEFF 124.45%);
     p {
       color: #fff;
     }
-    h3 {
+    h4 {
       color:#fff;
     }
   }
@@ -41,32 +48,13 @@ export const IconButtonContainer = styled.button`
   width:fit-content;
   height:fit-content;
   background: none;
-  &:hover {
-    color: #ad000d;
-  }
+  width: 10px;
 `;
 
 export const ButtonContainer = styled.div`
   width: 50px;
-  Button {
-    width: 100px;
-    height: 35px;
-    font-size: 12px;
-  }
-  @media screen and (min-width: 768px) {
-    Button {
-      font-size: 14px;
-     background: #fff;
-     color: #000;
-    }
-  }
 `;
 
-export const HabitCardButton = styled(Button)`
-  width: 100px;
-    height: 35px;
-    font-size: 12px;
-`;
 
 export const ChartContainer = styled.div`
   width: 100px;

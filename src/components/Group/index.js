@@ -11,7 +11,6 @@ const Group = ({ group, groupId }) => {
   const { subscribeGroup } = useContext(GroupsContext);
 
   const handleSubscribeGroup = () => {
-    console.log(groupId);
     subscribeGroup(groupId);
   };
 

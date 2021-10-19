@@ -11,7 +11,7 @@ export default createGlobalStyle`
         --background-color: #F2F9FE;
     }
     body{
-        background-color: var(--background-color);
+        background-color: #ffffff;
         font-family: 'Poppins', sans-serif;
         min-width: 320px;
         width: 100%;

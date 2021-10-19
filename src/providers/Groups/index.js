@@ -28,7 +28,7 @@ export const GroupsProvider = ({ children }) => {
     getGroups();
   }, [next]);
 
-  const handleCreateGroup = (data) => {
+  const createGroup = (data) => {
     api
       .post("groups/", data, {
         headers: { Authorization: `Bearer ${token}` },
@@ -58,9 +58,7 @@ export const GroupsProvider = ({ children }) => {
   };
 
   return (
-    <GroupsContext.Provider
-      value={{ groups, handleCreateGroup, subscribeGroup }}
-    >
+    <GroupsContext.Provider value={{ groups, createGroup, subscribeGroup }}>
       {children}
     </GroupsContext.Provider>
   );

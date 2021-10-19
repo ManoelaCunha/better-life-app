@@ -6,17 +6,17 @@ export const HabitsContext = createContext();
 
 export const HabitProvider = ({ children }) => {
   const [habits, setHabits] = useState([]);
-  const token =
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0OTIxNDMwLCJqdGkiOiI2NWVkY2I5ZDA5MDI0NzdkOGRkNjg4YWFkYjQxN2YwZCIsInVzZXJfaWQiOjE1M30.f5mSz1IpeRJKWtI9xdWObepZrJsG9b1qFTmCnxw6bt4";
-  const header = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
+
+
 
   const getHabits = () => {
+    const token = localStorage.getItem("@BetterLife:token") || "";
     api
-      .get("/habits/personal/", header)
+      .get("/habits/personal/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((resp) => {
         setHabits(resp.data);
       })
@@ -24,8 +24,13 @@ export const HabitProvider = ({ children }) => {
   };
 
   const removeHabits = (id) => {
+    const token = localStorage.getItem("@BetterLife:token") || "";
     api
-      .delete(`/habits/${id}/`, header)
+      .delete(`/habits/${id}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => toast.success("Habito deletado com sucesso."))
       .catch((err) => console.log(err));
     const newHabits = habits.filter((habit) => habit.id !== id);
@@ -33,6 +38,7 @@ export const HabitProvider = ({ children }) => {
   };
 
   const updateHabitProgress = (id, newProgress) => {
+    const token = localStorage.getItem("@BetterLife:token") || "";
     let isAchieved = false;
     if (newProgress >= 100) {
       isAchieved = true;
@@ -47,7 +53,11 @@ export const HabitProvider = ({ children }) => {
       achieved: isAchieved,
     };
     api
-      .patch(`/habits/${id}/`, updatedHabit, header)
+      .patch(`/habits/${id}/`, updatedHabit, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => toast.success("Progresso do Habito incrementado."))
       .catch((err) => console.log(err));
   };
