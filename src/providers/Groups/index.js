@@ -3,15 +3,17 @@ import { createContext, useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
 import api from "../../services/api";
+import axios from "axios";
 
 export const GroupsContext = createContext();
 
 export const GroupsProvider = ({ children }) => {
   const [groups, setGroups] = useState([]);
   const [next, setNext] = useState(1);
+  const [subscribedGroups, setSubscribedGroups] = useState([]);
 
   const [token] = useState(
-    JSON.parse(window.localStorage.getItem("@BetterLife:token")) || ""
+    JSON.parse(localStorage.getItem("@BetterLife:token")) || ""
   );
 
   const getGroups = () => {
@@ -34,7 +36,6 @@ export const GroupsProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log(response.data);
         setGroups([...groups, response.data]);
         toast.success("Grupo criado com sucesso!", {
           icon: "👏",
@@ -43,22 +44,65 @@ export const GroupsProvider = ({ children }) => {
       .catch((error) => console.log(error));
   };
 
-  const subscribeGroup = (groupId) => {
+  const subscribeGroup = (id) => {
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
+    axios
+      .post(
+        `https://kenzie-habits.herokuapp.com/groups/${id}/subscribe/`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then(() => {
+        toast.success("Inscrição feita com sucesso!");
+        setSubscribedGroups([...subscribedGroups, id]);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const unsubscribeGroup = (id) => {
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
     api
-      .post(`groups/${groupId}/subscribe/`, {
+      .delete(`groups/${id}/unsubscribe/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(() => {
+        toast.success("Removido do grupo com sucesso!");
+        const newSubGroups = subscribedGroups.filter(
+          (groupId) => groupId !== id
+        );
+        setSubscribedGroups(newSubGroups);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const getSubscribedGroups = () => {
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
+    api
+      .get("groups/subscriptions/", {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((response) => {
-        console.log(response);
-        toast.success("Iscrição realizada com sucesso!", {
-          icon: "👏",
-        });
+      .then((resp) => {
+        const newSubGroups = resp.data.map((group) => group.id);
+        setSubscribedGroups(newSubGroups);
       })
-      .catch((error) => console.log(error));
+      .catch((err) => console.log(err.message));
   };
 
   return (
-    <GroupsContext.Provider value={{ groups, createGroup, subscribeGroup }}>
+    <GroupsContext.Provider
+      value={{
+        groups,
+        createGroup,
+        subscribeGroup,
+        unsubscribeGroup,
+        getSubscribedGroups,
+        subscribedGroups,
+      }}
+    >
       {children}
     </GroupsContext.Provider>
   );
