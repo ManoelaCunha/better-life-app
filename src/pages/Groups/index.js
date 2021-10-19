@@ -1,20 +1,20 @@
 import { ButtonContainer } from "../../components/Button/style";
 import GroupList from "../../components/GroupsList";
 import Menu from "../../components/Menu";
-import Button from "../../components/Button";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { GroupsContext } from "../../providers/Groups";
-import { Box, Container, Text, CloseModal, ModalContent } from "./style";
-import { TextField } from "@material-ui/core";
-import Modal from "react-modal";
-import { FaWindowClose } from "react-icons/fa";
+import { Box, Container, Text } from "./style";
+import Modal from "../../components/Modal";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { TextField } from "@material-ui/core";
+import Button from "../../components/Button";
 
 const Groups = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
   const { createGroup } = useContext(GroupsContext);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   const schema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
@@ -40,31 +40,15 @@ const Groups = () => {
   const openModal = () => {
     setIsOpen(true);
   };
-  const closeModal = () => {
-    setIsOpen(false);
-  };
 
-  const modalStyle = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      width: "80%",
-      maxWidth: "500px",
-      transform: "translate(-50%, -50%)",
-      textAlign: "center",
-      borderRadius: "15px",
-    },
-  };
-
-  const formStyle = {
-    width: "100%",
-  };
   const inputStyle = {
     margin: "10px auto",
     width: "100%",
     maxWidth: "350px",
+  };
+
+  const formStyle = {
+    width: "100%",
   };
 
   return (
@@ -95,14 +79,11 @@ const Groups = () => {
         </Box>
         <GroupList />
       </Container>
-
-      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={modalStyle}>
-        <CloseModal onClick={closeModal}>
-          <FaWindowClose />
-        </CloseModal>
-        <ModalContent>
-          <h2>Cadastrar novo grupo</h2>
-
+      <Modal
+        modalIsOpen={modalIsOpen}
+        setIsOpen={setIsOpen}
+        title='Cadastrar novo grupo'
+        content={
           <form style={formStyle} onSubmit={handleSubmit(handleCreateGroup)}>
             <TextField label='Título' variant='filled' style={inputStyle} {...register("title")} helperText={errors.title?.message} />
 
@@ -112,8 +93,8 @@ const Groups = () => {
 
             <Button text='Criar grupo' style={{ width: "150px", fontSize: "16px" }} type='submit' />
           </form>
-        </ModalContent>
-      </Modal>
+        }
+      />
     </>
   );
 };
