@@ -1,6 +1,6 @@
 import { Route, Switch } from "react-router";
 import SignUp from "../components/SignUp";
-import Login from "../pages/Login";
+import LoginPage from "../pages/Login";
 import Homepage from "../pages/Homepage/index";
 import Groups from "../pages/Groups";
 import Dashboard from "../pages/Dashboard";
@@ -23,12 +23,12 @@ const Routes = () => {
       </Route>
 
       <Route exact path="/login">
-        <Login
+        <LoginPage
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}
         />
       </Route>
-      <Route path="/welcome" >
+      <Route path="/welcome">
         <Welcome />
       </Route>
 
@@ -43,11 +43,9 @@ const Routes = () => {
       <Route exact path="/groups">
         <Groups authenticated={authenticated} />
       </Route>
-      <Route exact path='/groups/:idGroup'>
+      <Route exact path="/groups/:idGroup">
         <GroupDetails />
       </Route>
-
-
     </Switch>
   );
 };
