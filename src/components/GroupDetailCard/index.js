@@ -4,7 +4,6 @@ import { useContext, useEffect, useState } from "react";
 import { GoalsContext } from "../../providers/Goals";
 import GoalCard from "../GoalCard";
 import { ButtonContainer } from "../Button/style";
-//import { ButtonContainer } from "../HabitCard/style";
 import { ActivitiesContext } from "../../providers/Activities";
 import { GroupsContext } from "../../providers/Groups";
 import { FormControlUnstyledContext } from "@material-ui/unstyled";
@@ -12,19 +11,29 @@ import { TiDelete } from "react-icons/ti";
 
 const GroupDetailCard = ({ groupId, openModal }) => {
   const { goals, getGoals } = useContext(GoalsContext);
-  const { activities, getActivities, removeActivity } = useContext(ActivitiesContext);
-  const { subscribedGroups, subscribeGroup, unsubscribeGroup, getSubscribedGroups } = useContext(GroupsContext);
+  const { activities, getActivities, removeActivity } =
+    useContext(ActivitiesContext);
+  const {
+    subscribedGroups,
+    subscribeGroup,
+    unsubscribeGroup,
+    getSubscribedGroups,
+  } = useContext(GroupsContext);
   const [isSubscribed, setIsSubscribed] = useState(false);
 
   useEffect(() => {
     getGoals(groupId);
     getActivities(groupId);
     getSubscribedGroups();
-    subscribedGroups.includes(Number(groupId)) ? setIsSubscribed(true) : setIsSubscribed(false);
+    subscribedGroups.includes(Number(groupId))
+      ? setIsSubscribed(true)
+      : setIsSubscribed(false);
   }, []);
 
   useEffect(() => {
-    subscribedGroups.includes(Number(groupId)) ? setIsSubscribed(true) : setIsSubscribed(false);
+    subscribedGroups.includes(Number(groupId))
+      ? setIsSubscribed(true)
+      : setIsSubscribed(false);
     console.log(subscribedGroups, groupId);
     console.log(subscribedGroups.includes(Number(groupId)));
   }, [subscribedGroups]);
@@ -39,7 +48,12 @@ const GroupDetailCard = ({ groupId, openModal }) => {
             Inscreva-se
           </Button>
         )}
-        {isSubscribed && <Button text={"Sair do grupo"} onClick={() => unsubscribeGroup(groupId)} />}
+        {isSubscribed && (
+          <Button
+            text={"Sair do grupo"}
+            onClick={() => unsubscribeGroup(groupId)}
+          />
+        )}
       </ButtonContainer>
       <p>Descrição do Grupo</p>
       <div>
@@ -51,18 +65,24 @@ const GroupDetailCard = ({ groupId, openModal }) => {
       <div>
         <h3>Atividades</h3>
         <ButtonContainer style={{ margin: "0px" }}>
-          <button onClick={openModal}>Criar Atividade</button>
+          {isSubscribed && <button onClick={openModal}>Criar Atividade</button>}
         </ButtonContainer>
         <ActivityContainer>
           <ul>
             {activities.map((activity) => {
               const date = new Date(activity.realization_time);
-              const newDate = [date.getDate(), date.getMonth(), date.getFullYear()].join("/");
+              const newDate = [
+                date.getDate(),
+                date.getMonth(),
+                date.getFullYear(),
+              ].join("/");
               return (
                 <li key={activity.id}>
                   <h4>{activity.title}</h4>
                   <p>Data Limite: {newDate}</p>
-                  <TiDelete onClick={() => removeActivity(activity.id)} />
+                  {isSubscribed && (
+                    <TiDelete onClick={() => removeActivity(activity.id)} />
+                  )}
                   <hr style={{ opacity: 0.2, margin: "5px" }} />
                 </li>
               );
