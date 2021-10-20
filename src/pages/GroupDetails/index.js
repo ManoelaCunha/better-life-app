@@ -21,12 +21,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import GroupDetailCard from "../../components/GroupDetailCard";
 import { useParams } from "react-router";
+import { GoalsContext } from "../../providers/Goals";
 
 const GroupDetails = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const { userName } = useContext(UserContext);
   const { createActivities } = useContext(ActivitiesContext);
+  const { createGoals } = useContext(GoalsContext);
 
   const parameters = useParams();
   const groupId = parameters.idGroup;
@@ -54,6 +56,18 @@ const GroupDetails = () => {
     createActivities(data);
   };
 
+
+  const handleCreateGoal = ({title, difficulty, how_much_achieved, group}) => {
+    const newGroupGoal = {
+      title: title,
+      difficulty: difficulty,
+      how_much_achieved: 0,
+      group: groupId,
+     
+    };
+    createGoals(newGroupGoal)
+  };
+
   const openModal = () => {
     setIsOpen(true);
   };
@@ -66,22 +80,6 @@ const GroupDetails = () => {
 
   const formStyle = {
     width: "100%",
-  };
-
-  const handleCreateGoal = ({
-    title, 
-    difficulty,
-    how_much_achieved = 0,
-    group = groupId,
-  }) => {
-    const userId = localStorage.getItem("@BetterLife:user");
-
-    const newGroupGoal = {
-      title: title,
-      difficulty: difficulty,
-      how_much_achieved: 0,
-      group: groupId,
-    };
   };
 
   return (
