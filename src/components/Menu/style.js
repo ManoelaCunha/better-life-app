@@ -10,6 +10,14 @@ export const MenuContainer = styled.div`
   align-items: center;
   font-size: 40px;
   background-color: #f2f9fe;
+  box-shadow: -3px -4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+
+  .active {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
   p {
     display: none;
   }
@@ -35,12 +43,14 @@ export const MenuContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #f2f9fe;
+    align-items: center;
+    background-color: #ecf0f1;
     position: fixed;
     top: 0;
     float: left;
-    width: 150px;
+    width: 200px;
     height: 100%;
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.5);
 
     Button {
       display: none;
@@ -83,7 +93,18 @@ export const LogoutContainer = styled.div`
 `;
 export const IconsContainer = styled.div`
   margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  width: 35%;
+
+  svg {
+    width: 25px;
+  }
   @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 100px;
     left: -5px;
@@ -92,6 +113,10 @@ export const IconsContainer = styled.div`
     }
     span {
       margin: 35px 0;
+
+      img {
+        width: 30px;
+      }
     }
     p {
       position: relative;
@@ -101,10 +126,10 @@ export const IconsContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0px;
   width: 100%;
-  background-color: #f2f9fe;
+  z-index: 100;
 
   img {
     display: block;

@@ -45,7 +45,7 @@ export const AnimationContainer = styled.div`
     margin: 100px 0;
     width: 340px;
     text-align: center;
-    background: var(--whiteCity);
+    background: var(--white);
     padding: 40px;
     border-radius: 30px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
@@ -67,8 +67,9 @@ export const AnimationContainer = styled.div`
     }
   }
   img {
-    margin-top: -25px;
+    margin-top: 25px;
+    margin-bottom: -55px;
     width: 250px;
-    opacity: 0.8;
+    
   }
 `;
