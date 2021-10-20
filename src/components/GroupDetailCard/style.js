@@ -34,7 +34,7 @@ export const CardGroupDetailBody = styled.div`
   li {
     margin: 5px 0 5px 20px;
   }
-  svg {
+  .closeActivity {
     font-size: 24px;
     float: right;
     position: relative;

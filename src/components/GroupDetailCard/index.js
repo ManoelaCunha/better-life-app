@@ -97,7 +97,7 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
                       <h4>{activity.title}</h4>
                       <p>Data Limite: {newDate}</p>
                       {isSubscribed && (
-                        <TiDelete onClick={() => removeActivity(activity.id)} />
+                        <TiDelete onClick={() => removeActivity(activity.id)} className='closeActivity' />
                       )}
                       <hr style={{ opacity: 0.2, margin: "5px" }} />
                     </li>

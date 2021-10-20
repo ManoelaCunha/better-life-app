@@ -53,7 +53,7 @@ const Group = ({ group, groupId }) => {
             Ver mais
           </button>
 
-          {!isSubscribed && <button
+          {!isSubscribed ? <button
             onClick={handleSubscribeGroup}
             style={{
               width: "130px",
@@ -61,6 +61,8 @@ const Group = ({ group, groupId }) => {
             }}
           >
             Inscreva-se
+          </button> : <button disabled className='disabledButton'   >
+            Inscrito
           </button>}
         </ButtonContainer>
       </div>
