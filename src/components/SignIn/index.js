@@ -33,6 +33,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
       .then((response) => {
         const { access } = response.data;
         localStorage.setItem("@BetterLife:token", JSON.stringify(access));
+        console.log(access)
         setAuthenticated(true);
         return history.push("/welcome");
       })

@@ -15,7 +15,7 @@ export const GoalsProvider = ({ children }) => {
     };
 
     const removeGoal = (id) => {
-        const token = localStorage.getItem("@BetterLife:token") || "";
+        const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
         api.delete(`/goals/${id}/`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -52,7 +52,7 @@ export const GoalsProvider = ({ children }) => {
     const createGoals = (data) => {
         const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
         api
-          .post("/goal/", data, {
+          .post("/goals/", data, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -64,8 +64,10 @@ export const GoalsProvider = ({ children }) => {
           .catch((error) => console.log(error));
       };
 
+      
+
     return (
-        <GoalsContext.Provider value={{ goals, getGoals, createGoals, updateGoalProgress, removeGoal }}>
+        <GoalsContext.Provider value={{ goals, getGoals, createGoals, updateGoalProgress, removeGoal, setGoals }}>
             {children}
         </GoalsContext.Provider>
     );
