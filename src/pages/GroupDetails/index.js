@@ -15,7 +15,6 @@ import {
   MenuItem,
   Select,
 } from "@material-ui/core";
-import ModalComponent from "../../components/Modal";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -42,7 +41,6 @@ const GroupDetails = () => {
     .required("Campo obrigatório"),
   });
 
-
   const {
     register,
     handleSubmit,
@@ -57,13 +55,12 @@ const GroupDetails = () => {
   };
 
 
-  const handleCreateGoal = ({title, difficulty, how_much_achieved, group}) => {
+  const handleCreateGoals = ({title, difficulty, how_much_achieved, group}) => {
     const newGroupGoal = {
       title: title,
       difficulty: difficulty,
       how_much_achieved: 0,
       group: groupId,
-     
     };
     createGoals(newGroupGoal)
   };
@@ -71,6 +68,10 @@ const GroupDetails = () => {
   const openModal = () => {
     setIsOpen(true);
   };
+
+  const openModalGoals = () => {
+    setIsOpen(true)
+  }
 
   const inputStyle = {
     margin: "10px auto",
@@ -92,15 +93,15 @@ const GroupDetails = () => {
         <Box>
           <h1>Detalhes do Grupo</h1>
         </Box>
-        <GroupDetailCard groupId={groupId} openModal={openModal} />
+        <GroupDetailCard openModalGoals={openModalGoals} groupId={groupId} openModal={openModal} />
       </Container>
 
-      <ModalComponent
+      <Modal
         modalIsOpen={modalIsOpen}
         setIsOpen={setIsOpen}
         title="Cadastrar Nova Meta"
         content={
-          <form style={formStyle} onSubmit={handleSubmit(handleCreateGoal)}>
+          <form style={formStyle} onSubmit={handleSubmit(handleCreateGoals)}>
             <TextField
               label="Título"
               variant="filled"
@@ -156,7 +157,6 @@ const GroupDetails = () => {
               {...register("realization_time")}
               helperText={errors.realization_time?.message}
             />
-
             <Button
               text="Criar Atividade"
               style={{ width: "150px", fontSize: "16px" }}

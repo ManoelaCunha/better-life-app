@@ -10,9 +10,9 @@ import { GroupsContext } from "../../providers/Groups";
 import { FormControlUnstyledContext } from "@material-ui/unstyled";
 import { TiDelete } from "react-icons/ti";
 
-const GroupDetailCard = ({ groupId }) => {
+const GroupDetailCard = ({ groupId, openModal, openModalGoals }) => {
   const { goals, getGoals } = useContext(GoalsContext);
-  const { activities, getActivities } = useContext(ActivitiesContext);
+  const { activities, getActivities, removeActivity } = useContext(ActivitiesContext);
   const {
     subscribedGroups,
     subscribeGroup,
@@ -53,9 +53,7 @@ const GroupDetailCard = ({ groupId }) => {
     console.log(subscribedGroups.includes(Number(groupId)));
   }, [subscribedGroups]);
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
+ 
 
   return (
     <CardGroupDetailBody>
@@ -73,7 +71,7 @@ const GroupDetailCard = ({ groupId }) => {
       <div>
         <h3>Metas</h3>
         <ButtonContainer style={{ margin: "0px" }}>
-          <button onClick={openModal}>Criar Meta</button>
+          <button onClick={openModalGoals}>Criar Meta</button>
         </ButtonContainer>
         <GoalContainer>
         {goals.map((goal) => (
@@ -96,7 +94,7 @@ const GroupDetailCard = ({ groupId }) => {
                 <li key={activity.id}>
                   <h4>{activity.title}</h4>
                   <p>Data Limite: {newDate}</p>
-                  {/* <TiDelete onClick={() => removeActivity(activity.id)} /> */}
+                  <TiDelete onClick={() => removeActivity(activity.id)} />
                   <hr style={{ opacity: 0.2, margin: "5px" }} />
                 </li>
               );
