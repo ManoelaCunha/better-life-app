@@ -3,41 +3,31 @@ import { useContext, useEffect, useState } from "react";
 import { GroupsContext } from "../../providers/Groups";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const GroupList = () => {
-  const { groups } = useContext(GroupsContext);
-  const [hasMore, setHasMore] = useState(true);
-  const [lastGroupItem, setLastGroupItem] = useState(5);
-  const [displayGroups, setDisplayGroups] = useState(groups.slice(0, lastGroupItem))
+const GroupList = ({ filterValue }) => {
+  const { groups, subscribedGroups } = useContext(GroupsContext);
+  const [filteredGroups, setFilteredGroups] = useState([]);
 
-  const fetchMoreData = () => {
-    if (lastGroupItem >= groups.length) {
-      setHasMore(false);
-      return;
-    }
-    setLastGroupItem(lastGroupItem + 20);
-  };
 
   useEffect(() => {
-    setDisplayGroups(groups.slice(0, lastGroupItem))
-  }, [lastGroupItem, groups]);
+    let newGroups = groups;
+    if (filterValue === 'subscribed') {
+      newGroups = groups.filter((group) => subscribedGroups.includes(group.id))
+      console.log(newGroups)
+    }
+    if (filterValue === 'notSubscribed') {
+      newGroups = groups.filter((group) => !subscribedGroups.includes(group.id))
+      console.log(newGroups)
+    }
+    setFilteredGroups(newGroups)
+  }, [groups, filterValue, subscribedGroups]);
+
+
 
   return (
     <>
-      <InfiniteScroll
-        dataLength={displayGroups.length}
-        next={fetchMoreData}
-        hasMore={hasMore}
-        loader={<h4>Carregando...</h4>}
-        endMessage={
-          <p style={{ textAlign: "center" }}>
-            <b>Não há mais grupos.</b>
-          </p>
-        }
-      >
-        {displayGroups.map((group) => (
-          <Group key={group.id} group={group} groupId={group.id} />
-        ))}
-      </InfiniteScroll>
+      {filteredGroups.map((group) => (
+        <Group key={group.id} group={group} groupId={group.id} />
+      ))}
     </>
   );
 };

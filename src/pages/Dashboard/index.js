@@ -25,6 +25,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
   const { getUser, userName, getUserName, user } = useContext(UserContext);
   const { getHabits, habits, addNewHabit } = useContext(HabitsContext);
   const { getSubscribedGroups } = useContext(GroupsContext);
+  const [filterValue, setFilterValue] = useState('open')
   const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -96,6 +97,9 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
     return <Redirect to="/" />;
   }
 
+  const handleChange = (event) => {
+    setFilterValue(event.target.value);
+  }
   return (
     <>
       <Menu setAuthenticated={setAuthenticated} />
@@ -103,6 +107,8 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
         <Text>
           Bem vinda(o) de volta, <strong>{userName}</strong>
         </Text>
+
+
         <Box>
           <h1>Hábitos</h1>
           <ButtonContainerDashboard style={{ margin: "0px 5px" }}>

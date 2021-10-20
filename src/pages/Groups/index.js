@@ -1,5 +1,5 @@
 import { ButtonContainer } from "../../components/Button/style";
-import { Box, Container, Text } from "./style";
+import { Box, Container, SelectDiv, Text } from "./style";
 
 import GroupList from "../../components/GroupsList";
 import Button from "../../components/Button";
@@ -19,6 +19,7 @@ const Groups = ({ authenticated, setAuthenticated }) => {
   const { userName } = useContext(UserContext);
   const { createGroup } = useContext(GroupsContext);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [filterValue, setFilterValue] = useState('subscribed');
 
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório"),
@@ -55,14 +56,18 @@ const Groups = ({ authenticated, setAuthenticated }) => {
   if (!authenticated) {
     return <Redirect to="/" />;
   }
-
+  const handleChange = (event) => {
+    setFilterValue(event.target.value);
+  }
   return (
     <>
       <Menu setAuthenticated={setAuthenticated} />
       <Container>
+
         <Text>
           Bem vinda(o) de volta, <strong>{userName}</strong>
         </Text>
+
         <Box>
           <h1>GRUPOS</h1>
           <ButtonContainer style={{ margin: "0px 5px" }}>
@@ -83,7 +88,14 @@ const Groups = ({ authenticated, setAuthenticated }) => {
             </button>
           </ButtonContainer>
         </Box>
-        <GroupList />
+        <SelectDiv>
+          <select value={filterValue} onChange={handleChange} style={{ display: 'inline' }}>
+            <option value="subscribed">Inscrito</option>
+            <option value="notSubscribed">Não inscrito</option>
+            <option value="all">Todos</option>
+          </select>
+        </SelectDiv>
+        <GroupList filterValue={filterValue} />
       </Container>
       <AsideRight />
       <Modal
