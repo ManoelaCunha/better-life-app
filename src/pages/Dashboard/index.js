@@ -6,7 +6,6 @@ import {
   MenuItem,
   Select,
 } from "@material-ui/core";
-
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
@@ -89,7 +88,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
 
   if (!authenticated) {
     return <Redirect to="/" />;
-  };
+  }
 
   return (
     <>

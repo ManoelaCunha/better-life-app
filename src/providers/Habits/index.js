@@ -69,11 +69,23 @@ export const HabitProvider = ({ children }) => {
         },
       })
       .then((response) => {
-        setHabits([response.data]);
+        setHabits([...habits, response.data]);
         toast.success("Hábito cadastrado com sucesso!");
       })
       .catch((error) => console.log(error));
   };
 
-  return <HabitsContext.Provider value={{ habits, getHabits, updateHabitProgress, removeHabits, addNewHabit }}>{children}</HabitsContext.Provider>;
+  return (
+    <HabitsContext.Provider
+      value={{
+        habits,
+        getHabits,
+        updateHabitProgress,
+        removeHabits,
+        addNewHabit,
+      }}
+    >
+      {children}
+    </HabitsContext.Provider>
+  );
 };
