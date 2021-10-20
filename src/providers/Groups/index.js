@@ -89,7 +89,6 @@ export const GroupsProvider = ({ children }) => {
       .then((resp) => {
         const newSubGroups = resp.data.map((group) => Number(group.id));
         setSubscribedGroups(newSubGroups);
-        console.log(newSubGroups);
       })
       .catch((err) => console.log(err.message));
   };
