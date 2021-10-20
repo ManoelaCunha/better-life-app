@@ -58,8 +58,8 @@ const GroupDetails = ({ authenticated }) => {
     width: "100%",
   };
 
-  if (authenticated) {
-    return <Redirect to="welcome" />;
+  if (!authenticated) {
+    return <Redirect to="/welcome" />;
   };
 
   return (

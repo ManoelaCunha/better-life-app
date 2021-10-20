@@ -28,7 +28,7 @@ const GroupDetailCard = ({ groupId, openModal, authenticated }) => {
     if (authenticated) {
       subscribedGroups.includes(Number(groupId)) ? setIsSubscribed(true) : setIsSubscribed(false);
     }
-  }, [subscribedGroups]);
+  }, [subscribedGroups, groupId, authenticated]);
 
   return (
     <CardGroupDetailBody>
