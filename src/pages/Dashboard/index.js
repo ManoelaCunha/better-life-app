@@ -20,7 +20,7 @@ import { Box, Container, Text, ButtonContainerDashboard } from "./style";
 import { Redirect, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-const Dashboard = ({ authenticated }) => {
+const Dashboard = ({ authenticated, setAuthenticated }) => {
   const { getUser, userName, getUserName, user } = useContext(UserContext);
   const { getHabits, habits, addNewHabit } = useContext(HabitsContext);
   const { getSubscribedGroups } = useContext(GroupsContext);
@@ -48,6 +48,7 @@ const Dashboard = ({ authenticated }) => {
       .oneOf(["Diário", "Semanal", "Quinzenal", "Mensal"])
       .required("Campo obrigatório"),
   });
+
   const {
     register,
     handleSubmit,
@@ -85,12 +86,14 @@ const Dashboard = ({ authenticated }) => {
   const formStyle = {
     width: "100%",
   };
+
   if (!authenticated) {
     return <Redirect to="/" />;
-  }
+  };
+
   return (
     <>
-      <Menu />
+      <Menu setAuthenticated={setAuthenticated} />
       <Container>
         <Text>
           Bem vinda(o) de volta, <strong>{userName}</strong>

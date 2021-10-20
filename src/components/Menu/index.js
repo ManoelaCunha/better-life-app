@@ -11,11 +11,12 @@ import Button from "../Button";
 import Logo from "../../assets/img/logo.png";
 import { useHistory } from "react-router-dom";
 
-const Menu = ({ handleAdd }) => {
+const Menu = ({ handleAdd, setAuthenticated }) => {
   const history = useHistory();
 
   const handleLogout = () => {
     history.push("/");
+    setAuthenticated(false);
     localStorage.clear();
   };
 

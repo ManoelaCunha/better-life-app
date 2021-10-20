@@ -10,9 +10,11 @@ const Homepage = ({ authenticated }) => {
   const handleNavigation = (path) => {
     history.push(path);
   };
+
   if (authenticated) {
     return <Redirect to="welcome" />;
-  }
+  };
+
   return (
     <>
       <Container>
