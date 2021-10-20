@@ -14,6 +14,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TextField } from "@material-ui/core";
 import AsideRight from "../../components/AsideRight";
+import { Filter, MenuItemCustom, FormControlCustom } from './styleMaterial'
+
 
 const Groups = ({ authenticated, setAuthenticated }) => {
   const { userName } = useContext(UserContext);
@@ -89,11 +91,20 @@ const Groups = ({ authenticated, setAuthenticated }) => {
           </ButtonContainer>
         </Box>
         <SelectDiv>
-          <select value={filterValue} onChange={handleChange} style={{ display: 'inline' }}>
-            <option value="subscribed">Inscrito</option>
-            <option value="notSubscribed">Não inscrito</option>
-            <option value="all">Todos</option>
-          </select>
+          <FormControlCustom variant='outlined'>
+            <Filter
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={filterValue}
+              label="Filtro"
+              onChange={handleChange}
+            >
+              <MenuItemCustom value={"subscribed"} >Inscrito</MenuItemCustom>
+              <MenuItemCustom value={"notSubscribed"}>Não inscrito</MenuItemCustom>
+              <MenuItemCustom value={"all"}>Todos</MenuItemCustom>
+            </Filter>
+          </FormControlCustom>
+
         </SelectDiv>
         <GroupList filterValue={filterValue} />
       </Container>
