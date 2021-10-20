@@ -3,57 +3,31 @@ import Button from "../Button";
 import { useContext, useEffect, useState } from "react";
 import { GoalsContext } from "../../providers/Goals";
 import GoalCard from "../GoalCard";
-//import { ButtonContainer } from "../HabitCard/style";
 import { ButtonContainer } from "../Button/style";
+//import { ButtonContainer } from "../HabitCard/style";
 import { ActivitiesContext } from "../../providers/Activities";
 import { GroupsContext } from "../../providers/Groups";
 import { FormControlUnstyledContext } from "@material-ui/unstyled";
 import { TiDelete } from "react-icons/ti";
 
-const GroupDetailCard = ({ groupId, openModal, openModalGoals }) => {
+const GroupDetailCard = ({ groupId, openModal }) => {
   const { goals, getGoals } = useContext(GoalsContext);
   const { activities, getActivities, removeActivity } = useContext(ActivitiesContext);
-  const {
-    subscribedGroups,
-    subscribeGroup,
-    unsubscribeGroup,
-    getSubscribedGroups,
-  } = useContext(GroupsContext);
+  const { subscribedGroups, subscribeGroup, unsubscribeGroup, getSubscribedGroups } = useContext(GroupsContext);
   const [isSubscribed, setIsSubscribed] = useState(false);
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  const activityList = activities.map((activity) => {
-    const date = new Date(activity.realization_time);
-    const newDate = [date.getDate(), date.getMonth(), date.getFullYear()].join(
-      "/"
-    );
-    return (
-      <li key={activity.id}>
-        <h4>{activity.title}</h4>
-        <p>Data Limite: {newDate}</p>
-        <hr style={{ opacity: 0.2, margin: "5px" }} />
-      </li>
-    );
-  });
 
   useEffect(() => {
     getGoals(groupId);
     getActivities(groupId);
     getSubscribedGroups();
-    subscribedGroups.includes(Number(groupId))
-      ? setIsSubscribed(true)
-      : setIsSubscribed(false);
+    subscribedGroups.includes(Number(groupId)) ? setIsSubscribed(true) : setIsSubscribed(false);
   }, []);
 
   useEffect(() => {
-    subscribedGroups.includes(Number(groupId))
-      ? setIsSubscribed(true)
-      : setIsSubscribed(false);
+    subscribedGroups.includes(Number(groupId)) ? setIsSubscribed(true) : setIsSubscribed(false);
     console.log(subscribedGroups, groupId);
     console.log(subscribedGroups.includes(Number(groupId)));
   }, [subscribedGroups]);
-
- 
 
   return (
     <CardGroupDetailBody>
@@ -71,7 +45,7 @@ const GroupDetailCard = ({ groupId, openModal, openModalGoals }) => {
       <div>
         <h3>Metas</h3>
         <ButtonContainer style={{ margin: "0px" }}>
-          <button onClick={openModalGoals}>Criar Meta</button>
+          <button onClick={openModal}>Criar Meta</button>
         </ButtonContainer>
         <GoalContainer>
         {goals.map((goal) => (
