@@ -8,7 +8,7 @@ import Menu from "../../components/Menu";
 import { GroupsContext } from "../../providers/Groups";
 import { UserContext } from "../../providers/User";
 
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
 
 import * as yup from "yup";
@@ -17,7 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { TextField } from "@material-ui/core";
 
-const Groups = ({ authenticated }) => {
+const Groups = ({ authenticated, setAuthenticated }) => {
   const { userName } = useContext(UserContext);
   const { createGroup } = useContext(GroupsContext);
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -32,7 +32,9 @@ const Groups = ({ authenticated }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm(yupResolver(schema));
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const handleCreateGroup = (data) => {
     createGroup(data);
@@ -58,7 +60,7 @@ const Groups = ({ authenticated }) => {
 
   return (
     <>
-      <Menu />
+      <Menu setAuthenticated={setAuthenticated} />
       <Container>
         <Text>
           Bem vinda(o) de volta, <strong>{userName}</strong>

@@ -19,7 +19,7 @@ const Routes = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <Homepage />
+        <Homepage authenticated={authenticated} />
       </Route>
 
       <Route exact path="/login">
@@ -28,6 +28,7 @@ const Routes = () => {
           setAuthenticated={setAuthenticated}
         />
       </Route>
+
       <Route path="/welcome">
         <Welcome />
       </Route>
@@ -37,14 +38,24 @@ const Routes = () => {
       </Route>
 
       <Route exact path="/dashboard">
-        <Dashboard authenticated={authenticated} />
+        <Dashboard
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+        />
       </Route>
 
       <Route exact path="/groups">
-        <Groups authenticated={authenticated} />
+        <Groups
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+        />
       </Route>
+
       <Route exact path="/groups/:idGroup">
-        <GroupDetails />
+        <GroupDetails
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+        />
       </Route>
     </Switch>
   );

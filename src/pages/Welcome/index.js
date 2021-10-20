@@ -10,12 +10,15 @@ import { Redirect, useHistory } from "react-router";
 const Welcome = ({ authenticated }) => {
   const { userName } = useContext(UserContext);
   const history = useHistory();
+
   const handleNavigation = (path) => {
     history.push(path);
   };
+
   if (authenticated) {
     return <Redirect to="dashboard" />;
   }
+
   return (
     <>
       <Container>

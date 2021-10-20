@@ -12,7 +12,9 @@ export const GroupsProvider = ({ children }) => {
   const [next, setNext] = useState(1);
   const [subscribedGroups, setSubscribedGroups] = useState([]);
 
-  const [token] = useState(JSON.parse(localStorage.getItem("@BetterLife:token")) || "");
+  const [token] = useState(
+    JSON.parse(localStorage.getItem("@BetterLife:token"))
+  );
 
   const getGroups = () => {
     api
@@ -54,7 +56,7 @@ export const GroupsProvider = ({ children }) => {
       )
       .then(() => {
         toast.success("Inscrição feita com sucesso!");
-        setSubscribedGroups([...subscribedGroups, id]);
+        setSubscribedGroups([...subscribedGroups, Number(id)]);
       })
       .catch((err) => console.log(err));
   };
@@ -70,7 +72,7 @@ export const GroupsProvider = ({ children }) => {
       .then(() => {
         toast.success("Removido do grupo com sucesso!");
         const newSubGroups = subscribedGroups.filter(
-          (groupId) => groupId !== id
+          (groupId) => groupId !== Number(id)
         );
 
         setSubscribedGroups(newSubGroups);
@@ -85,7 +87,7 @@ export const GroupsProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((resp) => {
-        const newSubGroups = resp.data.map((group) => group.id);
+        const newSubGroups = resp.data.map((group) => Number(group.id));
         setSubscribedGroups(newSubGroups);
       })
       .catch((err) => console.log(err.message));
