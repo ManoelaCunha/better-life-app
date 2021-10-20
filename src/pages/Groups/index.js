@@ -32,7 +32,9 @@ const Groups = ({ authenticated }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm(yupResolver(schema));
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const handleCreateGroup = (data) => {
     createGroup(data);

@@ -3,12 +3,13 @@ import Button from "../Button";
 import { useContext, useEffect, useState } from "react";
 import { GoalsContext } from "../../providers/Goals";
 import GoalCard from "../GoalCard";
-import { ButtonContainer } from "../HabitCard/style";
+import { ButtonContainer } from "../Button/style";
+//import { ButtonContainer } from "../HabitCard/style";
 import { ActivitiesContext } from "../../providers/Activities";
 import { GroupsContext } from "../../providers/Groups";
 import { FormControlUnstyledContext } from "@material-ui/unstyled";
 
-const GroupDetailCard = ({ groupId }) => {
+const GroupDetailCard = ({ groupId, openModal }) => {
   const { goals, getGoals } = useContext(GoalsContext);
   const { activities, getActivities } = useContext(ActivitiesContext);
   const {
@@ -54,7 +55,7 @@ const GroupDetailCard = ({ groupId }) => {
     <CardGroupDetailBody>
       <h2>Nome do Grupo</h2>
       <p>Categoria do Grupo</p>
-      <ButtonContainer>
+      <ButtonContainer style={{ margin: "0px" }}>
         {!isSubscribed && (
           <Button text={"Inscreva-se"} onClick={() => subscribeGroup(groupId)}>
             Inscreva-se
@@ -76,6 +77,9 @@ const GroupDetailCard = ({ groupId }) => {
       </div>
       <div>
         <h3>Atividades</h3>
+        <ButtonContainer style={{ margin: "0px" }}>
+          <button onClick={openModal}>Criar Atividade</button>
+        </ButtonContainer>
         <ul>{activityList}</ul>
       </div>
     </CardGroupDetailBody>

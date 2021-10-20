@@ -12,7 +12,9 @@ export const GroupsProvider = ({ children }) => {
   const [next, setNext] = useState(1);
   const [subscribedGroups, setSubscribedGroups] = useState([]);
 
-  const [token] = useState(JSON.parse(localStorage.getItem("@BetterLife:token")) || "");
+  const [token] = useState(
+    JSON.parse(localStorage.getItem("@BetterLife:token"))
+  );
 
   const getGroups = () => {
     api
@@ -87,7 +89,7 @@ export const GroupsProvider = ({ children }) => {
       .then((resp) => {
         const newSubGroups = resp.data.map((group) => Number(group.id));
         setSubscribedGroups(newSubGroups);
-        console.log(newSubGroups)
+        console.log(newSubGroups);
       })
       .catch((err) => console.log(err.message));
   };
