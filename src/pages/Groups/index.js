@@ -17,7 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { TextField } from "@material-ui/core";
 
-const Groups = ({ authenticated }) => {
+const Groups = ({ authenticated, setAuthenticated }) => {
   const { userName } = useContext(UserContext);
   const { createGroup } = useContext(GroupsContext);
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -58,7 +58,7 @@ const Groups = ({ authenticated }) => {
 
   return (
     <>
-      <Menu />
+      <Menu setAuthenticated={setAuthenticated} />
       <Container>
         <Text>
           Bem vinda(o) de volta, <strong>{userName}</strong>
