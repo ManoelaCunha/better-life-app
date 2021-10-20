@@ -45,7 +45,7 @@ const Menu = ({ handleAdd, setAuthenticated }) => {
             </span>
           )}
 
-          {location.pathname === "/groups" ? (
+          {location.pathname.includes("/groups") ? (
             <span onClick={() => sendTo("/groups")}>
               <MdGroups style={highlightStyle} />
               <p style={highlightStyle}>Grupos</p>
