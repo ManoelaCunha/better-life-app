@@ -14,14 +14,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import GroupDetailCard from "../../components/GroupDetailCard";
 import { useParams } from "react-router";
 
-const GroupDetails = ({ setAuthenticated }) => {
+const GroupDetails = () => {
     const { userName } = useContext(UserContext);
     const parameters = useParams();
     const groupId = parameters.idGroup;
 
     return (
         <>
-            <Menu setAuthenticated={setAuthenticated} />
+            <Menu />
             <Container>
                 <Text>
                     Bem vinda(o) de volta, <strong>{userName}</strong>
