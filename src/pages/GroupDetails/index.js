@@ -15,11 +15,10 @@ import {
   MenuItem,
   Select,
 } from "@material-ui/core";
-
+import ModalComponent from "../../components/Modal";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import GroupDetailCard from "../../components/GroupDetailCard";
 import { useParams } from "react-router";
 
@@ -35,7 +34,12 @@ const GroupDetails = () => {
   const schema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
     realization_time: yup.string().required("Campo obrigatório"),
+    difficulty: yup
+    .string()
+    .oneOf(["Fácil", "Intermediário", "Difícil", "Muito difícil"])
+    .required("Campo obrigatório"),
   });
+
 
   const {
     register,
@@ -64,6 +68,22 @@ const GroupDetails = () => {
     width: "100%",
   };
 
+  const handleCreateGoal = ({
+    title, 
+    difficulty,
+    how_much_achieved = 0,
+    group = groupId,
+  }) => {
+    const userId = localStorage.getItem("@BetterLife:user");
+
+    const newGroupGoal = {
+      title: title,
+      difficulty: difficulty,
+      how_much_achieved: 0,
+      group: groupId,
+    };
+  };
+
   return (
     <>
       <Menu />
@@ -76,6 +96,44 @@ const GroupDetails = () => {
         </Box>
         <GroupDetailCard groupId={groupId} openModal={openModal} />
       </Container>
+
+      <ModalComponent
+        modalIsOpen={modalIsOpen}
+        setIsOpen={setIsOpen}
+        title="Cadastrar Nova Meta"
+        content={
+          <form style={formStyle} onSubmit={handleSubmit(handleCreateGoal)}>
+            <TextField
+              label="Título"
+              variant="filled"
+              style={inputStyle}
+              {...register("title")}
+              helperText={errors.title?.message}
+            />
+
+            <FormControl variant="filled" style={inputStyle}>
+              <InputLabel id="select-difficulty">Dificuldade</InputLabel>
+              <Select
+                labelId="select-difficulty"
+                {...register("difficulty")}
+                helperText={errors.difficulty?.message}
+              >
+                <MenuItem value=""></MenuItem>
+                <MenuItem value="Fácil">Fácil</MenuItem>
+                <MenuItem value="Intermediário">Intermediário</MenuItem>
+                <MenuItem value="Difícil">Difícil</MenuItem>
+                <MenuItem value="Muito difícil">Muito Difícil</MenuItem>
+              </Select>
+            </FormControl>
+
+            <Button
+              text="Criar Meta"
+              style={{ width: "150px", fontSize: "16px" }}
+              type="submit"
+            />
+          </form>
+        }
+      />
       <Modal
         modalIsOpen={modalIsOpen}
         setIsOpen={setIsOpen}
