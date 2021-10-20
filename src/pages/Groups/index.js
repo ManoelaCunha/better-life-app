@@ -8,7 +8,7 @@ import Menu from "../../components/Menu";
 import { GroupsContext } from "../../providers/Groups";
 import { UserContext } from "../../providers/User";
 
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
 
 import * as yup from "yup";
@@ -32,7 +32,9 @@ const Groups = ({ authenticated, setAuthenticated }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm(yupResolver(schema));
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const handleCreateGroup = (data) => {
     createGroup(data);
