@@ -15,7 +15,6 @@ import {
   MenuItem,
   Select,
 } from "@material-ui/core";
-
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -63,7 +62,6 @@ const GroupDetails = () => {
   const formStyle = {
     width: "100%",
   };
-
   return (
     <>
       <Menu />
