@@ -8,6 +8,7 @@ import api from "../../services/api";
 import { TextField } from "@material-ui/core";
 import Logo from "../../assets/img/logo.png";
 import toast from "react-hot-toast";
+
 const Login = ({ authenticated, setAuthenticated }) => {
   const history = useHistory();
 

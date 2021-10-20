@@ -1,20 +1,14 @@
-import HabitCard from "../../components/HabitCard";
 import Menu from "../../components/Menu";
 import Modal from "../../components/Modal";
 import Button from "../../components/Button";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../providers/User";
-import { HabitsContext } from "../../providers/Habits";
-import { GroupsContext } from "../../providers/Groups";
 import { ActivitiesContext } from "../../providers/Activities";
-import { Box, Container, Text, ButtonContainerDashboard } from "./style";
+import { Box, Container, Text } from "./style";
 import {
-  TextField,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
+  TextField
 } from "@material-ui/core";
+import { Redirect } from 'react-router-dom';
 
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -23,7 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import GroupDetailCard from "../../components/GroupDetailCard";
 import { useParams } from "react-router";
 
-const GroupDetails = () => {
+const GroupDetails = ({ authenticated }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const { userName } = useContext(UserContext);
@@ -64,6 +58,10 @@ const GroupDetails = () => {
     width: "100%",
   };
 
+  if (authenticated) {
+    return <Redirect to="welcome" />;
+  };
+
   return (
     <>
       <Menu />
@@ -74,7 +72,7 @@ const GroupDetails = () => {
         <Box>
           <h1>Detalhes do Grupo</h1>
         </Box>
-        <GroupDetailCard groupId={groupId} openModal={openModal} />
+        <GroupDetailCard groupId={groupId} openModal={openModal} authenticated={authenticated} />
       </Container>
       <Modal
         modalIsOpen={modalIsOpen}

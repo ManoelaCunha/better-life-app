@@ -7,26 +7,27 @@ import { ButtonContainer } from "../Button/style";
 //import { ButtonContainer } from "../HabitCard/style";
 import { ActivitiesContext } from "../../providers/Activities";
 import { GroupsContext } from "../../providers/Groups";
-import { FormControlUnstyledContext } from "@material-ui/unstyled";
 import { TiDelete } from "react-icons/ti";
 
-const GroupDetailCard = ({ groupId, openModal }) => {
+const GroupDetailCard = ({ groupId, openModal, authenticated }) => {
   const { goals, getGoals } = useContext(GoalsContext);
   const { activities, getActivities, removeActivity } = useContext(ActivitiesContext);
   const { subscribedGroups, subscribeGroup, unsubscribeGroup, getSubscribedGroups } = useContext(GroupsContext);
   const [isSubscribed, setIsSubscribed] = useState(false);
 
   useEffect(() => {
-    getGoals(groupId);
-    getActivities(groupId);
-    getSubscribedGroups();
-    subscribedGroups.includes(Number(groupId)) ? setIsSubscribed(true) : setIsSubscribed(false);
+    if (authenticated) {
+      getGoals(groupId);
+      getActivities(groupId);
+      getSubscribedGroups();
+      subscribedGroups.includes(Number(groupId)) ? setIsSubscribed(true) : setIsSubscribed(false);
+    }
   }, []);
 
   useEffect(() => {
-    subscribedGroups.includes(Number(groupId)) ? setIsSubscribed(true) : setIsSubscribed(false);
-    console.log(subscribedGroups, groupId);
-    console.log(subscribedGroups.includes(Number(groupId)));
+    if (authenticated) {
+      subscribedGroups.includes(Number(groupId)) ? setIsSubscribed(true) : setIsSubscribed(false);
+    }
   }, [subscribedGroups]);
 
   return (

@@ -16,7 +16,7 @@ import { UserContext } from "../../providers/User";
 import { HabitsContext } from "../../providers/Habits";
 import { GroupsContext } from "../../providers/Groups";
 import { Box, Container, Text, ButtonContainerDashboard } from "./style";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const Dashboard = ({ authenticated, setAuthenticated }) => {
@@ -26,13 +26,17 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    getUser();
+    if (authenticated) {
+      getUser();
+    }
   }, []);
 
   useEffect(() => {
-    getHabits();
-    getSubscribedGroups();
-    getUserName();
+    if (authenticated) {
+      getHabits();
+      getSubscribedGroups();
+      getUserName();
+    }
   }, [user]);
 
   const schema = yup.object().shape({
