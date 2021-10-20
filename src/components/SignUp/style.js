@@ -53,8 +53,11 @@ export const Logo = styled.div`
 `;
 export const Image = styled.div`
   @media (min-width: 768px) {
-    background: linear-gradient(274.42deg, #92a3fd 0%, #9dceff 124.45%);
+    background: url("https://image.freepik.com/free-vector/hand-drawn-people-jumping-together_23-2149083967.jpg");
     height: 900px;
+    background-repeat: no-repeat;
+    background-size:auto;
+    background-position: center;
     flex: 1;
   }
 `;
@@ -83,21 +86,27 @@ export const AnimationContainer = styled.div`
   animation: ${leftAnimation} 1.5s;
 
   form {
-    margin: 50px 0;
+    margin:50px auto;
     width: 340px;
     text-align: center;
-    background: var(--whiteCity);
+    background: var(--white);
     padding: 40px;
     border-radius: 30px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
 
-    p {
-      font-size: 12px;
+    h2 {
+      font-size: 16px;
+      font-weight: 400;
+      margin-bottom: -30px;
+      span {
+        font-weight: 600;
+      }
     }
   }
   img {
-    margin-top: -25px;
+    margin-top: 25px;
+    margin-bottom: -55px;
     width: 250px;
-    opacity: 0.8;
+   
   }
 `;

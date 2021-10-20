@@ -7,15 +7,13 @@ import Modal from "../../components/Modal";
 import Menu from "../../components/Menu";
 import { GroupsContext } from "../../providers/Groups";
 import { UserContext } from "../../providers/User";
-
 import { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
-
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { TextField } from "@material-ui/core";
+import AsideRight from "../../components/AsideRight";
 
 const Groups = ({ authenticated, setAuthenticated }) => {
   const { userName } = useContext(UserContext);
@@ -72,7 +70,8 @@ const Groups = ({ authenticated, setAuthenticated }) => {
               style={{
                 width: "150px",
                 background: "transparent",
-                color: "#000000",
+                color: "#00000",
+                fontWeight: "500",
                 boxShadow: "none",
                 fontSize: "20px",
                 fontFamily: "Montserrat",
@@ -86,6 +85,7 @@ const Groups = ({ authenticated, setAuthenticated }) => {
         </Box>
         <GroupList />
       </Container>
+      <AsideRight />
       <Modal
         modalIsOpen={modalIsOpen}
         setIsOpen={setIsOpen}

@@ -13,7 +13,8 @@ export const CardContainer = styled.div`
   display:flex;
   justify-content: space-between;
   p { 
-      margin: 5px 0 0 20px;
+      margin: 5px 0 0 2px;
+      font-size: 10px;
       color:#7B6F72;
   }
   @media screen and (min-width: 768px) {
@@ -74,12 +75,17 @@ export const ChartContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+ 
+  
   span {
         position: absolute;
+        
+        
   }
   @media screen and (min-width: 768px) {
    span {
-      font-size: 14px
+      font-size: 14px;
+    
    }
   }
 `;

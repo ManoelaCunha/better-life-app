@@ -50,21 +50,22 @@ const SignUp = ({ authenticated }) => {
   if (authenticated) {
     return <Redirect to="/dashboard" />;
   }
-
+  
   return (
     <Container>
       <SubContainer>
         <AnimationContainer>
+      <img className="logoImage" src={logoImage} alt="logo" />
           <form onSubmit={handleSubmit(handleForm)}>
             <div className="signUpTitle">
-              <p>Olá,</p>
-              <h3>Crie uma conta</h3>
+              <h2>Olá,<br/><span>crie uma conta</span></h2>
+           
             </div>
             <div>
               <TextField
                 label="Nome de Usuário"
                 margin="normal"
-                variant="filled"
+                variant="standard"
                 size="small"
                 color="primary"
                 {...register("username")}
@@ -76,7 +77,7 @@ const SignUp = ({ authenticated }) => {
               <TextField
                 label="Email"
                 margin="normal"
-                variant="filled"
+                variant="standard"
                 size="small"
                 color="primary"
                 {...register("email")}
@@ -89,7 +90,7 @@ const SignUp = ({ authenticated }) => {
                 label="Senha"
                 margin="normal"
                 type="password"
-                variant="filled"
+                variant="standard"
                 size="small"
                 color="primary"
                 {...register("password")}
@@ -101,7 +102,7 @@ const SignUp = ({ authenticated }) => {
               <TextField
                 label="Confirme Senha"
                 margin="normal"
-                variant="filled"
+                variant="standard"
                 type="password"
                 size="small"
                 color="primary"
@@ -119,7 +120,6 @@ const SignUp = ({ authenticated }) => {
               Já tem uma conta? <Link to="/login">Login</Link>
             </p>
           </form>
-          <img className="logoImage" src={logoImage} alt="logo" />
         </AnimationContainer>
       </SubContainer>
       <Image>
