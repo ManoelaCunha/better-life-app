@@ -18,6 +18,8 @@ import { GroupsContext } from "../../providers/Groups";
 import { Box, Container, Text, ButtonContainerDashboard } from "./style";
 import { Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import AsideRight from "../../components/AsideRight";
+
 
 const Dashboard = ({ authenticated, setAuthenticated }) => {
   const { getUser, userName, getUserName, user } = useContext(UserContext);
@@ -108,7 +110,8 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
               style={{
                 width: "150px",
                 background: "transparent",
-                color: "#000000",
+                color: "#00000",
+                fontWeight: "500",
                 boxShadow: "none",
                 fontSize: "20px",
                 fontFamily: "Montserrat",
@@ -124,6 +127,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
           <HabitCard key={habit.id} habit={habit} />
         ))}
       </Container>
+      <AsideRight />
 
       <Modal
         modalIsOpen={modalIsOpen}
@@ -185,6 +189,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
           </form>
         }
       />
+
     </>
   );
 };

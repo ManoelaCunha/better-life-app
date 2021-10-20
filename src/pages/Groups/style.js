@@ -6,7 +6,7 @@ export const Container = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 750px;
-    margin: 0 auto;
+    margin: 0 250px;
   }
 
   h1 {
@@ -30,6 +30,10 @@ export const Text = styled.p`
   margin-left: 10px;
   width: 185px;
   height: 80px;
+  font-weight: 300;
+  strong{
+    font-weight: 500;
+  }
 
   @media screen and (min-width: 768px) {
     margin-top: 20px;

@@ -1,7 +1,15 @@
-import { MenuContainer, LogoutContainer, IconsContainer, ImageContainer } from "./style";
-import { MdGroups } from "react-icons/md";
-import { BiLogOutCircle } from "react-icons/bi";
-import { FaHeartbeat } from "react-icons/fa";
+import {
+  MenuContainer,
+  LogoutContainer,
+  IconsContainer,
+  ImageContainer,
+} from "./style";
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
+import { IoIosLogOut } from "react-icons/io";
+import { BsHeart } from "react-icons/bs";
+import HeartGiff from "../../assets/icons/1249-heart-beat-outline.gif";
+import Exit from "../../assets/icons/icons8-sign-out-50.png";
+import People from "../../assets/icons/people (2).png";
 import Button from "../Button";
 import Logo from "../../assets/img/logo.png";
 import { useHistory, useLocation } from "react-router-dom";
@@ -28,42 +36,44 @@ const Menu = ({ handleAdd, setAuthenticated }) => {
   return (
     <>
       <ImageContainer>
-        <img alt='logo' src={Logo} />
+        <img alt="logo" src={Logo} />
       </ImageContainer>
-
       <MenuContainer>
+        <ImageContainer className = "active">
+          <img alt="logo" src={Logo} />
+        </ImageContainer>
         <IconsContainer>
           {location.pathname === "/dashboard" ? (
             <span onClick={() => sendTo("/dashboard")}>
-              <FaHeartbeat style={highlightStyle} />
+              <BsHeart style={highlightStyle} />
               <p style={highlightStyle}>Hábitos</p>
             </span>
           ) : (
             <span onClick={() => sendTo("/dashboard")}>
-              <FaHeartbeat />
+              <BsHeart />
               <p>Hábitos</p>
             </span>
           )}
 
-          {location.pathname === "/groups" ? (
+          {location.pathname.includes("/groups") ? (
             <span onClick={() => sendTo("/groups")}>
-              <MdGroups style={highlightStyle} />
+              <AiOutlineUsergroupAdd style={highlightStyle} />
               <p style={highlightStyle}>Grupos</p>
             </span>
           ) : (
             <span onClick={() => sendTo("/groups")}>
-              <MdGroups />
+              <AiOutlineUsergroupAdd />
               <p>Grupos</p>
             </span>
           )}
         </IconsContainer>
 
-        <Button text='+' smaller onClick={handleAdd} />
+        <Button text="+" smaller onClick={handleAdd} />
 
         <LogoutContainer>
           <span onClick={handleLogout}>
-            <BiLogOutCircle />
-            <p>Sair</p>
+            <IoIosLogOut />
+            <p> Sair</p>
           </span>
         </LogoutContainer>
       </MenuContainer>
