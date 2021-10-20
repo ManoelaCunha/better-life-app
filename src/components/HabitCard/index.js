@@ -1,4 +1,4 @@
-import { CardContainer, TextContainer, IconButtonContainer, ButtonContainer, ChartContainer, HabitCardButton } from "./style";
+import { CardContainer, TextContainer, IconButtonContainer, ButtonContainer, ChartContainer } from "./style";
 import Button from '../Button'
 import { IoIosCloseCircle } from 'react-icons/io';
 import { useContext, useEffect, useState } from "react";

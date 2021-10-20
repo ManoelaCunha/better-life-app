@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import Carousel from "react-elastic-carousel";
 import Item from "./Item";
 import { Container } from "./style";
@@ -9,13 +8,13 @@ import Larissa from "../../assets/MembersImg/larissa.jpeg";
 import Manoela from "../../assets/MembersImg/manoela.jpeg";
 import Emily from "../../assets/MembersImg/emily.jpeg";
 import { BsGithub } from "react-icons/bs";
-import { FaLinkedinIn} from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
 const Members = () => {
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
     { width: 550, itemsToShow: 2 },
     { width: 768, itemsToShow: 3 },
-    {width: 1100,  itemsToShow: 4 }
+    { width: 1100, itemsToShow: 4 }
   ];
 
   return (
@@ -25,7 +24,7 @@ const Members = () => {
       <div>
         <Carousel breakPoints={breakPoints}>
           <Item>
-            <img src={Leonam} />
+            <img src={Leonam} alt={'Foto do membro da equipe'} />
             <h3>Leonam Rodrigues</h3>
             <p>Quality Assurance</p>
             <div>
