@@ -38,11 +38,11 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
       subscribedGroups.includes(Number(groupId))
         ? setIsSubscribed(true)
         : setIsSubscribed(false);
-
+      console.log(subscribedGroups.includes(Number(groupId)))
     }
-
   }, [subscribedGroups]);
 
+  console.log(subscribedGroups, groupId)
   const openModalActivity = () => {
     setModalActivityIsOpen(true);
   };

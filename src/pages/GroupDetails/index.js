@@ -28,7 +28,7 @@ const GroupDetails = ({ authenticated }) => {
         <Box>
           <h1>Detalhes do Grupo</h1>
         </Box>
-        <GroupDetailCard groupId={groupId} />
+        <GroupDetailCard groupId={groupId} authenticated={authenticated} />
       </Container>
     </>
   );

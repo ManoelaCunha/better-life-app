@@ -70,7 +70,7 @@ const Groups = ({ authenticated, setAuthenticated }) => {
               style={{
                 width: "150px",
                 background: "transparent",
-                color: "#00000",
+                color: "#000",
                 fontWeight: "500",
                 boxShadow: "none",
                 fontSize: "20px",
