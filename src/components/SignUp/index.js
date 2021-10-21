@@ -114,8 +114,8 @@ const SignUp = ({ authenticated }) => {
             <div className="buttonContainer">
               <Button text="Cadastre-se" type="submit" />
             </div>
-            <p className="orStyle">Ou</p>
-            <img className="google" alt="google" src={google} />
+            {/* <p className="orStyle">Ou</p> */}
+            {/* <img className="google" alt="google" src={google} /> */}
             <p className="mobileFooter">
               Já tem uma conta? <Link to="/login">Login</Link>
             </p>
