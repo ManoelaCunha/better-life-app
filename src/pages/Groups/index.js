@@ -45,11 +45,11 @@ const Groups = ({ authenticated, setAuthenticated }) => {
   const handleCreateGroup = (data) => {
     createGroup(data);
     setModalIsOpen(false);
-    reset([data]);
   };
 
   const openModal = () => {
     setModalIsOpen(true);
+    reset();
   };
 
   const inputStyle = {

@@ -60,7 +60,7 @@ const ModalUpdateActivities = ({
       <Modal
         modalIsOpen={modalActivityUpdate}
         setIsOpen={setModalActivityUpdate}
-        title="Atualizar Atividade"
+        title="Atualizar atividade"
         content={
           <form
             style={formStyle}

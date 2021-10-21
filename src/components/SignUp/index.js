@@ -6,12 +6,9 @@ import * as yup from "yup";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import Button from "../../components/Button";
 import toast from "react-hot-toast";
-import { Container } from "./style";
-import { Image } from "./style";
-import { AnimationContainer } from "./style";
-import { SubContainer } from "./style";
+import { Container, Image, AnimationContainer, SubContainer } from "./style";
 import logoImage from "../../assets/img/logo.png";
-import LoginGoogle from "../GoogleLogin";
+//import LoginGoogle from "../GoogleLogin";
 
 import { useState } from "react";
 import { Visibility, VisibilityOff, Person, Email } from "@material-ui/icons";
@@ -68,7 +65,9 @@ const SignUp = ({ authenticated }) => {
     <Container>
       <SubContainer>
         <AnimationContainer>
-          <img className="logoImage" src={logoImage} alt="logo" />
+          <Link to="/">
+            <img className="logoImage" src={logoImage} alt="logo" />
+          </Link>
           <form onSubmit={handleSubmit(handleForm)}>
             <div className="signUpTitle">
               <h2>
@@ -162,19 +161,16 @@ const SignUp = ({ authenticated }) => {
             <div className="buttonContainer">
               <Button text="Cadastre-se" type="submit" />
             </div>
-            <p className="orStyle">Ou</p>
-            <div className="googleSignUp">
+            {/* <p className='orStyle'>Ou</p>
+            <div className='googleSignUp'>
               <LoginGoogle handleGoogle={handleForm} />
-            </div>
+            </div> */}
             <p className="mobileFooter">
               Já tem uma conta? <Link to="/login">Login</Link>
             </p>
           </form>
         </AnimationContainer>
       </SubContainer>
-      <Image>
-        {/* <img className="signupImage" src={signupImage} alt="signup" /> */}
-      </Image>
     </Container>
   );
 };

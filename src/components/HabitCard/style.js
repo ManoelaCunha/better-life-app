@@ -5,7 +5,11 @@ export const CardContainer = styled.div`
   margin: 10px auto;
   width: 100%;
   min-width: 300px;
-  background: linear-gradient(274.42deg, rgba(146, 163, 253, 0.2) 0%, rgba(157, 206, 255, 0.2) 124.45%);
+  background: linear-gradient(
+    274.42deg,
+    rgba(146, 163, 253, 0.2) 0%,
+    rgba(157, 206, 255, 0.2) 124.45%
+  );
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 16px;
@@ -32,6 +36,10 @@ export const CardContainer = styled.div`
 
 export const TextContainer = styled.div`
   width: 50%;
+  color: #dfe6e9;
+  strong {
+    font-weight: 600;
+  }
   p {
     font-size: 14px;
   }
@@ -53,7 +61,7 @@ export const IconButtonContainer = styled.button`
   height: fit-content;
   background: none;
   &:hover {
-    color: #ad000d;
+    color: #ff6b6b;
   }
 `;
 

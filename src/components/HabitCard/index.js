@@ -29,19 +29,19 @@ const HabitCard = ({ habit }) => {
   };
 
   const difficultyColors = {
-    Fácil: "#209b20",
-    Intermediário: "#4687c9",
+    Fácil: "#10ac84",
+    Intermediário: "#6c5ce7",
     Difícil: "#e94835",
-    "Muito difícil": "#000000",
+    "Muito difícil": "#2d3436",
   };
 
   return (
     <CardContainer>
       <TextContainer>
         <h3>{title}</h3>
-        <p>Categoria - {category}</p>
+        <p><strong>Categoria</strong> - {category}</p>
         <p>
-          Dificuldade - <span style={{ color: `${difficultyColors[difficulty]}` }}>{difficulty}</span>
+        <strong>Dificuldade</strong> - <span style={{ color: `${difficultyColors[difficulty]}`}}>{difficulty}</span>
         </p>
         {achieved < 100 && (
           <ButtonContainer>

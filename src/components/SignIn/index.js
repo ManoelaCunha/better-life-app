@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 
 import { useState } from "react";
 import { Visibility, VisibilityOff, Person } from "@material-ui/icons";
-import LoginGoogle from "../GoogleLogin";
+//import LoginGoogle from "../GoogleLogin";
 
 const Login = ({ authenticated, setAuthenticated }) => {
   const history = useHistory();
@@ -68,12 +68,14 @@ const Login = ({ authenticated, setAuthenticated }) => {
       <Background />
       <Content>
         <AnimationContainer>
-          <img src={Logo} alt="Logo Better Life" />
+          <Link to="/">
+            <img src={Logo} alt="Logo Better Life" />
+          </Link>
           <form onSubmit={handleSubmit(onSubmitFunction)}>
             <h2>
               Olá,
               <br />
-              <span>Bem vindo(a)!</span>
+              <span>bem vindo(a)!</span>
             </h2>
             <div>
               <TextField
@@ -119,7 +121,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
             <Button type="submit" text="Login">
               Login
             </Button>
-            <LoginGoogle handleGoogle={onSubmitFunction} />
+            {/* <LoginGoogle handleGoogle={onSubmitFunction} /> */}
             <p>
               Não possui uma conta ainda? <Link to="/signup">Registre-se</Link>
             </p>

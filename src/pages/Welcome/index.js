@@ -28,7 +28,7 @@ const Welcome = ({ authenticated }) => {
             Boas vindas, <strong>{userName}</strong>
           </h2>
           <span>
-            Esta tudo pronto para você começar a sua nova vida saudável.
+            Está tudo pronto para você começar a sua nova vida saudável.
           </span>
           <ImageHome src={ImgWelcome} alt="Imagem tela inicial" />
           <div>

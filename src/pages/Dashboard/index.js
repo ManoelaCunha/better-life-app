@@ -41,7 +41,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
       getSubscribedGroups();
       getUserName();
     }
-  }, [user]);
+  }, [user, filteredHabits]);
 
   useEffect(() => {
     let newHabits = habits;
@@ -143,7 +143,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
               }}
               onClick={openModal}
             >
-              + Novo Habito
+              + Novo habito
             </button>
           </ButtonContainerDashboard>
         </Box>

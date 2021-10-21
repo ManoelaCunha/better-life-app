@@ -70,7 +70,7 @@ const CreateGroupGoalModal = ({
       <Modal
         modalIsOpen={modalGoalIsOpen}
         setIsOpen={setModalGoalIsOpen}
-        title="Cadastrar Nova Meta"
+        title="Cadastrar nova meta"
         content={
           <form style={formStyle} onSubmit={handleSubmit(handleCreateGoals)}>
             <TextField
@@ -100,7 +100,7 @@ const CreateGroupGoalModal = ({
             </FormControl>
 
             <Button
-              text="Criar Meta"
+              text="Criar meta"
               style={{ width: "150px", fontSize: "16px" }}
               type="submit"
             />
