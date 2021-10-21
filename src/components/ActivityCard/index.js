@@ -49,10 +49,7 @@ const ActivityCard = ({
           )}
         </ButtonContainer>
         {isSubscribed && (
-          <TiDelete
-            onClick={() => openModalAlert()}
-            className="closeActivity"
-          />
+          <TiDelete onClick={openModalAlert} className="closeActivity" />
         )}
         <hr style={{ opacity: 0.2, margin: "5px" }} />
       </li>
@@ -62,7 +59,7 @@ const ActivityCard = ({
         setIsOpen={setModalAlert}
         content={
           <div>
-            <h3>Voçe quer excluir esta Atividade?</h3>
+            <h3>Você quer excluir esta Atividade?</h3>
             <Button
               text="Excluir"
               style={{ width: "150px", fontSize: "16px", marginTop: "25px" }}

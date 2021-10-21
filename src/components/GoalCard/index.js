@@ -54,12 +54,7 @@ const GoalCard = ({ goal, isSubscribed = false }) => {
           strokeWidth={10}
         />
       </ChartContainer>
-      <IconButtonContainer
-        onClick={() => {
-          openModalAlert();
-        }}
-        id={"closeIcon"}
-      >
+      <IconButtonContainer onClick={openModalAlert} id={"closeIcon"}>
         {isSubscribed && <IoIosCloseCircle />}
       </IconButtonContainer>
 
@@ -68,7 +63,7 @@ const GoalCard = ({ goal, isSubscribed = false }) => {
         setIsOpen={setModalAlert}
         content={
           <div>
-            <h3>Voçe quer excluir esta Meta?</h3>
+            <h3>Você quer excluir esta Meta?</h3>
             <Button
               text="Excluir"
               style={{ width: "150px", fontSize: "16px", marginTop: "25px" }}

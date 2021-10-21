@@ -10,13 +10,17 @@ export const SubContainer = styled.div`
 
   .google {
     width: 50px;
-    height: 50px;   
+    height: 50px;
     margin: 12px;
     cursor: pointer;
   }
 
   .orStyle {
     margin-top: 22px;
+  }
+
+  .googleSignUp {
+    margin: 10px auto 30px;
   }
 
   .signUpTitle {
@@ -56,7 +60,7 @@ export const Image = styled.div`
     background: url("https://image.freepik.com/free-vector/hand-drawn-people-jumping-together_23-2149083967.jpg");
     height: 900px;
     background-repeat: no-repeat;
-    background-size:auto;
+    background-size: auto;
     background-position: center;
     flex: 1;
   }
@@ -86,7 +90,7 @@ export const AnimationContainer = styled.div`
   animation: ${leftAnimation} 1.5s;
 
   form {
-    margin:50px auto;
+    margin: 50px auto;
     width: 340px;
     text-align: center;
     background: var(--white);
@@ -107,6 +111,5 @@ export const AnimationContainer = styled.div`
     margin-top: 25px;
     margin-bottom: -55px;
     width: 250px;
-   
   }
 `;
