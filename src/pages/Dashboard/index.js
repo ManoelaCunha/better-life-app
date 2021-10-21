@@ -122,7 +122,6 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
             </button>
           </ButtonContainerDashboard>
         </Box>
-
         <FormControlCustom variant='outlined'>
           <Filter labelId='demo-simple-select-label' id='demo-simple-select' value={filterValue} label='Filtro' onChange={handleChange}>
             <MenuItemCustom value={"open"}>Abertos</MenuItemCustom>

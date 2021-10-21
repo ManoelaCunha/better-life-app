@@ -91,10 +91,14 @@ export const AnimationContainer = styled.div`
 
   form {
 <<<<<<< HEAD
+<<<<<<< HEAD
     margin:100px auto;
 =======
     margin: 50px auto;
 >>>>>>> bddd49da13e6c7e3e07fbe4edcb67d896b4eca17
+=======
+    margin: 50px auto;
+>>>>>>> 47353c5019813d8055c393e1ee93f1e9f503a8fc
     width: 340px;
     text-align: center;
     background: var(--white);

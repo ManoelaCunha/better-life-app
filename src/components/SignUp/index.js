@@ -6,10 +6,7 @@ import * as yup from "yup";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import Button from "../../components/Button";
 import toast from "react-hot-toast";
-import { Container } from "./style";
-import { Image } from "./style";
-import { AnimationContainer } from "./style";
-import { SubContainer } from "./style";
+import { Container, Image, AnimationContainer, SubContainer } from "./style";
 import logoImage from "../../assets/img/logo.png";
 import LoginGoogle from "../GoogleLogin";
 
@@ -117,10 +114,8 @@ const SignUp = ({ authenticated }) => {
             <div className='googleSignUp'>
               <LoginGoogle handleGoogle={handleForm} />
             </div>
-            {/* <p className="orStyle">Ou</p> */}
-            {/* <img className="google" alt="google" src={google} /> */}
-            <p className="mobileFooter">
-              Já tem uma conta? <Link to="/login">Login</Link>
+            <p className='mobileFooter'>
+              Já tem uma conta? <Link to='/login'>Login</Link>
             </p>
           </form>
         </AnimationContainer>

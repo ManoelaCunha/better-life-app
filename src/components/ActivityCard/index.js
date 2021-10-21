@@ -44,7 +44,7 @@ const ActivityCard = ({
               }}
               style={{ width: "130px" }}
             >
-              Atualizar Atividade
+              Atualizar atividade
             </button>
           )}
         </ButtonContainer>
