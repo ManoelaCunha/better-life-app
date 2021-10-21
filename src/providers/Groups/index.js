@@ -140,7 +140,8 @@ export const GroupsProvider = ({ children }) => {
         subscribedGroups,
         specificGroup,
         getInfoGroup,
-        editGroup
+        editGroup,
+        setSpecificGroup
       }}
     >
       {children}

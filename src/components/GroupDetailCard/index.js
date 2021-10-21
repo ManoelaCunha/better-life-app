@@ -14,6 +14,8 @@ import ActivityCard from "../ActivityCard";
 import ModalEditGroup from '../ModalEditGroup';
 import CreateGroupGoalModal from "../../components/CreateGroupGoal";
 
+import api from "../../services/api";
+
 const GroupDetailCard = ({ groupId, authenticated }) => {
   const { goals, getGoals } = useContext(GoalsContext);
 
@@ -23,8 +25,7 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
     subscribedGroups,
     subscribeGroup,
     unsubscribeGroup,
-    getSubscribedGroups, getInfoGroup, specificGroup, groups
-
+    getSubscribedGroups, specificGroup, groups,
   } = useContext(GroupsContext);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [modalActivityIsOpen, setModalActivityIsOpen] = useState(false);
@@ -44,6 +45,15 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
     ],
   });
 
+  const getInfoGroup = (id) => {
+    api
+      .get(`groups/${id}/`)
+      .then((resp) => {
+        setCurrentGroup(resp.data);
+      })
+      .catch((err) => console.log(err.message));
+  }
+
   useEffect(() => {
     if (authenticated) {
       getGoals(groupId);
@@ -54,23 +64,8 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
         : setIsSubscribed(false);
       getInfoGroup(groupId);
     }
-    setCurrentGroup(specificGroup);
-    return (() => setCurrentGroup({
-      "id": '',
-      "name": '',
-      "description": "",
-      "category": "",
-      "creator": {
-        "id": '',
-        "username": "",
-        "email": ""
-      },
-      "users_on_group": [
-      ],
-    }))
+
   }, []);
-
-
 
 
   useEffect(() => {
@@ -80,20 +75,6 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
         : setIsSubscribed(false);
     }
     getInfoGroup(groupId);
-    setCurrentGroup(specificGroup)
-    return (() => setCurrentGroup({
-      "id": '',
-      "name": '',
-      "description": "",
-      "category": "",
-      "creator": {
-        "id": '',
-        "username": "",
-        "email": ""
-      },
-      "users_on_group": [
-      ],
-    }))
   }, [subscribedGroups, groups]);
 
   const openModalActivity = () => {
