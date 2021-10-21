@@ -1,7 +1,7 @@
 import { ButtonContainer } from "../Button/style";
 import { Box, Card } from "./style";
 
-import img from "../../assets/img/star.gif";
+import img from "../../assets/img/27-globe-outline.gif";
 
 import { GroupsContext } from "../../providers/Groups";
 import { useContext, useEffect, useState } from "react";

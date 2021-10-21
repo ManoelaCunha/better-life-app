@@ -15,6 +15,7 @@ export const Container = styled.section`
         margin-bottom: 20px;
         font-weight: 400;
         font-size: 36px;
+        color: #ffff;
     }
     p{
         font-size:20px;

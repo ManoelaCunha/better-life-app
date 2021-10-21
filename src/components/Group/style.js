@@ -80,7 +80,8 @@ export const Box = styled.div`
 
     @media screen and (min-width: 768px) {
       display: block;
-      width: 92px;
+      border-radius: 50%;
+      width: 100%;
       height: 90px;
     }
   }

@@ -24,7 +24,7 @@ export const ActivitiesProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then(() => toast.success("Atividade deletada com sucesso."))
+      .then(() => toast.success("Atividade deletada com sucesso!"))
       .catch((err) => console.log(err));
     const newActivities = activities.filter((goal) => goal.id !== id);
     setActivities(newActivities);
@@ -45,9 +45,32 @@ export const ActivitiesProvider = ({ children }) => {
       .catch((error) => console.log(error));
   };
 
+  const updateActivity = (data, id, index) => {
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
+    api
+      .patch(`activities/${id}/`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        //setActivities(activities);
+        toast.success("Atividade atualizada com sucesso!");
+      })
+      .catch((error) => console.log(error));
+    //const teste = activities.replace
+  };
+
   return (
     <ActivitiesContext.Provider
-      value={{ activities, getActivities, removeActivity, createActivities }}
+      value={{
+        activities,
+        getActivities,
+        removeActivity,
+        createActivities,
+        updateActivity,
+      }}
     >
       {children}
     </ActivitiesContext.Provider>

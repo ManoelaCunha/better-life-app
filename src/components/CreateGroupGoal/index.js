@@ -1,16 +1,15 @@
 import { TextField, FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
-import ModalComponent from "../../components/Modal";
+import Modal from "../../components/Modal";
 import Button from "../../components/Button";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { GoalsContext } from "../../providers/Goals";
 
-const CreateGroupGoalModal = ({ setIsOpen, groupId, inputStyle, formStyle, modalIsOpen }) => {
+const CreateGroupGoalModal = ({ modalGoalIsOpen, setModalGoalIsOpen, groupId }) => {
 
   const { createGoals, goals, setGoals } = useContext(GoalsContext);
-  // const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const schema = yup.object().shape({
         title: yup.string().required("Campo obrigatório"),
@@ -35,20 +34,25 @@ const CreateGroupGoalModal = ({ setIsOpen, groupId, inputStyle, formStyle, modal
           how_much_achieved: 0,
           group: groupId,
         };
-        console.log(newGroupGoal)
         createGoals(newGroupGoal)
-        setIsOpen(false)
+        setModalGoalIsOpen(false)
       };
 
-      // const openModal = () => {
-      //   setModalIsOpen(true);
-      // };
+      const inputStyle = {
+        margin: "10px auto",
+        width: "100%",
+        maxWidth: "350px",
+      };
+    
+      const formStyle = {
+        width: "100%",
+      };
     
     return(
         <div>
-        <ModalComponent
-        modalIsOpen={modalIsOpen}
-        setIsOpen={setIsOpen}
+        <Modal
+        modalIsOpen={modalGoalIsOpen}
+        setIsOpen={setModalGoalIsOpen}
         title="Cadastrar Nova Meta"
         content={
           <form style={formStyle} onSubmit={handleSubmit(handleCreateGoals)}>
@@ -59,7 +63,7 @@ const CreateGroupGoalModal = ({ setIsOpen, groupId, inputStyle, formStyle, modal
               {...register("title")}
               helperText={errors.title?.message}
             />
-            <FormControl variant="filled" style={inputStyle}>
+            <FormControl variant="filled" style={inputStyle} >
               <InputLabel id="select-difficulty">Dificuldade</InputLabel>
               <Select
                 labelId="select-difficulty"
