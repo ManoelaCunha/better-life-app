@@ -3,11 +3,9 @@ import styled from "styled-components";
 export const Card = styled.div`
   width: 300px;
   margin: 20px auto;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   background: linear-gradient(
     274.42deg,
     rgba(146, 163, 253, 0.2) 0%,
@@ -17,7 +15,7 @@ export const Card = styled.div`
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
-    width: 640px;
+    width: 750px;
     min-height: 190px;
     margin: 20px auto;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
