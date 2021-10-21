@@ -30,7 +30,7 @@ const Routes = () => {
       </Route>
 
       <Route path="/welcome">
-        <Welcome />
+        <Welcome authenticated={authenticated} />
       </Route>
 
       <Route exact path="/signup">

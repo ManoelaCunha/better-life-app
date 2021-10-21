@@ -9,13 +9,15 @@ import { TextField } from "@material-ui/core";
 import Logo from "../../assets/img/logo.png";
 import toast from "react-hot-toast";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Visibility, VisibilityOff, Person } from "@material-ui/icons";
+import { UserContext } from "../../providers/User";
 //import LoginGoogle from "../GoogleLogin";
 
 const Login = ({ authenticated, setAuthenticated }) => {
   const history = useHistory();
   const [showPassword, setShowPassword] = useState(false);
+  const { getUser } = useContext(UserContext);
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -44,6 +46,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
         const { access } = response.data;
         localStorage.setItem("@BetterLife:token", JSON.stringify(access));
         setAuthenticated(true);
+        getUser(access)
         return history.push("/welcome");
       })
 

@@ -36,7 +36,6 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
 
   useEffect(() => {
     if (authenticated) {
-      getUser();
       getHabits();
       getSubscribedGroups();
       getUserName();
