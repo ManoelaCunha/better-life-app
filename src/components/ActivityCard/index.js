@@ -39,7 +39,10 @@ const ActivityCard = ({
           )}
         </ButtonContainer>
         {isSubscribed && (
-          <TiDelete onClick={() => removeActivity(activity.id)} />
+          <TiDelete
+            onClick={() => removeActivity(activity.id)}
+            className="closeActivity"
+          />
         )}
         <hr style={{ opacity: 0.2, margin: "5px" }} />
       </li>

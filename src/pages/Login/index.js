@@ -1,10 +1,12 @@
-import Login from "../../components/SignIn"
+import Login from "../../components/SignIn";
 
 const LoginPage = ({ authenticated, setAuthenticated }) => {
-
   return (
     <div>
-     <Login authenticated={authenticated} setAuthenticated = {setAuthenticated} />
+      <Login
+        authenticated={authenticated}
+        setAuthenticated={setAuthenticated}
+      />
     </div>
   );
 };

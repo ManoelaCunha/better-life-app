@@ -1,6 +1,6 @@
 import { Container, Content, ImageHome } from "./style";
 import Logo from "../../assets/img/logo.png";
-import ImgHome from "../../assets/img/Vector.png";
+import ImgHome from "../../assets/img/yoga.gif";
 import Button from "../../components/Button";
 import { Redirect, useHistory } from "react-router";
 import Members from "../../components/Members";
@@ -12,7 +12,7 @@ const Homepage = ({ authenticated }) => {
   };
 
   if (authenticated) {
-    return <Redirect to="welcome" />;
+    return <Redirect to="/welcome" />;
   };
 
   return (

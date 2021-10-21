@@ -12,7 +12,7 @@ import GoalCard from "../GoalCard";
 import ActivityCard from "../ActivityCard";
 import Button from "../Button";
 
-const GroupDetailCard = ({ groupId }) => {
+const GroupDetailCard = ({ groupId, authenticated }) => {
   const { goals, getGoals } = useContext(GoalsContext);
   const { activities, getActivities, removeActivity } =
     useContext(ActivitiesContext);
@@ -26,22 +26,26 @@ const GroupDetailCard = ({ groupId }) => {
   const [modalActivityIsOpen, setModalActivityIsOpen] = useState(false);
 
   useEffect(() => {
-    getGoals(groupId);
-    getActivities(groupId);
-    getSubscribedGroups();
-    subscribedGroups.includes(Number(groupId))
-      ? setIsSubscribed(true)
-      : setIsSubscribed(false);
+    if (authenticated) {
+      getGoals(groupId);
+      getActivities(groupId);
+      getSubscribedGroups();
+      subscribedGroups.includes(Number(groupId))
+        ? setIsSubscribed(true)
+        : setIsSubscribed(false);
+    }
   }, []);
 
   useEffect(() => {
-    subscribedGroups.includes(Number(groupId))
-      ? setIsSubscribed(true)
-      : setIsSubscribed(false);
-    console.log(subscribedGroups, groupId);
-    console.log(subscribedGroups.includes(Number(groupId)));
+    if (authenticated) {
+      subscribedGroups.includes(Number(groupId))
+        ? setIsSubscribed(true)
+        : setIsSubscribed(false);
+      console.log(subscribedGroups.includes(Number(groupId)));
+    }
   }, [subscribedGroups]);
 
+  console.log(subscribedGroups, groupId);
   const openModalActivity = () => {
     setModalActivityIsOpen(true);
   };

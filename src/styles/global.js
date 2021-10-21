@@ -8,10 +8,11 @@ export default createGlobalStyle`
         outline: 0;
     }
     :root {
-        --background-color: #F2F9FE;
+        --white: #ffffff;
+        --background-color:#dfe6e9;
     }
     body{
-        background-color: #ffffff;
+        background-color: var(---background-color);
         font-family: 'Poppins', sans-serif;
         min-width: 320px;
         width: 100%;
@@ -20,6 +21,8 @@ export default createGlobalStyle`
     }
     h1,h2,h3,h4,h5{
         font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        color: #2d3436;
     }
     body, input, button {
         font-family: 'Poppins', sans-serif;
