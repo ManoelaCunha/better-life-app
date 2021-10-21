@@ -54,7 +54,7 @@ export const AnimationContainer = styled.div`
     }
     p {
       margin-top: 25px;
-      font-size: 10px;
+      font-size: 12px;
     }
     h2 {
       margin-top: -15px;

@@ -28,7 +28,7 @@ export const SubContainer = styled.div`
   }
 
   .buttonContainer {
-    padding-top: 15px;
+    padding: 10px;
   }
 
   .mobileFooter {
@@ -115,5 +115,8 @@ export const AnimationContainer = styled.div`
     margin-top: 25px;
     margin-bottom: -55px;
     width: 250px;
+  }
+  p{
+    font-size: 12px;
   }
 `;

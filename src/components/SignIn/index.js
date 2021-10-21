@@ -26,7 +26,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
   });
 
   const onSubmitFunction = (data) => {
-    // Lógica para fazer as requisições / errors
+
     api
       .post("/sessions/", data)
       .then((response) => {
@@ -51,7 +51,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
       <Background />
       <Content>
         <AnimationContainer>
-          <img src={Logo} alt='Logo Better Life' />
+      <Link to='/'><img src={Logo} alt="Logo Better Life" /></Link>
           <form onSubmit={handleSubmit(onSubmitFunction)}>
             <h2>
               Olá,

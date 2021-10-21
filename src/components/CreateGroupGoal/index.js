@@ -20,6 +20,7 @@ const CreateGroupGoalModal = ({ modalGoalIsOpen, setModalGoalIsOpen, groupId }) 
       });
     
       const {
+        reset,
         register,
         handleSubmit,
         formState: { errors },
@@ -36,6 +37,7 @@ const CreateGroupGoalModal = ({ modalGoalIsOpen, setModalGoalIsOpen, groupId }) 
         };
         createGoals(newGroupGoal)
         setModalGoalIsOpen(false)
+        reset(createGoals)
       };
 
       const inputStyle = {

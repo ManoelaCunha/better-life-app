@@ -51,7 +51,7 @@ const SignUp = ({ authenticated }) => {
     <Container>
       <SubContainer>
         <AnimationContainer>
-          <img className='logoImage' src={logoImage} alt='logo' />
+        <Link to='/'><img className="logoImage" src={logoImage} alt="logo" /></Link>
           <form onSubmit={handleSubmit(handleForm)}>
             <div className='signUpTitle'>
               <h2>
@@ -117,8 +117,10 @@ const SignUp = ({ authenticated }) => {
             <div className='googleSignUp'>
               <LoginGoogle handleGoogle={handleForm} />
             </div>
-            <p className='mobileFooter'>
-              Já tem uma conta? <Link to='/login'>Login</Link>
+            {/* <p className="orStyle">Ou</p> */}
+            {/* <img className="google" alt="google" src={google} /> */}
+            <p className="mobileFooter">
+              Já tem uma conta? <Link to="/login">Login</Link>
             </p>
           </form>
         </AnimationContainer>
