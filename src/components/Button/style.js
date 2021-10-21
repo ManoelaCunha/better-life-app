@@ -23,6 +23,7 @@ export const ButtonContainer = styled.div`
       border-radius: 5px;
       transition: ease all 0.3s;
     }
+    
   }
 
   @media screen and (min-width: 500px) {
@@ -30,5 +31,15 @@ export const ButtonContainer = styled.div`
       height: 50px;
       width: ${(props) => (props.smaller ? "50px" : "250px")};
     }
+  }
+  .disabledButton {
+      width: 130px;
+      height: 30px;
+      background: gray;
+    };
+
+  .disabledButton:hover {
+    border-radius: 30px;
+    cursor: auto;
   }
 `;

@@ -33,6 +33,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
       .then((response) => {
         const { access } = response.data;
         localStorage.setItem("@BetterLife:token", JSON.stringify(access));
+        console.log(access)
         setAuthenticated(true);
         return history.push("/welcome");
       })
@@ -45,12 +46,13 @@ const Login = ({ authenticated, setAuthenticated }) => {
   if (authenticated) {
     return <Redirect to="welcome" />;
   }
-
+  
   return (
     <Container>
       <Background />
       <Content>
         <AnimationContainer>
+      <img src={Logo} alt="Logo Better Life" />
           <form onSubmit={handleSubmit(onSubmitFunction)}>
             <h2>
               Olá,
@@ -61,7 +63,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
               <TextField
                 label="Usuário"
                 margin="normal"
-                variant="filled"
+                variant="standard"
                 size="small"
                 color="primary"
                 {...register("username")}
@@ -73,7 +75,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
               <TextField
                 label="Senha"
                 margin="normal"
-                variant="filled"
+                variant="standard"
                 size="small"
                 type="password"
                 color="primary"
@@ -91,7 +93,6 @@ const Login = ({ authenticated, setAuthenticated }) => {
               Não possui uma conta ainda? <Link to="/signup">Registre-se</Link>{" "}
             </p>
           </form>
-          <img src={Logo} alt="Logo Better Life" />
         </AnimationContainer>
       </Content>
     </Container>
