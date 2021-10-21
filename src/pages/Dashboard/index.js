@@ -16,24 +16,43 @@ import { UserContext } from "../../providers/User";
 import { HabitsContext } from "../../providers/Habits";
 import { GroupsContext } from "../../providers/Groups";
 import { Box, Container, Text, ButtonContainerDashboard } from "./style";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AsideRight from "../../components/AsideRight";
+import {
+  Filter,
+  MenuItemCustom,
+  FormControlCustom,
+} from "../../styles/styleMaterial";
+
 const Dashboard = ({ authenticated, setAuthenticated }) => {
   const { getUser, userName, getUserName, user } = useContext(UserContext);
   const { getHabits, habits, addNewHabit } = useContext(HabitsContext);
   const { getSubscribedGroups } = useContext(GroupsContext);
+  const [filterValue, setFilterValue] = useState("open");
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [filteredHabits, setFilteredHabits] = useState([]);
 
   useEffect(() => {
-    getUser();
-  }, []);
-
-  useEffect(() => {
-    getHabits();
-    getSubscribedGroups();
-    getUserName();
+    if (authenticated) {
+      getUser();
+      getHabits();
+      getSubscribedGroups();
+      getUserName();
+    }
   }, [user]);
+
+  useEffect(() => {
+    let newHabits = habits;
+    console.log(filterValue);
+    if (filterValue === "finished") {
+      newHabits = habits.filter((habit) => habit.achieved);
+    }
+    if (filterValue === "open") {
+      newHabits = habits.filter((habit) => !habit.achieved);
+    }
+    setFilteredHabits(newHabits);
+  }, [habits, filterValue]);
 
   const schema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
@@ -47,7 +66,6 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
       .oneOf(["Diário", "Semanal", "Quinzenal", "Mensal"])
       .required("Campo obrigatório"),
   });
-
   const {
     register,
     handleSubmit,
@@ -85,14 +103,17 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
   const formStyle = {
     width: "100%",
   };
-
   if (!authenticated) {
     return <Redirect to="/" />;
   }
 
+  const handleChange = (event) => {
+    setFilterValue(event.target.value);
+  };
+
   return (
     <>
-      <Menu setAuthenticated={setAuthenticated} />
+      <Menu setAuthenticated={setAuthenticated} handleAdd={openModal} />
       <Container>
         <Text>
           Bem vinda(o) de volta, <strong>{userName}</strong>
@@ -117,11 +138,24 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
             </button>
           </ButtonContainerDashboard>
         </Box>
-        {habits.map((habit) => (
+        <FormControlCustom variant="outlined">
+          <Filter
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={filterValue}
+            label="Filtro"
+            onChange={handleChange}
+          >
+            <MenuItemCustom value={"open"}>Abertos</MenuItemCustom>
+            <MenuItemCustom value={"finished"}>Concluidos</MenuItemCustom>
+            <MenuItemCustom value={"all"}>Todos</MenuItemCustom>
+          </Filter>
+        </FormControlCustom>
+        {filteredHabits.map((habit) => (
           <HabitCard key={habit.id} habit={habit} />
         ))}
-         <AsideRight />
       </Container>
+      <AsideRight />
 
       <Modal
         modalIsOpen={modalIsOpen}
@@ -183,7 +217,6 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
           </form>
         }
       />
-     
     </>
   );
 };

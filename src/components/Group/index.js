@@ -9,7 +9,7 @@ import { useHistory } from "react-router";
 
 const Group = ({ group, groupId }) => {
   const { name, category, description } = group;
-  const { subscribedGroups, subscribeGroup, unsubscribeGroup } = useContext(GroupsContext);
+  const { subscribedGroups, subscribeGroup } = useContext(GroupsContext);
   const [isSubscribed, setIsSubscribed] = useState(false);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Group = ({ group, groupId }) => {
 
   useEffect(() => {
     subscribedGroups.includes(groupId) ? setIsSubscribed(true) : setIsSubscribed(false);
-  }, [subscribedGroups])
+  }, [subscribedGroups, groupId])
 
 
   const history = useHistory();
@@ -40,7 +40,9 @@ const Group = ({ group, groupId }) => {
 
         <ButtonContainer style={{ margin: "15px" }}>
           <button
-            onClick={() => { history.push(`/groups/${groupId}`) }}
+            onClick={() => {
+              history.push(`/groups/${groupId}`)
+            }}
             style={{
               width: "130px",
               height: "30px",
@@ -51,7 +53,7 @@ const Group = ({ group, groupId }) => {
             Ver mais
           </button>
 
-          {!isSubscribed && <button
+          {!isSubscribed ? <button
             onClick={handleSubscribeGroup}
             style={{
               width: "130px",
@@ -59,6 +61,8 @@ const Group = ({ group, groupId }) => {
             }}
           >
             Inscreva-se
+          </button> : <button disabled className='disabledButton'   >
+            Inscrito
           </button>}
         </ButtonContainer>
       </div>

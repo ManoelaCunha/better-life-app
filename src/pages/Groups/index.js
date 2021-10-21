@@ -1,5 +1,5 @@
 import { ButtonContainer } from "../../components/Button/style";
-import { Box, Container, Text } from "./style";
+import { Box, Container, SelectDiv, Text } from "./style";
 
 import GroupList from "../../components/GroupsList";
 import Button from "../../components/Button";
@@ -14,11 +14,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TextField } from "@material-ui/core";
 import AsideRight from "../../components/AsideRight";
+import { Filter, MenuItemCustom, FormControlCustom } from '../../styles/styleMaterial'
+
 
 const Groups = ({ authenticated, setAuthenticated }) => {
   const { userName } = useContext(UserContext);
   const { createGroup } = useContext(GroupsContext);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [filterValue, setFilterValue] = useState('subscribed');
 
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório"),
@@ -55,14 +58,19 @@ const Groups = ({ authenticated, setAuthenticated }) => {
   if (!authenticated) {
     return <Redirect to="/" />;
   }
+  const handleChange = (event) => {
+    setFilterValue(event.target.value);
+  };
 
   return (
     <>
-      <Menu setAuthenticated={setAuthenticated} />
+      <Menu setAuthenticated={setAuthenticated} handleAdd={openModal} />
       <Container>
+
         <Text>
           Bem vinda(o) de volta, <strong>{userName}</strong>
         </Text>
+
         <Box>
           <h1>GRUPOS</h1>
           <ButtonContainer style={{ margin: "0px 5px" }}>
@@ -70,7 +78,7 @@ const Groups = ({ authenticated, setAuthenticated }) => {
               style={{
                 width: "150px",
                 background: "transparent",
-                color: "#00000",
+                color: "#000",
                 fontWeight: "500",
                 boxShadow: "none",
                 fontSize: "20px",
@@ -83,7 +91,23 @@ const Groups = ({ authenticated, setAuthenticated }) => {
             </button>
           </ButtonContainer>
         </Box>
-        <GroupList />
+        <SelectDiv>
+          <FormControlCustom variant='outlined'>
+            <Filter
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={filterValue}
+              label="Filtro"
+              onChange={handleChange}
+            >
+              <MenuItemCustom value={"subscribed"} >Inscrito</MenuItemCustom>
+              <MenuItemCustom value={"notSubscribed"}>Não inscrito</MenuItemCustom>
+              <MenuItemCustom value={"all"}>Todos</MenuItemCustom>
+            </Filter>
+          </FormControlCustom>
+
+        </SelectDiv>
+        <GroupList filterValue={filterValue} />
       </Container>
       <AsideRight />
       <Modal
