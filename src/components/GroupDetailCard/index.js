@@ -1,7 +1,7 @@
 import Button from "../Button";
 import { useContext, useEffect, useState } from "react";
 
-import { CardGroupDetailBody, ActivityContainer, GoalContainer } from "./style";
+import { CardGroupDetailBody, ActivityContainer, GoalContainer, MembersContainer, GoalContainerTitle, ActivityContainerTitle } from "./style";
 import { ButtonContainer } from "../Button/style";
 
 import { GroupsContext } from "../../providers/Groups";
@@ -11,8 +11,10 @@ import { ActivitiesContext } from "../../providers/Activities";
 import ModalCreateActivities from "../ModalCreateActivities";
 import GoalCard from "../GoalCard";
 import ActivityCard from "../ActivityCard";
-
+import ModalEditGroup from '../ModalEditGroup';
 import CreateGroupGoalModal from "../../components/CreateGroupGoal";
+
+import api from "../../services/api";
 
 const GroupDetailCard = ({ groupId, authenticated }) => {
   const { goals, getGoals } = useContext(GoalsContext);
@@ -23,11 +25,34 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
     subscribedGroups,
     subscribeGroup,
     unsubscribeGroup,
-    getSubscribedGroups,
+    getSubscribedGroups, specificGroup, groups,
   } = useContext(GroupsContext);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [modalActivityIsOpen, setModalActivityIsOpen] = useState(false);
   const [modalGoalIsOpen, setModalGoalIsOpen] = useState(false);
+  const [modalEditGroupIsOpen, setModalEditGroupIsOpen] = useState(false);
+  const [currentGroup, setCurrentGroup] = useState({
+    "id": '',
+    "name": '',
+    "description": "",
+    "category": "",
+    "creator": {
+      "id": '',
+      "username": "",
+      "email": ""
+    },
+    "users_on_group": [
+    ],
+  });
+
+  const getInfoGroup = (id) => {
+    api
+      .get(`groups/${id}/`)
+      .then((resp) => {
+        setCurrentGroup(resp.data);
+      })
+      .catch((err) => console.log(err.message));
+  }
 
   useEffect(() => {
     if (authenticated) {
@@ -37,19 +62,21 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
       subscribedGroups.includes(Number(groupId))
         ? setIsSubscribed(true)
         : setIsSubscribed(false);
+      getInfoGroup(groupId);
     }
+
   }, []);
+
 
   useEffect(() => {
     if (authenticated) {
       subscribedGroups.includes(Number(groupId))
         ? setIsSubscribed(true)
         : setIsSubscribed(false);
-      console.log(subscribedGroups.includes(Number(groupId)));
     }
-  }, [subscribedGroups]);
+    getInfoGroup(groupId);
+  }, [subscribedGroups, groups]);
 
-  console.log(subscribedGroups, groupId);
   const openModalActivity = () => {
     setModalActivityIsOpen(true);
   };
@@ -58,48 +85,73 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
     setModalGoalIsOpen(true);
   };
 
+  const openEditGroup = () => {
+    setModalEditGroupIsOpen(true);
+  };
   return (
     <>
       <CardGroupDetailBody>
-        <h2>Nome do Grupo</h2>
-        <p>Categoria do Grupo</p>
+        <h2>{currentGroup.name}</h2>
+        <p> Administrador do Grupo - {currentGroup.name}</p>
+        <p>Categoria - {currentGroup.creator.username}</p>
         <ButtonContainer style={{ margin: "0px" }}>
-          {!isSubscribed && (
-            <Button
-              text={"Inscreva-se"}
-              onClick={() => subscribeGroup(groupId)}
-            >
-              Inscreva-se
-            </Button>
-          )}
-          {isSubscribed && (
-            <Button
-              text={"Sair do grupo"}
-              onClick={() => unsubscribeGroup(groupId)}
+          <div className='alignButton'>
+            {!isSubscribed && (
+              <Button
+                text={"Inscreva-se"}
+                onClick={() => subscribeGroup(groupId)}
+              >
+                Inscreva-se
+              </Button>
+            )}
+            {isSubscribed && (
+              <Button
+                text={"Sair do grupo"}
+                onClick={() => unsubscribeGroup(groupId)}
+              />
+            )}
+            {isSubscribed && <Button
+              text={"Editar Grupo"}
+              onClick={openEditGroup}
             />
-          )}
+            }
+            <ModalEditGroup
+              groupId={groupId}
+              modalEditGroupIsOpen={modalEditGroupIsOpen}
+              setModalEditGroupIsOpen={setModalEditGroupIsOpen}
+            />
+          </div>
         </ButtonContainer>
         <p>Descrição do Grupo</p>
+        <p>{specificGroup.description}</p>
+
+        <hr />
         <div>
-          <h3>Metas</h3>
-          <ButtonContainer style={{ margin: "0px" }}>
-            {isSubscribed && (
-              <button onClick={openModalGoal}><strong>+</strong>    Meta</button>
-            )}
-          </ButtonContainer>
+          <GoalContainerTitle>
+            <h3>Metas</h3>
+            <ButtonContainer style={{ margin: "0px" }}>
+              {isSubscribed && (
+                <button onClick={openModalGoal}><strong>+</strong>    Meta</button>
+              )}
+            </ButtonContainer>
+          </GoalContainerTitle>
           <GoalContainer>
             {goals.map((goal) => (
               <GoalCard goal={goal} key={goal.id} isSubscribed={isSubscribed} />
             ))}
           </GoalContainer>
         </div>
+
+        <hr />
         <div>
-          <h3>Atividades</h3>
-          <ButtonContainer style={{ margin: "0px" }}>
-            {isSubscribed && (
-              <button onClick={openModalActivity}><strong>+</strong> Atividade</button>
-            )}
-          </ButtonContainer>
+          <ActivityContainerTitle>
+            <h3>Atividades</h3>
+            <ButtonContainer style={{ margin: "0px" }}>
+              {isSubscribed && (
+                <button onClick={openModalActivity}><strong>+</strong> Atividade</button>
+              )}
+            </ButtonContainer>
+          </ActivityContainerTitle>
           <ActivityContainer>
             <ul>
               {activities.map((activity, index) => (
@@ -115,6 +167,16 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
             </ul>
           </ActivityContainer>
         </div>
+
+        <MembersContainer>
+          <div>
+            <h3>Membros do Grupo</h3>
+            <p> {specificGroup.users_on_group.map((user, index) => (
+              user.username
+            )).join(', ')}</p>
+          </div>
+        </MembersContainer>
+
       </CardGroupDetailBody>
       <ModalCreateActivities
         groupId={groupId}

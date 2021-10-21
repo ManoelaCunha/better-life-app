@@ -7,7 +7,7 @@ import Modal from "../../components/Modal";
 import Menu from "../../components/Menu";
 import { GroupsContext } from "../../providers/Groups";
 import { UserContext } from "../../providers/User";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -19,7 +19,7 @@ import { Filter, MenuItemCustom, FormControlCustom } from '../../styles/styleMat
 
 const Groups = ({ authenticated, setAuthenticated }) => {
   const { userName } = useContext(UserContext);
-  const { createGroup } = useContext(GroupsContext);
+  const { createGroup, setSpecificGroup } = useContext(GroupsContext);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [filterValue, setFilterValue] = useState('subscribed');
 
@@ -30,6 +30,7 @@ const Groups = ({ authenticated, setAuthenticated }) => {
   });
 
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
@@ -39,10 +40,11 @@ const Groups = ({ authenticated, setAuthenticated }) => {
 
   const handleCreateGroup = (data) => {
     createGroup(data);
+    reset()
   };
 
   const openModal = () => {
-    setIsOpen(true);
+    setIsOpen(true);  
   };
 
   const inputStyle = {

@@ -50,6 +50,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
     frequency: yup.string().oneOf(["Diário", "Semanal", "Quinzenal", "Mensal"]).required("Campo obrigatório"),
   });
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
@@ -71,6 +72,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
     };
     addNewHabit(newHabit);
     setIsOpen(false);
+    reset()
   };
 
   const openModal = () => {
@@ -166,7 +168,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
               </Select>
             </FormControl>
 
-            <Button text='Criar grupo' style={{ width: "150px", fontSize: "16px" }} type='submit' />
+            <Button text='Criar hábito' style={{ width: "150px", fontSize: "16px" }} type='submit' />
           </form>
         }
       />
