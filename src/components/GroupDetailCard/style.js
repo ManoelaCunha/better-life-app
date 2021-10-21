@@ -48,3 +48,13 @@ export const CardGroupDetailBody = styled.div`
     color: #40518c;
   }
 `;
+
+
+export const GoalContainer = styled.div`
+  h4 {
+    margin-top: 10px;
+  }
+  li {
+    height: 60px;
+  }
+`;

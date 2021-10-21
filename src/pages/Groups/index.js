@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TextField } from "@material-ui/core";
 import AsideRight from "../../components/AsideRight";
-import { Filter, MenuItemCustom, FormControlCustom } from './styleMaterial'
+import { Filter, MenuItemCustom, FormControlCustom } from '../../styles/styleMaterial'
 
 
 const Groups = ({ authenticated, setAuthenticated }) => {
@@ -60,10 +60,11 @@ const Groups = ({ authenticated, setAuthenticated }) => {
   }
   const handleChange = (event) => {
     setFilterValue(event.target.value);
-  }
+  };
+
   return (
     <>
-      <Menu setAuthenticated={setAuthenticated} />
+      <Menu setAuthenticated={setAuthenticated} handleAdd={openModal} />
       <Container>
 
         <Text>
