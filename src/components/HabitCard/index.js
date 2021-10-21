@@ -1,10 +1,4 @@
-import {
-  CardContainer,
-  TextContainer,
-  IconButtonContainer,
-  ButtonContainer,
-  ChartContainer,
-} from "./style";
+import { CardContainer, TextContainer, IconButtonContainer, ButtonContainer, ChartContainer } from "./style";
 import Button from "../Button";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useContext, useEffect, useState } from "react";
@@ -34,12 +28,21 @@ const HabitCard = ({ habit }) => {
     setModalAlert(true);
   };
 
+  const difficultyColors = {
+    Fácil: "#209b20",
+    Intermediário: "#4687c9",
+    Difícil: "#e94835",
+    "Muito difícil": "#000000",
+  };
+
   return (
     <CardContainer>
       <TextContainer>
         <h3>{title}</h3>
         <p>Categoria - {category}</p>
-        <p>Dificuldade - {difficulty}</p>
+        <p>
+          Dificuldade - <span style={{ color: `${difficultyColors[difficulty]}` }}>{difficulty}</span>
+        </p>
         {achieved < 100 && (
           <ButtonContainer>
             <Button text={"Feito!"} onClick={handleClickAddAchieved} />
@@ -47,11 +50,7 @@ const HabitCard = ({ habit }) => {
         )}
       </TextContainer>
       <ChartContainer>
-        <CircularProgressBar
-          percentage={achieved}
-          size={progressBarSize}
-          strokeWidth={10}
-        />
+        <CircularProgressBar percentage={achieved} size={progressBarSize} strokeWidth={10} />
       </ChartContainer>
       <IconButtonContainer onClick={openModalAlert}>
         <IoIosCloseCircle />
@@ -64,7 +63,7 @@ const HabitCard = ({ habit }) => {
           <div>
             <h3>Você quer excluir este Hábito?</h3>
             <Button
-              text="Excluir"
+              text='Excluir'
               style={{ width: "150px", fontSize: "16px", marginTop: "25px" }}
               onClick={() => {
                 removeHabits(id);

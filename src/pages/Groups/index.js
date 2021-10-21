@@ -7,7 +7,7 @@ import Modal from "../../components/Modal";
 import Menu from "../../components/Menu";
 import { GroupsContext } from "../../providers/Groups";
 import { UserContext } from "../../providers/User";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -23,7 +23,7 @@ import { Title, Description, Category } from "@material-ui/icons";
 
 const Groups = ({ authenticated, setAuthenticated }) => {
   const { userName } = useContext(UserContext);
-  const { createGroup } = useContext(GroupsContext);
+  const { createGroup, setSpecificGroup } = useContext(GroupsContext);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [filterValue, setFilterValue] = useState("subscribed");
 

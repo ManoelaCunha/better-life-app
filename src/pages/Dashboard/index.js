@@ -45,7 +45,6 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
 
   useEffect(() => {
     let newHabits = habits;
-    console.log(filterValue);
     if (filterValue === "finished") {
       newHabits = habits.filter((habit) => habit.achieved);
     }
@@ -226,7 +225,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
             </FormControl>
 
             <Button
-              text="Criar grupo"
+              text="Criar hábito"
               style={{ width: "150px", fontSize: "16px" }}
               type="submit"
             />

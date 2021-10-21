@@ -10,9 +10,8 @@ import { Container } from "./style";
 import { Image } from "./style";
 import { AnimationContainer } from "./style";
 import { SubContainer } from "./style";
-import google from "../../assets/img/google.jpeg";
 import logoImage from "../../assets/img/logo.png";
-import signupImage from "../../assets/img/signup.png";
+import LoginGoogle from "../GoogleLogin";
 
 import { useState } from "react";
 import { Visibility, VisibilityOff, Person, Email } from "@material-ui/icons";
@@ -164,7 +163,9 @@ const SignUp = ({ authenticated }) => {
               <Button text="Cadastre-se" type="submit" />
             </div>
             <p className="orStyle">Ou</p>
-            <img className="google" alt="google" src={google} />
+            <div className="googleSignUp">
+              <LoginGoogle handleGoogle={handleForm} />
+            </div>
             <p className="mobileFooter">
               Já tem uma conta? <Link to="/login">Login</Link>
             </p>

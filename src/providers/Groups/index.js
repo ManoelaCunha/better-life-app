@@ -10,6 +10,20 @@ export const GroupsProvider = ({ children }) => {
   const [groups, setGroups] = useState([]);
   const [next, setNext] = useState(1);
   const [subscribedGroups, setSubscribedGroups] = useState([]);
+  const [specificGroup, setSpecificGroup] = useState({
+    "id": '',
+    "name": '',
+    "description": "",
+    "category": "",
+    "creator": {
+      "id": '',
+      "username": "",
+      "email": ""
+    },
+    "users_on_group": [
+    ],
+  });
+
 
   const [token] = useState(
     JSON.parse(localStorage.getItem("@BetterLife:token"))
@@ -87,6 +101,28 @@ export const GroupsProvider = ({ children }) => {
       .catch((err) => console.log(err.message));
   };
 
+  const editGroup = (id, data) => {
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
+    api
+      .patch(`groups/${id}/`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((resp) => {
+        toast.success('Grupo editado');
+        setSpecificGroup(resp.data);
+      })
+      .catch((err) => toast.error('Apenas o administrador do grupo pode editar'));
+  };
+
+  const getInfoGroup = (id) => {
+    api
+      .get(`groups/${id}/`)
+      .then((resp) => {
+        setSpecificGroup(resp.data);
+      })
+      .catch((err) => console.log(err.message));
+  }
+
   return (
     <GroupsContext.Provider
       value={{
@@ -96,6 +132,10 @@ export const GroupsProvider = ({ children }) => {
         unsubscribeGroup,
         getSubscribedGroups,
         subscribedGroups,
+        specificGroup,
+        getInfoGroup,
+        editGroup,
+        setSpecificGroup
       }}
     >
       {children}

@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 
 import { useState } from "react";
 import { Visibility, VisibilityOff, Person } from "@material-ui/icons";
+import LoginGoogle from "../GoogleLogin";
 
 const Login = ({ authenticated, setAuthenticated }) => {
   const history = useHistory();
@@ -116,12 +117,11 @@ const Login = ({ authenticated, setAuthenticated }) => {
               />
             </div>
             <Button type="submit" text="Login">
-              {" "}
-              Login{" "}
+              Login
             </Button>
-            {/* ESPAÇO PARA A FUNCIONALIDADE DE LOGIN COM O GOOGLE */}
+            <LoginGoogle handleGoogle={onSubmitFunction} />
             <p>
-              Não possui uma conta ainda? <Link to="/signup">Registre-se</Link>{" "}
+              Não possui uma conta ainda? <Link to="/signup">Registre-se</Link>
             </p>
           </form>
         </AnimationContainer>
