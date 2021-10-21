@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import imgSign from "../../assets/img/signupImg.svg"
+import imgSign from "../../assets/img/signupImg.svg";
 export const SubContainer = styled.div`
   width: 100%;
   margin: 0 auto;
@@ -90,15 +90,12 @@ export const AnimationContainer = styled.div`
   animation: ${leftAnimation} 1.5s;
 
   form {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    margin:100px auto;
-=======
+    margin: 100px auto;
+
     margin: 50px auto;
->>>>>>> bddd49da13e6c7e3e07fbe4edcb67d896b4eca17
-=======
+
     margin: 50px auto;
->>>>>>> 47353c5019813d8055c393e1ee93f1e9f503a8fc
+
     width: 340px;
     text-align: center;
     background: var(--white);
@@ -120,7 +117,7 @@ export const AnimationContainer = styled.div`
     margin-bottom: -55px;
     width: 250px;
   }
-  p{
+  p {
     font-size: 12px;
   }
 `;
