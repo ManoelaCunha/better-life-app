@@ -14,14 +14,18 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TextField } from "@material-ui/core";
 import AsideRight from "../../components/AsideRight";
-import { Filter, MenuItemCustom, FormControlCustom } from '../../styles/styleMaterial'
-
+import {
+  Filter,
+  MenuItemCustom,
+  FormControlCustom,
+} from "../../styles/styleMaterial";
+import { Title, Description, Category } from "@material-ui/icons";
 
 const Groups = ({ authenticated, setAuthenticated }) => {
   const { userName } = useContext(UserContext);
   const { createGroup, setSpecificGroup } = useContext(GroupsContext);
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [filterValue, setFilterValue] = useState('subscribed');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [filterValue, setFilterValue] = useState("subscribed");
 
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório"),
@@ -40,11 +44,12 @@ const Groups = ({ authenticated, setAuthenticated }) => {
 
   const handleCreateGroup = (data) => {
     createGroup(data);
-    reset()
+    setModalIsOpen(false);
   };
 
   const openModal = () => {
-    setIsOpen(true);  
+    setModalIsOpen(true);
+    reset();
   };
 
   const inputStyle = {
@@ -57,9 +62,15 @@ const Groups = ({ authenticated, setAuthenticated }) => {
     width: "100%",
   };
 
+  const iconStyle = {
+    fontSize: "20px",
+    color: "gray",
+  };
+
   if (!authenticated) {
     return <Redirect to="/" />;
   }
+
   const handleChange = (event) => {
     setFilterValue(event.target.value);
   };
@@ -68,7 +79,6 @@ const Groups = ({ authenticated, setAuthenticated }) => {
     <>
       <Menu setAuthenticated={setAuthenticated} handleAdd={openModal} />
       <Container>
-
         <Text>
           Bem vinda(o) de volta, <strong>{userName}</strong>
         </Text>
@@ -94,7 +104,7 @@ const Groups = ({ authenticated, setAuthenticated }) => {
           </ButtonContainer>
         </Box>
         <SelectDiv>
-          <FormControlCustom variant='outlined'>
+          <FormControlCustom variant="outlined">
             <Filter
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -102,20 +112,22 @@ const Groups = ({ authenticated, setAuthenticated }) => {
               label="Filtro"
               onChange={handleChange}
             >
-              <MenuItemCustom value={"subscribed"} >Inscrito</MenuItemCustom>
-              <MenuItemCustom value={"notSubscribed"}>Não inscrito</MenuItemCustom>
+              <MenuItemCustom value={"subscribed"}>Inscrito</MenuItemCustom>
+              <MenuItemCustom value={"notSubscribed"}>
+                Não inscrito
+              </MenuItemCustom>
               <MenuItemCustom value={"all"}>Todos</MenuItemCustom>
             </Filter>
           </FormControlCustom>
-
         </SelectDiv>
         <GroupList filterValue={filterValue} />
       </Container>
       <AsideRight />
+
       <Modal
         modalIsOpen={modalIsOpen}
-        setIsOpen={setIsOpen}
-        title="Cadastrar novo grupo"
+        setIsOpen={setModalIsOpen}
+        title="Cadastrar Novo Grupo"
         content={
           <form style={formStyle} onSubmit={handleSubmit(handleCreateGroup)}>
             <TextField
@@ -124,6 +136,9 @@ const Groups = ({ authenticated, setAuthenticated }) => {
               style={inputStyle}
               {...register("name")}
               helperText={errors.name?.message}
+              InputProps={{
+                endAdornment: <Title style={iconStyle} />,
+              }}
             />
 
             <TextField
@@ -132,6 +147,9 @@ const Groups = ({ authenticated, setAuthenticated }) => {
               style={inputStyle}
               {...register("description")}
               helperText={errors.description?.message}
+              InputProps={{
+                endAdornment: <Description style={iconStyle} />,
+              }}
             />
 
             <TextField
@@ -140,6 +158,9 @@ const Groups = ({ authenticated, setAuthenticated }) => {
               style={inputStyle}
               {...register("category")}
               helperText={errors.category?.message}
+              InputProps={{
+                endAdornment: <Category style={iconStyle} />,
+              }}
             />
 
             <Button

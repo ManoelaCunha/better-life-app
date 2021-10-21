@@ -1,5 +1,11 @@
 import HabitCard from "../../components/HabitCard";
-import { TextField, FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import {
+  TextField,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@material-ui/core";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
@@ -13,15 +19,19 @@ import { Box, Container, Text, ButtonContainerDashboard } from "./style";
 import { Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AsideRight from "../../components/AsideRight";
-
-import { Filter, MenuItemCustom, FormControlCustom } from "../../styles/styleMaterial";
+import {
+  Filter,
+  MenuItemCustom,
+  FormControlCustom,
+} from "../../styles/styleMaterial";
+import { Title, Category } from "@material-ui/icons";
 
 const Dashboard = ({ authenticated, setAuthenticated }) => {
   const { getUser, userName, getUserName, user } = useContext(UserContext);
   const { getHabits, habits, addNewHabit } = useContext(HabitsContext);
   const { getSubscribedGroups } = useContext(GroupsContext);
   const [filterValue, setFilterValue] = useState("open");
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [filteredHabits, setFilteredHabits] = useState([]);
 
   useEffect(() => {
@@ -47,9 +57,16 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
   const schema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
     category: yup.string().required("Campo obrigatório"),
-    difficulty: yup.string().oneOf(["Fácil", "Intermediário", "Difícil", "Muito difícil"]).required("Campo obrigatório"),
-    frequency: yup.string().oneOf(["Diário", "Semanal", "Quinzenal", "Mensal"]).required("Campo obrigatório"),
+    difficulty: yup
+      .string()
+      .oneOf(["Fácil", "Intermediário", "Difícil", "Muito difícil"])
+      .required("Campo obrigatório"),
+    frequency: yup
+      .string()
+      .oneOf(["Diário", "Semanal", "Quinzenal", "Mensal"])
+      .required("Campo obrigatório"),
   });
+
   const {
     reset,
     register,
@@ -72,12 +89,12 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
       user: userId,
     };
     addNewHabit(newHabit);
-    setIsOpen(false);
-    reset()
+    setModalIsOpen(false);
+    reset(addNewHabit);
   };
 
   const openModal = () => {
-    setIsOpen(true);
+    setModalIsOpen(true);
   };
 
   const inputStyle = {
@@ -89,8 +106,14 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
   const formStyle = {
     width: "100%",
   };
+
+  const iconStyle = {
+    fontSize: "20px",
+    color: "gray",
+  };
+
   if (!authenticated) {
-    return <Redirect to='/' />;
+    return <Redirect to="/" />;
   }
 
   const handleChange = (event) => {
@@ -124,8 +147,14 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
             </button>
           </ButtonContainerDashboard>
         </Box>
-        <FormControlCustom variant='outlined'>
-          <Filter labelId='demo-simple-select-label' id='demo-simple-select' value={filterValue} label='Filtro' onChange={handleChange}>
+        <FormControlCustom variant="outlined">
+          <Filter
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={filterValue}
+            label="Filtro"
+            onChange={handleChange}
+          >
             <MenuItemCustom value={"open"}>Abertos</MenuItemCustom>
             <MenuItemCustom value={"finished"}>Concluidos</MenuItemCustom>
             <MenuItemCustom value={"all"}>Todos</MenuItemCustom>
@@ -139,37 +168,67 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
 
       <Modal
         modalIsOpen={modalIsOpen}
-        setIsOpen={setIsOpen}
-        title='Cadastrar novo hábito'
+        setIsOpen={setModalIsOpen}
+        title="Cadastrar Novo Hábito"
         content={
           <form style={formStyle} onSubmit={handleSubmit(handleNewHabit)}>
-            <TextField label='Título' variant='filled' style={inputStyle} {...register("title")} helperText={errors.title?.message} />
+            <TextField
+              label="Título"
+              variant="filled"
+              style={inputStyle}
+              {...register("title")}
+              helperText={errors.title?.message}
+              InputProps={{
+                endAdornment: <Title style={iconStyle} />,
+              }}
+            />
 
-            <TextField label='Categoria' variant='filled' style={inputStyle} {...register("category")} helperText={errors.category?.message} />
+            <TextField
+              label="Categoria"
+              variant="filled"
+              style={inputStyle}
+              {...register("category")}
+              helperText={errors.category?.message}
+              InputProps={{
+                endAdornment: <Category style={iconStyle} />,
+              }}
+            />
 
-            <FormControl variant='filled' style={inputStyle}>
-              <InputLabel id='select-difficulty'>Dificuldade</InputLabel>
-              <Select labelId='select-difficulty' {...register("difficulty")} helperText={errors.difficulty?.message}>
-                <MenuItem value=''></MenuItem>
-                <MenuItem value='Fácil'>Fácil</MenuItem>
-                <MenuItem value='Intermediário'>Intermediário</MenuItem>
-                <MenuItem value='Difícil'>Difícil</MenuItem>
-                <MenuItem value='Muito difícil'>Muito Difícil</MenuItem>
+            <FormControl variant="filled" style={inputStyle}>
+              <InputLabel id="select-difficulty">Dificuldade</InputLabel>
+              <Select
+                labelId="select-difficulty"
+                {...register("difficulty")}
+                helperText={errors.difficulty?.message}
+              >
+                <MenuItem value=""></MenuItem>
+                <MenuItem value="Fácil">Fácil</MenuItem>
+                <MenuItem value="Intermediário">Intermediário</MenuItem>
+                <MenuItem value="Difícil">Difícil</MenuItem>
+                <MenuItem value="Muito difícil">Muito Difícil</MenuItem>
               </Select>
             </FormControl>
 
-            <FormControl variant='filled' style={inputStyle}>
-              <InputLabel id='select-frequency'>Frequência</InputLabel>
-              <Select labelId='select-frequency' {...register("frequency")} helperText={errors.frequency?.message}>
-                <MenuItem value=''></MenuItem>
-                <MenuItem value='Diário'>Diário</MenuItem>
-                <MenuItem value='Semanal'>Semanal</MenuItem>
-                <MenuItem value='Quinzenal'>Quinzenal</MenuItem>
-                <MenuItem value='Mensal'>Mensal</MenuItem>
+            <FormControl variant="filled" style={inputStyle}>
+              <InputLabel id="select-frequency">Frequência</InputLabel>
+              <Select
+                labelId="select-frequency"
+                {...register("frequency")}
+                helperText={errors.frequency?.message}
+              >
+                <MenuItem value=""></MenuItem>
+                <MenuItem value="Diário">Diário</MenuItem>
+                <MenuItem value="Semanal">Semanal</MenuItem>
+                <MenuItem value="Quinzenal">Quinzenal</MenuItem>
+                <MenuItem value="Mensal">Mensal</MenuItem>
               </Select>
             </FormControl>
 
-            <Button text='Criar hábito' style={{ width: "150px", fontSize: "16px" }} type='submit' />
+            <Button
+              text="Criar hábito"
+              style={{ width: "150px", fontSize: "16px" }}
+              type="submit"
+            />
           </form>
         }
       />

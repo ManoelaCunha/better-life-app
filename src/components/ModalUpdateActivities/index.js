@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 
 import { TextField } from "@material-ui/core";
+import { Title } from "@material-ui/icons";
 
 import { ActivitiesContext } from "../../providers/Activities";
 
@@ -35,6 +36,7 @@ const ModalUpdateActivities = ({
 
   const handleUpdateActivities = (data) => {
     updateActivity(data, activityId, index);
+    setModalActivityUpdate(false);
     reset(updateActivity);
   };
 
@@ -46,6 +48,11 @@ const ModalUpdateActivities = ({
 
   const formStyle = {
     width: "100%",
+  };
+
+  const iconStyle = {
+    fontSize: "20px",
+    color: "gray",
   };
 
   return (
@@ -65,6 +72,9 @@ const ModalUpdateActivities = ({
               style={inputStyle}
               {...register("title")}
               helperText={errors.title?.message}
+              InputProps={{
+                endAdornment: <Title style={iconStyle} />,
+              }}
             />
 
             <TextField
