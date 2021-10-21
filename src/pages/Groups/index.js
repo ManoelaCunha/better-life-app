@@ -1,17 +1,20 @@
 import { ButtonContainer } from "../../components/Button/style";
-import { Box, Container, ContainerImg, SelectDiv, Text } from "./style";
+import { Box, Container, SelectDiv, Text } from "./style";
 
 import GroupList from "../../components/GroupsList";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import Menu from "../../components/Menu";
+
 import { GroupsContext } from "../../providers/Groups";
 import { UserContext } from "../../providers/User";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
+
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+
 import { TextField } from "@material-ui/core";
 import AsideRight from "../../components/AsideRight";
 import {
