@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-  width: 300px;
-  margin: 20px auto;
+  margin: 10px auto;
+  width: 100%;
+  min-width: 300px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,7 +16,6 @@ export const Card = styled.div`
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
-    width: 750px;
     min-height: 190px;
     margin: 20px auto;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -65,12 +65,6 @@ export const Box = styled.div`
 
   @media screen and (min-width: 768px) {
     display: block;
-    margin: 20px;
-    width: 92px;
-    height: 92px;
-    border-radius: 100%;
-    background: #ffffff;
-    opacity: 0.5;
   }
 
   img {
@@ -79,8 +73,11 @@ export const Box = styled.div`
     @media screen and (min-width: 768px) {
       display: block;
       border-radius: 50%;
-      width: 100%;
-      height: 90px;
+      width: 100px;
+      position: relative;
+      right: 50px;
+      background: #ffffff;
+      opacity: 0.5;
     }
   }
 `;

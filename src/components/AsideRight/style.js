@@ -1,12 +1,12 @@
 import styled from "styled-components";
 export const Background = styled.div`
-display: none;
+  display: none;
   @media (min-width: 1400px) {
-   position: absolute;
-   display: block;
-    right:0;
-    top:100px;
-    width: 550px;
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 100px;
+    width: 450px;
     background: url("");
     background-size: 500px;
     background-repeat: no-repeat;
@@ -14,7 +14,7 @@ display: none;
     height: 100vh;
 
     img {
-        width: 100%;
+      width: 100%;
     }
   }
 `;

@@ -1,5 +1,5 @@
 import { ButtonContainer } from "../../components/Button/style";
-import { Box, Container, SelectDiv, Text } from "./style";
+import { Box, Container, ContainerImg, SelectDiv, Text } from "./style";
 
 import GroupList from "../../components/GroupsList";
 import Button from "../../components/Button";
@@ -122,6 +122,7 @@ const Groups = ({ authenticated, setAuthenticated }) => {
         </SelectDiv>
         <GroupList filterValue={filterValue} />
       </Container>
+
       <AsideRight />
 
       <Modal

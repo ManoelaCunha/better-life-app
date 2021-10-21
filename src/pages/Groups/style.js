@@ -31,7 +31,7 @@ export const Text = styled.p`
   margin-bottom: 20px;
   width: 185px;
   font-weight: 300;
-  strong{
+  strong {
     font-weight: 500;
   }
 
@@ -53,13 +53,13 @@ export const Box = styled.div`
 export const SelectDiv = styled.div`
   display: flex;
   .select-items {
-  position: absolute;
-  background-color: DodgerBlue;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 99;
-}
+    position: absolute;
+    background-color: DodgerBlue;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
   select {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
       linear-gradient(274.42deg, #495c89 0%, #3c60b3 67.41%, #967aa1 124.45%);
@@ -68,12 +68,12 @@ export const SelectDiv = styled.div`
     border: none;
     border-radius: 20px;
     appearance: none;
-text-align: center;
-  }option {
-      background: #495c89;
-      border-radius: 20px
-    }
-    .select-items {
-
+    text-align: center;
+  }
+  option {
+    background: #495c89;
+    border-radius: 20px;
+  }
+  .select-items {
   }
 `;
