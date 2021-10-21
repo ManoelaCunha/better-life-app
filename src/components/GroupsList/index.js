@@ -18,8 +18,6 @@ const GroupList = ({ filterValue }) => {
     setFilteredGroups(newGroups)
   }, [groups, filterValue, subscribedGroups]);
 
-
-
   return (
     <>
       {filteredGroups.map((group) => (

@@ -23,13 +23,26 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
     subscribedGroups,
     subscribeGroup,
     unsubscribeGroup,
-    getSubscribedGroups, getInfoGroup, specificGroup
+    getSubscribedGroups, getInfoGroup, specificGroup, groups
 
   } = useContext(GroupsContext);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [modalActivityIsOpen, setModalActivityIsOpen] = useState(false);
   const [modalGoalIsOpen, setModalGoalIsOpen] = useState(false);
   const [modalEditGroupIsOpen, setModalEditGroupIsOpen] = useState(false);
+  const [currentGroup, setCurrentGroup] = useState({
+    "id": '',
+    "name": '',
+    "description": "",
+    "category": "",
+    "creator": {
+      "id": '',
+      "username": "",
+      "email": ""
+    },
+    "users_on_group": [
+    ],
+  });
 
   useEffect(() => {
     if (authenticated) {
@@ -40,9 +53,25 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
         ? setIsSubscribed(true)
         : setIsSubscribed(false);
       getInfoGroup(groupId);
-      console.log(groupId)
     }
+    setCurrentGroup(specificGroup);
+    return (() => setCurrentGroup({
+      "id": '',
+      "name": '',
+      "description": "",
+      "category": "",
+      "creator": {
+        "id": '',
+        "username": "",
+        "email": ""
+      },
+      "users_on_group": [
+      ],
+    }))
   }, []);
+
+
+
 
   useEffect(() => {
     if (authenticated) {
@@ -51,8 +80,21 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
         : setIsSubscribed(false);
     }
     getInfoGroup(groupId);
-
-  }, [subscribedGroups]);
+    setCurrentGroup(specificGroup)
+    return (() => setCurrentGroup({
+      "id": '',
+      "name": '',
+      "description": "",
+      "category": "",
+      "creator": {
+        "id": '',
+        "username": "",
+        "email": ""
+      },
+      "users_on_group": [
+      ],
+    }))
+  }, [subscribedGroups, groups]);
 
   const openModalActivity = () => {
     setModalActivityIsOpen(true);
@@ -65,13 +107,12 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
   const openEditGroup = () => {
     setModalEditGroupIsOpen(true);
   };
-  console.log(specificGroup)
   return (
     <>
       <CardGroupDetailBody>
-        <h2>{specificGroup.name}</h2>
-        <p> Administrador do Grupo - {specificGroup.name}</p>
-        <p>Categoria - {specificGroup.creator.username}</p>
+        <h2>{currentGroup.name}</h2>
+        <p> Administrador do Grupo - {currentGroup.name}</p>
+        <p>Categoria - {currentGroup.creator.username}</p>
         <ButtonContainer style={{ margin: "0px" }}>
           <div className='alignButton'>
             {!isSubscribed && (

@@ -125,7 +125,6 @@ export const GroupsProvider = ({ children }) => {
       .get(`groups/${id}/`)
       .then((resp) => {
         setSpecificGroup(resp.data);
-        console.log(resp.data)
       })
       .catch((err) => console.log(err.message));
   }
