@@ -26,7 +26,7 @@ import { Title, Description, Category } from "@material-ui/icons";
 
 const Groups = ({ authenticated, setAuthenticated }) => {
   const { userName } = useContext(UserContext);
-  const { createGroup, setSpecificGroup } = useContext(GroupsContext);
+  const { createGroup } = useContext(GroupsContext);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [filterValue, setFilterValue] = useState("subscribed");
 
