@@ -62,7 +62,6 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
       .oneOf(["Diário", "Semanal", "Quinzenal", "Mensal"])
       .required("Campo obrigatório"),
   });
-
   const {
     register,
     handleSubmit,
@@ -100,7 +99,6 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
   const formStyle = {
     width: "100%",
   };
-
   if (!authenticated) {
     return <Redirect to="/" />;
   }
