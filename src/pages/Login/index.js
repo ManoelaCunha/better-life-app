@@ -1,14 +1,9 @@
-import Login from "../../components/SignIn";
-
-const LoginPage = ({ authenticated, setAuthenticated }) => {
+const Login = () => {
   return (
     <div>
-      <Login
-        authenticated={authenticated}
-        setAuthenticated={setAuthenticated}
-      />
+      <h1>Login</h1>
     </div>
-  );
-};
+  )
+}
 
-export default LoginPage;
+export default Login
