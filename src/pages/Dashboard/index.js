@@ -16,23 +16,30 @@ import { UserContext } from "../../providers/User";
 import { HabitsContext } from "../../providers/Habits";
 import { GroupsContext } from "../../providers/Groups";
 import { Box, Container, Text, ButtonContainerDashboard } from "./style";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AsideRight from "../../components/AsideRight";
+
+
 const Dashboard = ({ authenticated, setAuthenticated }) => {
   const { getUser, userName, getUserName, user } = useContext(UserContext);
   const { getHabits, habits, addNewHabit } = useContext(HabitsContext);
   const { getSubscribedGroups } = useContext(GroupsContext);
+  const [filterValue, setFilterValue] = useState('open')
   const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    getUser();
+    if (authenticated) {
+      getUser();
+    }
   }, []);
 
   useEffect(() => {
-    getHabits();
-    getSubscribedGroups();
-    getUserName();
+    if (authenticated) {
+      getHabits();
+      getSubscribedGroups();
+      getUserName();
+    }
   }, [user]);
 
   const schema = yup.object().shape({
@@ -87,6 +94,10 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
   if (!authenticated) {
     return <Redirect to="/" />;
   }
+
+  const handleChange = (event) => {
+    setFilterValue(event.target.value);
+  }
   return (
     <>
       <Menu />
@@ -94,6 +105,8 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
         <Text>
           Bem vinda(o) de volta, <strong>{userName}</strong>
         </Text>
+
+
         <Box>
           <h1>Hábitos</h1>
           <ButtonContainerDashboard style={{ margin: "0px 5px" }}>
@@ -118,7 +131,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
           <HabitCard key={habit.id} habit={habit} />
         ))}
       </Container>
-         <AsideRight />
+      <AsideRight />
 
       <Modal
         modalIsOpen={modalIsOpen}
@@ -180,7 +193,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
           </form>
         }
       />
-     
+
     </>
   );
 };

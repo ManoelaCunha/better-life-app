@@ -12,7 +12,7 @@ const Homepage = ({ authenticated }) => {
   };
 
   if (authenticated) {
-    return <Redirect to="welcome" />;
+    return <Redirect to="/welcome" />;
   };
 
   return (
