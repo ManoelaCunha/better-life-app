@@ -4,7 +4,7 @@ import ImgHome from "../../assets/img/yoga.gif";
 import Button from "../../components/Button";
 import { Redirect, useHistory } from "react-router";
 import Members from "../../components/Members";
-// A prop authenticated será usada para autenticar para qe o ussuário não vá direto pra o core da aplicação
+
 const Homepage = ({ authenticated }) => {
   const history = useHistory();
   const handleNavigation = (path) => {
@@ -13,7 +13,7 @@ const Homepage = ({ authenticated }) => {
 
   if (authenticated) {
     return <Redirect to="/welcome" />;
-  };
+  }
 
   return (
     <>
@@ -24,7 +24,7 @@ const Homepage = ({ authenticated }) => {
           <div>
             <Button
               onClick={() => handleNavigation("/signup")}
-              text="Cadastre"
+              text="Cadastre-se"
             ></Button>
             <Button onClick={() => handleNavigation("/login")} text="Login">
               Login
