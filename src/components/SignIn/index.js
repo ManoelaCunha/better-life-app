@@ -8,8 +8,17 @@ import api from "../../services/api";
 import { TextField } from "@material-ui/core";
 import Logo from "../../assets/img/logo.png";
 import toast from "react-hot-toast";
+
+import { useState } from "react";
+import { Visibility, VisibilityOff, Person } from "@material-ui/icons";
+
 const Login = ({ authenticated, setAuthenticated }) => {
   const history = useHistory();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   const schema = yup.object().shape({
     username: yup.string().required("Campo Obrigatório!"),
@@ -18,6 +27,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
       .min(6, "Minimo de 6 caracteres.")
       .required("Campo obrigatório!"),
   });
+
   const {
     register,
     handleSubmit,
@@ -27,13 +37,12 @@ const Login = ({ authenticated, setAuthenticated }) => {
   });
 
   const onSubmitFunction = (data) => {
-    // Lógica para fazer as requisições / errors
     api
       .post("/sessions/", data)
       .then((response) => {
         const { access } = response.data;
         localStorage.setItem("@BetterLife:token", JSON.stringify(access));
-        console.log(access)
+        console.log(access);
         setAuthenticated(true);
         return history.push("/welcome");
       })
@@ -46,13 +55,19 @@ const Login = ({ authenticated, setAuthenticated }) => {
   if (authenticated) {
     return <Redirect to="welcome" />;
   }
-  
+
+  const iconStyle = {
+    fontSize: "20px",
+    cursor: "pointer",
+    color: "gray",
+  };
+
   return (
     <Container>
       <Background />
       <Content>
         <AnimationContainer>
-      <img src={Logo} alt="Logo Better Life" />
+          <img src={Logo} alt="Logo Better Life" />
           <form onSubmit={handleSubmit(onSubmitFunction)}>
             <h2>
               Olá,
@@ -61,7 +76,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
             </h2>
             <div>
               <TextField
-                label="Usuário"
+                label="Nome de Usuário"
                 margin="normal"
                 variant="standard"
                 size="small"
@@ -69,6 +84,9 @@ const Login = ({ authenticated, setAuthenticated }) => {
                 {...register("username")}
                 error={!!errors.username}
                 helperText={errors.username?.message}
+                InputProps={{
+                  endAdornment: <Person style={iconStyle} />,
+                }}
               />
             </div>
             <div>
@@ -77,11 +95,24 @@ const Login = ({ authenticated, setAuthenticated }) => {
                 margin="normal"
                 variant="standard"
                 size="small"
-                type="password"
+                type={!showPassword ? "password" : "text"}
                 color="primary"
                 {...register("password")}
                 error={!!errors.password}
                 helperText={errors.password?.message}
+                InputProps={{
+                  endAdornment: showPassword ? (
+                    <VisibilityOff
+                      style={iconStyle}
+                      onClick={handleShowPassword}
+                    />
+                  ) : (
+                    <Visibility
+                      style={iconStyle}
+                      onClick={handleShowPassword}
+                    />
+                  ),
+                }}
               />
             </div>
             <Button type="submit" text="Login">

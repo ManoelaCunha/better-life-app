@@ -1,5 +1,5 @@
 import api from "../../services/api";
-import { TextField, Paper } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -14,8 +14,16 @@ import google from "../../assets/img/google.jpeg";
 import logoImage from "../../assets/img/logo.png";
 import signupImage from "../../assets/img/signup.png";
 
+import { useState } from "react";
+import { Visibility, VisibilityOff, Person, Email } from "@material-ui/icons";
+
 const SignUp = ({ authenticated }) => {
   const history = useHistory();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   const schema = yup.object().shape({
     username: yup.string().required("Campo obrigatório*"),
@@ -50,16 +58,25 @@ const SignUp = ({ authenticated }) => {
   if (authenticated) {
     return <Redirect to="/dashboard" />;
   }
-  
+
+  const iconStyle = {
+    fontSize: "20px",
+    cursor: "pointer",
+    color: "gray",
+  };
+
   return (
     <Container>
       <SubContainer>
         <AnimationContainer>
-      <img className="logoImage" src={logoImage} alt="logo" />
+          <img className="logoImage" src={logoImage} alt="logo" />
           <form onSubmit={handleSubmit(handleForm)}>
             <div className="signUpTitle">
-              <h2>Olá,<br/><span>crie uma conta</span></h2>
-           
+              <h2>
+                Olá,
+                <br />
+                <span>crie uma conta</span>
+              </h2>
             </div>
             <div>
               <TextField
@@ -71,6 +88,9 @@ const SignUp = ({ authenticated }) => {
                 {...register("username")}
                 error={!!errors.username}
                 helperText={errors.username?.message}
+                InputProps={{
+                  endAdornment: <Person style={iconStyle} />,
+                }}
               />
             </div>
             <div>
@@ -83,19 +103,35 @@ const SignUp = ({ authenticated }) => {
                 {...register("email")}
                 error={!!errors.email}
                 helperText={errors.email?.message}
+                InputProps={{
+                  endAdornment: <Email style={iconStyle} />,
+                }}
               />
             </div>
             <div>
               <TextField
                 label="Senha"
                 margin="normal"
-                type="password"
+                type={!showPassword ? "password" : "text"}
                 variant="standard"
                 size="small"
                 color="primary"
                 {...register("password")}
                 error={!!errors.password}
                 helperText={errors.password?.message}
+                InputProps={{
+                  endAdornment: showPassword ? (
+                    <VisibilityOff
+                      style={iconStyle}
+                      onClick={handleShowPassword}
+                    />
+                  ) : (
+                    <Visibility
+                      style={iconStyle}
+                      onClick={handleShowPassword}
+                    />
+                  ),
+                }}
               />
             </div>
             <div>
@@ -103,12 +139,25 @@ const SignUp = ({ authenticated }) => {
                 label="Confirme Senha"
                 margin="normal"
                 variant="standard"
-                type="password"
+                type={!showPassword ? "password" : "text"}
                 size="small"
                 color="primary"
                 {...register("confirmPassword")}
                 error={!!errors.confirmPassword}
                 helperText={errors.confirmPassword?.message}
+                InputProps={{
+                  endAdornment: showPassword ? (
+                    <VisibilityOff
+                      style={iconStyle}
+                      onClick={handleShowPassword}
+                    />
+                  ) : (
+                    <Visibility
+                      style={iconStyle}
+                      onClick={handleShowPassword}
+                    />
+                  ),
+                }}
               />
             </div>
             <div className="buttonContainer">

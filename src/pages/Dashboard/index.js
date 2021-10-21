@@ -19,14 +19,19 @@ import { Box, Container, Text, ButtonContainerDashboard } from "./style";
 import { Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AsideRight from "../../components/AsideRight";
-import { Filter, MenuItemCustom, FormControlCustom } from '../../styles/styleMaterial'
+import {
+  Filter,
+  MenuItemCustom,
+  FormControlCustom,
+} from "../../styles/styleMaterial";
+import { Title, Category } from "@material-ui/icons";
 
 const Dashboard = ({ authenticated, setAuthenticated }) => {
   const { getUser, userName, getUserName, user } = useContext(UserContext);
   const { getHabits, habits, addNewHabit } = useContext(HabitsContext);
   const { getSubscribedGroups } = useContext(GroupsContext);
-  const [filterValue, setFilterValue] = useState('open')
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [filterValue, setFilterValue] = useState("open");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [filteredHabits, setFilteredHabits] = useState([]);
 
   useEffect(() => {
@@ -40,14 +45,14 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
 
   useEffect(() => {
     let newHabits = habits;
-    console.log(filterValue)
-    if (filterValue === 'finished') {
-      newHabits = habits.filter((habit) => habit.achieved)
+    console.log(filterValue);
+    if (filterValue === "finished") {
+      newHabits = habits.filter((habit) => habit.achieved);
     }
-    if (filterValue === 'open') {
-      newHabits = habits.filter((habit) => !habit.achieved)
+    if (filterValue === "open") {
+      newHabits = habits.filter((habit) => !habit.achieved);
     }
-    setFilteredHabits(newHabits)
+    setFilteredHabits(newHabits);
   }, [habits, filterValue]);
 
   const schema = yup.object().shape({
@@ -62,7 +67,9 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
       .oneOf(["Diário", "Semanal", "Quinzenal", "Mensal"])
       .required("Campo obrigatório"),
   });
+
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
@@ -83,11 +90,12 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
       user: userId,
     };
     addNewHabit(newHabit);
-    setIsOpen(false);
+    setModalIsOpen(false);
+    reset(addNewHabit);
   };
 
   const openModal = () => {
-    setIsOpen(true);
+    setModalIsOpen(true);
   };
 
   const inputStyle = {
@@ -99,6 +107,12 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
   const formStyle = {
     width: "100%",
   };
+
+  const iconStyle = {
+    fontSize: "20px",
+    color: "gray",
+  };
+
   if (!authenticated) {
     return <Redirect to="/" />;
   }
@@ -134,7 +148,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
             </button>
           </ButtonContainerDashboard>
         </Box>
-        <FormControlCustom variant='outlined'>
+        <FormControlCustom variant="outlined">
           <Filter
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -142,7 +156,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
             label="Filtro"
             onChange={handleChange}
           >
-            <MenuItemCustom value={"open"} >Abertos</MenuItemCustom>
+            <MenuItemCustom value={"open"}>Abertos</MenuItemCustom>
             <MenuItemCustom value={"finished"}>Concluidos</MenuItemCustom>
             <MenuItemCustom value={"all"}>Todos</MenuItemCustom>
           </Filter>
@@ -155,8 +169,8 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
 
       <Modal
         modalIsOpen={modalIsOpen}
-        setIsOpen={setIsOpen}
-        title="Cadastrar novo hábito"
+        setIsOpen={setModalIsOpen}
+        title="Cadastrar Novo Hábito"
         content={
           <form style={formStyle} onSubmit={handleSubmit(handleNewHabit)}>
             <TextField
@@ -165,6 +179,9 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
               style={inputStyle}
               {...register("title")}
               helperText={errors.title?.message}
+              InputProps={{
+                endAdornment: <Title style={iconStyle} />,
+              }}
             />
 
             <TextField
@@ -173,6 +190,9 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
               style={inputStyle}
               {...register("category")}
               helperText={errors.category?.message}
+              InputProps={{
+                endAdornment: <Category style={iconStyle} />,
+              }}
             />
 
             <FormControl variant="filled" style={inputStyle}>
@@ -213,7 +233,6 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
           </form>
         }
       />
-
     </>
   );
 };

@@ -1,4 +1,10 @@
-import { TextField, FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import {
+  TextField,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@material-ui/core";
 import Modal from "../../components/Modal";
 import Button from "../../components/Button";
 import * as yup from "yup";
@@ -6,51 +12,62 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { GoalsContext } from "../../providers/Goals";
+import { Title } from "@material-ui/icons";
 
-const CreateGroupGoalModal = ({ modalGoalIsOpen, setModalGoalIsOpen, groupId }) => {
+const CreateGroupGoalModal = ({
+  modalGoalIsOpen,
+  setModalGoalIsOpen,
+  groupId,
+}) => {
+  const { createGoals } = useContext(GoalsContext);
 
-  const { createGoals, goals, setGoals } = useContext(GoalsContext);
+  const schema = yup.object().shape({
+    title: yup.string().required("Campo obrigatório"),
+    difficulty: yup
+      .string()
+      .oneOf(["Fácil", "Intermediário", "Difícil", "Muito difícil"])
+      .required("Campo obrigatório"),
+  });
 
-    const schema = yup.object().shape({
-        title: yup.string().required("Campo obrigatório"),
-        difficulty: yup
-        .string()
-        .oneOf(["Fácil", "Intermediário", "Difícil", "Muito difícil"])
-        .required("Campo obrigatório"),
-      });
-    
-      const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm({
-        resolver: yupResolver(schema),
-      });
+  const {
+    reset,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-      const handleCreateGoals = ({title, difficulty, how_much_achieved, group}) => {
-        const newGroupGoal = {
-          title: title,
-          difficulty: difficulty,
-          how_much_achieved: 0,
-          group: groupId,
-        };
-        createGoals(newGroupGoal)
-        setModalGoalIsOpen(false)
-      };
+  const handleCreateGoals = ({ title, difficulty }) => {
+    const newGroupGoal = {
+      title: title,
+      difficulty: difficulty,
+      how_much_achieved: 0,
+      group: groupId,
+    };
+    createGoals(newGroupGoal);
+    setModalGoalIsOpen(false);
+    reset(createGoals);
+  };
 
-      const inputStyle = {
-        margin: "10px auto",
-        width: "100%",
-        maxWidth: "350px",
-      };
-    
-      const formStyle = {
-        width: "100%",
-      };
-    
-    return(
-        <div>
-        <Modal
+  const inputStyle = {
+    margin: "10px auto",
+    width: "100%",
+    maxWidth: "350px",
+  };
+
+  const formStyle = {
+    width: "100%",
+  };
+
+  const iconStyle = {
+    fontSize: "20px",
+    color: "gray",
+  };
+
+  return (
+    <div>
+      <Modal
         modalIsOpen={modalGoalIsOpen}
         setIsOpen={setModalGoalIsOpen}
         title="Cadastrar Nova Meta"
@@ -62,8 +79,12 @@ const CreateGroupGoalModal = ({ modalGoalIsOpen, setModalGoalIsOpen, groupId }) 
               style={inputStyle}
               {...register("title")}
               helperText={errors.title?.message}
+              InputProps={{
+                endAdornment: <Title style={iconStyle} />,
+              }}
             />
-            <FormControl variant="filled" style={inputStyle} >
+
+            <FormControl variant="filled" style={inputStyle}>
               <InputLabel id="select-difficulty">Dificuldade</InputLabel>
               <Select
                 labelId="select-difficulty"
@@ -78,17 +99,16 @@ const CreateGroupGoalModal = ({ modalGoalIsOpen, setModalGoalIsOpen, groupId }) 
               </Select>
             </FormControl>
 
-              <Button
-                text="Criar Meta"
-                style={{ width: "150px", fontSize: "16px" }}
-                type="submit"
-              />
+            <Button
+              text="Criar Meta"
+              style={{ width: "150px", fontSize: "16px" }}
+              type="submit"
+            />
           </form>
         }
       />
+    </div>
+  );
+};
 
-      </div>
-    )
-}
-
-export default CreateGroupGoalModal
+export default CreateGroupGoalModal;

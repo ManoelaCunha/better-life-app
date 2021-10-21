@@ -3,7 +3,6 @@ import { createContext, useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
 import api from "../../services/api";
-import axios from "axios";
 
 export const GroupsContext = createContext();
 
@@ -45,10 +44,9 @@ export const GroupsProvider = ({ children }) => {
   };
 
   const subscribeGroup = (id) => {
-    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
-    axios
+    api
       .post(
-        `https://kenzie-habits.herokuapp.com/groups/${id}/subscribe/`,
+        `groups/${id}/subscribe/`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -62,12 +60,9 @@ export const GroupsProvider = ({ children }) => {
   };
 
   const unsubscribeGroup = (id) => {
-    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
     api
       .delete(`groups/${id}/unsubscribe/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => {
         toast.success("Removido do grupo com sucesso!");
@@ -81,7 +76,6 @@ export const GroupsProvider = ({ children }) => {
   };
 
   const getSubscribedGroups = () => {
-    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
     api
       .get("groups/subscriptions/", {
         headers: { Authorization: `Bearer ${token}` },
