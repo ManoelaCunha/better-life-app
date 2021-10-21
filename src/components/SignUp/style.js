@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-
+import imgSign from "../../assets/img/signupImg.svg";
 export const SubContainer = styled.div`
   width: 100%;
   margin: 0 auto;
@@ -28,7 +28,7 @@ export const SubContainer = styled.div`
   }
 
   .buttonContainer {
-    padding-top: 15px;
+    padding: 10px;
   }
 
   .mobileFooter {
@@ -57,7 +57,7 @@ export const Logo = styled.div`
 `;
 export const Image = styled.div`
   @media (min-width: 768px) {
-    background: url("https://image.freepik.com/free-vector/hand-drawn-people-jumping-together_23-2149083967.jpg");
+    background: url(${imgSign});
     height: 900px;
     background-repeat: no-repeat;
     background-size: auto;
@@ -90,7 +90,12 @@ export const AnimationContainer = styled.div`
   animation: ${leftAnimation} 1.5s;
 
   form {
+    margin: 100px auto;
+
     margin: 50px auto;
+
+    margin: 50px auto;
+
     width: 340px;
     text-align: center;
     background: var(--white);
@@ -111,5 +116,8 @@ export const AnimationContainer = styled.div`
     margin-top: 25px;
     margin-bottom: -55px;
     width: 250px;
+  }
+  p {
+    font-size: 12px;
   }
 `;

@@ -30,6 +30,7 @@ const Groups = ({ authenticated, setAuthenticated }) => {
   });
 
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
@@ -39,10 +40,11 @@ const Groups = ({ authenticated, setAuthenticated }) => {
 
   const handleCreateGroup = (data) => {
     createGroup(data);
+    reset()
   };
 
   const openModal = () => {
-    setIsOpen(true);
+    setIsOpen(true);  
   };
 
   const inputStyle = {

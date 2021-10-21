@@ -13,6 +13,7 @@ import { Box, Container, Text, ButtonContainerDashboard } from "./style";
 import { Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AsideRight from "../../components/AsideRight";
+
 import { Filter, MenuItemCustom, FormControlCustom } from "../../styles/styleMaterial";
 
 const Dashboard = ({ authenticated, setAuthenticated }) => {
@@ -50,6 +51,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
     frequency: yup.string().oneOf(["Diário", "Semanal", "Quinzenal", "Mensal"]).required("Campo obrigatório"),
   });
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
@@ -71,6 +73,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
     };
     addNewHabit(newHabit);
     setIsOpen(false);
+    reset()
   };
 
   const openModal = () => {
@@ -117,7 +120,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
               }}
               onClick={openModal}
             >
-              + Novo Habito
+              + Novo habito
             </button>
           </ButtonContainerDashboard>
         </Box>

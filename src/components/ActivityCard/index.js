@@ -35,7 +35,7 @@ const ActivityCard = ({
   return (
     <>
       <ListContainer key={id}>
-        <div className='ActivityTitleContainer'>
+        <div className="ActivityTitleContainer">
           <div>
             <h4>{title}</h4>
             <p>Data Limite: {newDate}</p>
@@ -48,7 +48,7 @@ const ActivityCard = ({
                 }}
                 style={{ width: "130px" }}
               >
-                Atualizar Atividade
+                Atualizar atividade
               </button>
             )}
           </ButtonContainer>

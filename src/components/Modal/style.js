@@ -6,6 +6,7 @@ export const CloseModal = styled.button`
   color: #314c88;
   font-size: 26px;
   position: absolute;
+  z-index: 1;
   right: 20px;
   top: 15px;
 `;

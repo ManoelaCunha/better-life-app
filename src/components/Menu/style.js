@@ -129,7 +129,7 @@ export const ImageContainer = styled.div`
   position: absolute;
   top: 0px;
   width: 100%;
-  z-index: 100;
+  z-index: ${(modalIsOpen) => modalIsOpen ? -1 : 1};
 
   img {
     display: block;

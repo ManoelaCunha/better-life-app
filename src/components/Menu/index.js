@@ -7,16 +7,24 @@ import {
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
 import { BsHeart } from "react-icons/bs";
-import HeartGiff from "../../assets/icons/1249-heart-beat-outline.gif";
-import Exit from "../../assets/icons/icons8-sign-out-50.png";
-import People from "../../assets/icons/people (2).png";
 import Button from "../Button";
 import Logo from "../../assets/img/logo.png";
 import { useHistory, useLocation } from "react-router-dom";
+import ModalAlert from "../Modal";
+import { useState } from "react";
 
 const Menu = ({ handleAdd, setAuthenticated }) => {
+
+  const [modalAlert, setModalAlert] = useState(false);
+
   const history = useHistory();
   const location = useLocation();
+
+
+  const openModalAlert = () => {
+    setModalAlert(true);
+
+  };
 
   const handleLogout = () => {
     history.push("/");
@@ -27,6 +35,7 @@ const Menu = ({ handleAdd, setAuthenticated }) => {
   const sendTo = (path) => {
     history.push(path);
   };
+
 
   const highlightStyle = {
     color: "#587efc",
@@ -70,8 +79,24 @@ const Menu = ({ handleAdd, setAuthenticated }) => {
 
         <Button text="+" smaller onClick={handleAdd} />
 
+      <ModalAlert
+        modalIsOpen={modalAlert}
+        setIsOpen={setModalAlert}
+        content={
+          <div>
+            <h3>Você deseja realmente sair?</h3>
+            <Button
+              text="Sim, partiu!"
+              style={{ width: "150px", fontSize: "16px", marginTop: "25px" }}
+              onClick={() => {
+                handleLogout();
+              }}
+            />
+          </div>
+        }
+      />
         <LogoutContainer>
-          <span onClick={handleLogout}>
+          <span onClick={openModalAlert}>
             <IoIosLogOut />
             <p> Sair</p>
           </span>

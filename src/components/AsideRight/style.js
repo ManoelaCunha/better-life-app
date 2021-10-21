@@ -1,7 +1,7 @@
 import styled from "styled-components";
 export const Background = styled.div`
 display: none;
-  @media (min-width: 1600px) {
+  @media (min-width: 1400px) {
    position: absolute;
    display: block;
     right:0;
