@@ -15,9 +15,6 @@ const Welcome = ({ authenticated }) => {
     history.push(path);
   };
 
-  if (authenticated) {
-    return <Redirect to="dashboard" />;
-  }
 
   return (
     <>
