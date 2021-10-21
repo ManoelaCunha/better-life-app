@@ -5,7 +5,7 @@ export const Container = styled.div`
   margin: 0 auto 100px;
 
   @media screen and (min-width: 768px) {
-    width: 750px;
+    width: 700px;
     margin: 0 250px;
   }
 
@@ -69,7 +69,7 @@ export const SelectDiv = styled.div`
     border-radius: 20px;
     appearance: none;
 text-align: center;
-    option {
+  }option {
       background: #495c89;
       border-radius: 20px
     }

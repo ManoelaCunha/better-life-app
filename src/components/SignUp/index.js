@@ -55,7 +55,7 @@ const SignUp = ({ authenticated }) => {
     <Container>
       <SubContainer>
         <AnimationContainer>
-      <img className="logoImage" src={logoImage} alt="logo" />
+        <Link to='/'><img className="logoImage" src={logoImage} alt="logo" /></Link>
           <form onSubmit={handleSubmit(handleForm)}>
             <div className="signUpTitle">
               <h2>Olá,<br/><span>crie uma conta</span></h2>

@@ -17,7 +17,7 @@ export const Card = styled.div`
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
-    width: 750px;
+    width: 640px;
     min-height: 190px;
     margin: 20px auto;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
