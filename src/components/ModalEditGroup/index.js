@@ -77,7 +77,7 @@ const ModalCreateActivities = ({
             />
 
             <TextField
-              label="categoria"
+              label="Categoria"
               variant="filled"
               style={inputStyle}
               {...register("category")}

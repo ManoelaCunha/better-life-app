@@ -87,6 +87,10 @@ export const GoalContainerTitle = styled.div`
   h3 {
     margin: 10px 0;
   }
+  button {
+  background: #fff;
+  color: #000
+}
 `;
 
 export const ActivityContainerTitle = styled.div`
@@ -97,4 +101,8 @@ export const ActivityContainerTitle = styled.div`
   h3 {
     margin: 10px 0;
   }
+  button {
+  background: #fff;
+  color: #000
+}
 `;
