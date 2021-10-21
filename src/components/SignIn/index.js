@@ -86,7 +86,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
             <Button type='submit' text='Login'>
               Login
             </Button>
-            <LoginGoogle handleGoogle={onSubmitFunction} />
+            {/* <LoginGoogle handleGoogle={onSubmitFunction} /> */}
             <p>
               Não possui uma conta ainda? <Link to='/signup'>Registre-se</Link>
             </p>

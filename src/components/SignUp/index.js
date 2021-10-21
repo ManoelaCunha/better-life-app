@@ -113,10 +113,10 @@ const SignUp = ({ authenticated }) => {
             <div className='buttonContainer'>
               <Button text='Cadastre-se' type='submit' />
             </div>
-            <p className='orStyle'>Ou</p>
+            {/* <p className='orStyle'>Ou</p>
             <div className='googleSignUp'>
               <LoginGoogle handleGoogle={handleForm} />
-            </div>
+            </div> */}
             <p className='mobileFooter'>
               Já tem uma conta? <Link to='/login'>Login</Link>
             </p>
