@@ -3,11 +3,9 @@ import styled from "styled-components";
 export const Card = styled.div`
   width: 300px;
   margin: 20px auto;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   background: linear-gradient(
     274.42deg,
     rgba(146, 163, 253, 0.2) 0%,

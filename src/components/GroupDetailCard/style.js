@@ -29,6 +29,7 @@ export const CardGroupDetailBody = styled.div`
     font-size: 12px;
     margin: 0;
     height: 25px;
+    padding: 4px;
   }
 
   h3 {

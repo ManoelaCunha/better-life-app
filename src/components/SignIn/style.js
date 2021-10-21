@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import LoginImg from "../../assets/img/ImgLogin.png";
+import LoginImg from "../../assets/img/loginImg.svg";
 export const Container = styled.div`
   height: 100vh;
   display: flex;
@@ -10,8 +10,8 @@ export const Background = styled.div`
   @media (min-width: 1100px) {
     flex: 1;
     background: url(${LoginImg});
-    background-size: 500px;
-    background-color: #72a1f9;
+    background-size: auto;
+    /* background-color: #72a1f9; */
     background-repeat: no-repeat;
     background-position: center;
     height: 100vh;
@@ -54,7 +54,7 @@ export const AnimationContainer = styled.div`
     }
     p {
       margin-top: 25px;
-      font-size: 10px;
+      font-size: 12px;
     }
     h2 {
       margin-top: -15px;
