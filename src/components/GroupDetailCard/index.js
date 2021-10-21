@@ -1,13 +1,16 @@
-import { CardGroupDetailBody, ActivityContainer } from "./style";
-import Button from "../Button";
 import { useContext, useEffect, useState } from "react";
-import { GoalsContext } from "../../providers/Goals";
-import GoalCard from "../GoalCard";
+
+import { CardGroupDetailBody, ActivityContainer } from "./style";
 import { ButtonContainer } from "../Button/style";
-import { ActivitiesContext } from "../../providers/Activities";
+
 import { GroupsContext } from "../../providers/Groups";
-import { TiDelete } from "react-icons/ti";
+import { GoalsContext } from "../../providers/Goals";
+import { ActivitiesContext } from "../../providers/Activities";
+
 import ModalCreateActivities from "../ModalCreateActivities";
+import GoalCard from "../GoalCard";
+import ActivityCard from "../ActivityCard";
+import Button from "../Button";
 
 const GroupDetailCard = ({ groupId }) => {
   const { goals, getGoals } = useContext(GoalsContext);
@@ -80,26 +83,16 @@ const GroupDetailCard = ({ groupId }) => {
           </ButtonContainer>
           <ActivityContainer>
             <ul>
-              {activities.map((activity, index) => {
-                const date = new Date(activity.realization_time);
-                const newDate = [
-                  date.getDate(),
-                  date.getMonth(),
-                  date.getFullYear(),
-                ].join("/");
-                return (
-                  <>
-                    <li key={activity.id}>
-                      <h4>{activity.title}</h4>
-                      <p>Data Limite: {newDate}</p>
-                      {isSubscribed && (
-                        <TiDelete onClick={() => removeActivity(activity.id)} />
-                      )}
-                      <hr style={{ opacity: 0.2, margin: "5px" }} />
-                    </li>
-                  </>
-                );
-              })}
+              {activities.map((activity, index) => (
+                <ActivityCard
+                  key={activity.id}
+                  index={index}
+                  activity={activity}
+                  activityId={activity.id}
+                  isSubscribed={isSubscribed}
+                  removeActivity={removeActivity}
+                />
+              ))}
             </ul>
           </ActivityContainer>
         </div>

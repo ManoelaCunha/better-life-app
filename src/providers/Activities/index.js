@@ -7,6 +7,10 @@ export const ActivitiesContext = createContext();
 export const ActivitiesProvider = ({ children }) => {
   const [activities, setActivities] = useState([]);
 
+  const [token] = useState(
+    JSON.parse(localStorage.getItem("@BetterLife:token"))
+  );
+
   const getActivities = (group) => {
     api
       .get(`/activities/?group=${group}`)
@@ -17,7 +21,6 @@ export const ActivitiesProvider = ({ children }) => {
   };
 
   const removeActivity = (id) => {
-    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
     api
       .delete(`/activities/${id}/`, {
         headers: {
@@ -31,7 +34,6 @@ export const ActivitiesProvider = ({ children }) => {
   };
 
   const createActivities = (data) => {
-    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
     api
       .post("activities/", data, {
         headers: {
@@ -46,7 +48,6 @@ export const ActivitiesProvider = ({ children }) => {
   };
 
   const updateActivity = (data, id, index) => {
-    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
     api
       .patch(`activities/${id}/`, data, {
         headers: {
@@ -54,12 +55,11 @@ export const ActivitiesProvider = ({ children }) => {
         },
       })
       .then((response) => {
-        console.log(response.data);
-        //setActivities(activities);
+        activities.splice(index, 1, response.data);
+        setActivities([...activities]);
         toast.success("Atividade atualizada com sucesso!");
       })
       .catch((error) => console.log(error));
-    //const teste = activities.replace
   };
 
   return (
