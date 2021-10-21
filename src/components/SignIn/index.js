@@ -8,15 +8,14 @@ import api from "../../services/api";
 import { TextField } from "@material-ui/core";
 import Logo from "../../assets/img/logo.png";
 import toast from "react-hot-toast";
+import LoginGoogle from "../GoogleLogin";
+
 const Login = ({ authenticated, setAuthenticated }) => {
   const history = useHistory();
 
   const schema = yup.object().shape({
     username: yup.string().required("Campo Obrigatório!"),
-    password: yup
-      .string()
-      .min(6, "Minimo de 6 caracteres.")
-      .required("Campo obrigatório!"),
+    password: yup.string().min(6, "Minimo de 6 caracteres.").required("Campo obrigatório!"),
   });
   const {
     register,
@@ -33,7 +32,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
       .then((response) => {
         const { access } = response.data;
         localStorage.setItem("@BetterLife:token", JSON.stringify(access));
-        console.log(access)
+        console.log(access);
         setAuthenticated(true);
         return history.push("/welcome");
       })
@@ -44,9 +43,9 @@ const Login = ({ authenticated, setAuthenticated }) => {
   };
 
   if (authenticated) {
-    return <Redirect to="welcome" />;
+    return <Redirect to='welcome' />;
   }
-  
+
   return (
     <Container>
       <Background />
@@ -61,11 +60,11 @@ const Login = ({ authenticated, setAuthenticated }) => {
             </h2>
             <div>
               <TextField
-                label="Usuário"
-                margin="normal"
-                variant="standard"
-                size="small"
-                color="primary"
+                label='Usuário'
+                margin='normal'
+                variant='standard'
+                size='small'
+                color='primary'
                 {...register("username")}
                 error={!!errors.username}
                 helperText={errors.username?.message}
@@ -73,24 +72,23 @@ const Login = ({ authenticated, setAuthenticated }) => {
             </div>
             <div>
               <TextField
-                label="Senha"
-                margin="normal"
-                variant="standard"
-                size="small"
-                type="password"
-                color="primary"
+                label='Senha'
+                margin='normal'
+                variant='standard'
+                size='small'
+                type='password'
+                color='primary'
                 {...register("password")}
                 error={!!errors.password}
                 helperText={errors.password?.message}
               />
             </div>
-            <Button type="submit" text="Login">
-              {" "}
-              Login{" "}
+            <Button type='submit' text='Login'>
+              Login
             </Button>
-            {/* ESPAÇO PARA A FUNCIONALIDADE DE LOGIN COM O GOOGLE */}
+            <LoginGoogle handleGoogle={onSubmitFunction} />
             <p>
-              Não possui uma conta ainda? <Link to="/signup">Registre-se</Link>{" "}
+              Não possui uma conta ainda? <Link to='/signup'>Registre-se</Link>
             </p>
           </form>
         </AnimationContainer>

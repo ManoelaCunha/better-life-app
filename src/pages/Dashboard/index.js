@@ -1,11 +1,5 @@
 import HabitCard from "../../components/HabitCard";
-import {
-  TextField,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-} from "@material-ui/core";
+import { TextField, FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
@@ -19,11 +13,7 @@ import { Box, Container, Text, ButtonContainerDashboard } from "./style";
 import { Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AsideRight from "../../components/AsideRight";
-import {
-  Filter,
-  MenuItemCustom,
-  FormControlCustom,
-} from "../../styles/styleMaterial";
+import { Filter, MenuItemCustom, FormControlCustom } from "../../styles/styleMaterial";
 
 const Dashboard = ({ authenticated, setAuthenticated }) => {
   const { getUser, userName, getUserName, user } = useContext(UserContext);
@@ -44,7 +34,6 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
 
   useEffect(() => {
     let newHabits = habits;
-    console.log(filterValue);
     if (filterValue === "finished") {
       newHabits = habits.filter((habit) => habit.achieved);
     }
@@ -57,14 +46,8 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
   const schema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
     category: yup.string().required("Campo obrigatório"),
-    difficulty: yup
-      .string()
-      .oneOf(["Fácil", "Intermediário", "Difícil", "Muito difícil"])
-      .required("Campo obrigatório"),
-    frequency: yup
-      .string()
-      .oneOf(["Diário", "Semanal", "Quinzenal", "Mensal"])
-      .required("Campo obrigatório"),
+    difficulty: yup.string().oneOf(["Fácil", "Intermediário", "Difícil", "Muito difícil"]).required("Campo obrigatório"),
+    frequency: yup.string().oneOf(["Diário", "Semanal", "Quinzenal", "Mensal"]).required("Campo obrigatório"),
   });
   const {
     register,
@@ -104,7 +87,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
     width: "100%",
   };
   if (!authenticated) {
-    return <Redirect to="/" />;
+    return <Redirect to='/' />;
   }
 
   const handleChange = (event) => {
@@ -138,14 +121,8 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
             </button>
           </ButtonContainerDashboard>
         </Box>
-        <FormControlCustom variant="outlined">
-          <Filter
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={filterValue}
-            label="Filtro"
-            onChange={handleChange}
-          >
+        <FormControlCustom variant='outlined'>
+          <Filter labelId='demo-simple-select-label' id='demo-simple-select' value={filterValue} label='Filtro' onChange={handleChange}>
             <MenuItemCustom value={"open"}>Abertos</MenuItemCustom>
             <MenuItemCustom value={"finished"}>Concluidos</MenuItemCustom>
             <MenuItemCustom value={"all"}>Todos</MenuItemCustom>
@@ -160,60 +137,36 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
       <Modal
         modalIsOpen={modalIsOpen}
         setIsOpen={setIsOpen}
-        title="Cadastrar novo hábito"
+        title='Cadastrar novo hábito'
         content={
           <form style={formStyle} onSubmit={handleSubmit(handleNewHabit)}>
-            <TextField
-              label="Título"
-              variant="filled"
-              style={inputStyle}
-              {...register("title")}
-              helperText={errors.title?.message}
-            />
+            <TextField label='Título' variant='filled' style={inputStyle} {...register("title")} helperText={errors.title?.message} />
 
-            <TextField
-              label="Categoria"
-              variant="filled"
-              style={inputStyle}
-              {...register("category")}
-              helperText={errors.category?.message}
-            />
+            <TextField label='Categoria' variant='filled' style={inputStyle} {...register("category")} helperText={errors.category?.message} />
 
-            <FormControl variant="filled" style={inputStyle}>
-              <InputLabel id="select-difficulty">Dificuldade</InputLabel>
-              <Select
-                labelId="select-difficulty"
-                {...register("difficulty")}
-                helperText={errors.difficulty?.message}
-              >
-                <MenuItem value=""></MenuItem>
-                <MenuItem value="Fácil">Fácil</MenuItem>
-                <MenuItem value="Intermediário">Intermediário</MenuItem>
-                <MenuItem value="Difícil">Difícil</MenuItem>
-                <MenuItem value="Muito difícil">Muito Difícil</MenuItem>
+            <FormControl variant='filled' style={inputStyle}>
+              <InputLabel id='select-difficulty'>Dificuldade</InputLabel>
+              <Select labelId='select-difficulty' {...register("difficulty")} helperText={errors.difficulty?.message}>
+                <MenuItem value=''></MenuItem>
+                <MenuItem value='Fácil'>Fácil</MenuItem>
+                <MenuItem value='Intermediário'>Intermediário</MenuItem>
+                <MenuItem value='Difícil'>Difícil</MenuItem>
+                <MenuItem value='Muito difícil'>Muito Difícil</MenuItem>
               </Select>
             </FormControl>
 
-            <FormControl variant="filled" style={inputStyle}>
-              <InputLabel id="select-frequency">Frequência</InputLabel>
-              <Select
-                labelId="select-frequency"
-                {...register("frequency")}
-                helperText={errors.frequency?.message}
-              >
-                <MenuItem value=""></MenuItem>
-                <MenuItem value="Diário">Diário</MenuItem>
-                <MenuItem value="Semanal">Semanal</MenuItem>
-                <MenuItem value="Quinzenal">Quinzenal</MenuItem>
-                <MenuItem value="Mensal">Mensal</MenuItem>
+            <FormControl variant='filled' style={inputStyle}>
+              <InputLabel id='select-frequency'>Frequência</InputLabel>
+              <Select labelId='select-frequency' {...register("frequency")} helperText={errors.frequency?.message}>
+                <MenuItem value=''></MenuItem>
+                <MenuItem value='Diário'>Diário</MenuItem>
+                <MenuItem value='Semanal'>Semanal</MenuItem>
+                <MenuItem value='Quinzenal'>Quinzenal</MenuItem>
+                <MenuItem value='Mensal'>Mensal</MenuItem>
               </Select>
             </FormControl>
 
-            <Button
-              text="Criar grupo"
-              style={{ width: "150px", fontSize: "16px" }}
-              type="submit"
-            />
+            <Button text='Criar grupo' style={{ width: "150px", fontSize: "16px" }} type='submit' />
           </form>
         }
       />

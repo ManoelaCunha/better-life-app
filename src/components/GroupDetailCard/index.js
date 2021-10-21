@@ -84,7 +84,7 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
           <h3>Metas</h3>
           <ButtonContainer style={{ margin: "0px" }}>
             {isSubscribed && (
-              <button onClick={openModalGoal}>Criar Meta</button>
+              <button onClick={openModalGoal}><strong>+</strong>    Meta</button>
             )}
           </ButtonContainer>
           <GoalContainer>
@@ -97,7 +97,7 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
           <h3>Atividades</h3>
           <ButtonContainer style={{ margin: "0px" }}>
             {isSubscribed && (
-              <button onClick={openModalActivity}>Criar Atividade</button>
+              <button onClick={openModalActivity}><strong>+</strong> Atividade</button>
             )}
           </ButtonContainer>
           <ActivityContainer>
