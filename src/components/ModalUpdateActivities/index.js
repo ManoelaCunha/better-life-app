@@ -11,12 +11,13 @@ import { TextField } from "@material-ui/core";
 
 import { ActivitiesContext } from "../../providers/Activities";
 
-const ModalCreateActivities = ({
-  groupId,
-  modalActivityIsOpen,
-  setModalActivityIsOpen,
+const ModalUpdateActivities = ({
+  index,
+  activityId,
+  modalActivityUpdate,
+  setModalActivityUpdate,
 }) => {
-  const { createActivities } = useContext(ActivitiesContext);
+  const { updateActivity } = useContext(ActivitiesContext);
 
   const schema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
@@ -32,10 +33,9 @@ const ModalCreateActivities = ({
     resolver: yupResolver(schema),
   });
 
-  const handleCreateActivities = (data) => {
-    data["group"] = Number(groupId);
-    createActivities(data);
-    reset(createActivities);
+  const handleUpdateActivities = (data) => {
+    updateActivity(data, activityId, index);
+    reset(updateActivity);
   };
 
   const inputStyle = {
@@ -51,13 +51,13 @@ const ModalCreateActivities = ({
   return (
     <>
       <Modal
-        modalIsOpen={modalActivityIsOpen}
-        setIsOpen={setModalActivityIsOpen}
-        title="Cadastrar Nova Atividade"
+        modalIsOpen={modalActivityUpdate}
+        setIsOpen={setModalActivityUpdate}
+        title="Atualizar Atividade"
         content={
           <form
             style={formStyle}
-            onSubmit={handleSubmit(handleCreateActivities)}
+            onSubmit={handleSubmit(handleUpdateActivities)}
           >
             <TextField
               label="Título"
@@ -76,7 +76,7 @@ const ModalCreateActivities = ({
             />
 
             <Button
-              text="Criar Atividade"
+              text="Atualizar"
               style={{ width: "150px", fontSize: "16px" }}
               type="submit"
             />
@@ -87,4 +87,4 @@ const ModalCreateActivities = ({
   );
 };
 
-export default ModalCreateActivities;
+export default ModalUpdateActivities;

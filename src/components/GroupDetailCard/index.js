@@ -1,21 +1,30 @@
-import { CardGroupDetailBody, ActivityContainer, GoalContainer } from "./style";
 import Button from "../Button";
 import { useContext, useEffect, useState } from "react";
-import { GoalsContext } from "../../providers/Goals";
-import GoalCard from "../GoalCard";
-import { ButtonContainer } from "../Button/style";
-import { ActivitiesContext } from "../../providers/Activities";
-import { GroupsContext } from "../../providers/Groups";
-import { TiDelete } from "react-icons/ti";
-import ModalCreateActivities from "../ModalCreateActivities";
-import CreateGroupGoalModal from "../../components/CreateGroupGoal";
 
+import { CardGroupDetailBody, ActivityContainer, GoalContainer } from "./style";
+import { ButtonContainer } from "../Button/style";
+
+import { GroupsContext } from "../../providers/Groups";
+import { GoalsContext } from "../../providers/Goals";
+import { ActivitiesContext } from "../../providers/Activities";
+
+import ModalCreateActivities from "../ModalCreateActivities";
+import GoalCard from "../GoalCard";
+import ActivityCard from "../ActivityCard";
+
+import CreateGroupGoalModal from "../../components/CreateGroupGoal";
 
 const GroupDetailCard = ({ groupId, authenticated }) => {
   const { goals, getGoals } = useContext(GoalsContext);
 
-  const { activities, getActivities, removeActivity } = useContext(ActivitiesContext);
-  const { subscribedGroups, subscribeGroup, unsubscribeGroup, getSubscribedGroups } = useContext(GroupsContext);
+  const { activities, getActivities, removeActivity } =
+    useContext(ActivitiesContext);
+  const {
+    subscribedGroups,
+    subscribeGroup,
+    unsubscribeGroup,
+    getSubscribedGroups,
+  } = useContext(GroupsContext);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [modalActivityIsOpen, setModalActivityIsOpen] = useState(false);
   const [modalGoalIsOpen, setModalGoalIsOpen] = useState(false);
@@ -36,11 +45,11 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
       subscribedGroups.includes(Number(groupId))
         ? setIsSubscribed(true)
         : setIsSubscribed(false);
-      console.log(subscribedGroups.includes(Number(groupId)))
+      console.log(subscribedGroups.includes(Number(groupId)));
     }
   }, [subscribedGroups]);
 
-  console.log(subscribedGroups, groupId)
+  console.log(subscribedGroups, groupId);
   const openModalActivity = () => {
     setModalActivityIsOpen(true);
   };
@@ -79,9 +88,9 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
             )}
           </ButtonContainer>
           <GoalContainer>
-          {goals.map((goal) => (
-            <GoalCard goal={goal} key={goal.id} isSubscribed={isSubscribed} />
-          ))}
+            {goals.map((goal) => (
+              <GoalCard goal={goal} key={goal.id} isSubscribed={isSubscribed} />
+            ))}
           </GoalContainer>
         </div>
         <div>
@@ -93,26 +102,16 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
           </ButtonContainer>
           <ActivityContainer>
             <ul>
-              {activities.map((activity, index) => {
-                const date = new Date(activity.realization_time);
-                const newDate = [
-                  date.getDate(),
-                  date.getMonth(),
-                  date.getFullYear(),
-                ].join("/");
-                return (
-                  <>
-                    <li key={activity.id}>
-                      <h4>{activity.title}</h4>
-                      <p>Data Limite: {newDate}</p>
-                      {isSubscribed && (
-                        <TiDelete onClick={() => removeActivity(activity.id)} className='closeActivity' />
-                      )}
-                      <hr style={{ opacity: 0.2, margin: "5px" }} />
-                    </li>
-                  </>
-                );
-              })}
+              {activities.map((activity, index) => (
+                <ActivityCard
+                  key={activity.id}
+                  index={index}
+                  activity={activity}
+                  activityId={activity.id}
+                  isSubscribed={isSubscribed}
+                  removeActivity={removeActivity}
+                />
+              ))}
             </ul>
           </ActivityContainer>
         </div>
@@ -123,9 +122,10 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
         setModalActivityIsOpen={setModalActivityIsOpen}
       />
       <CreateGroupGoalModal
-       groupId={groupId}
-       modalGoalIsOpen={modalGoalIsOpen}
-       setModalGoalIsOpen={setModalGoalIsOpen}/>
+        groupId={groupId}
+        modalGoalIsOpen={modalGoalIsOpen}
+        setModalGoalIsOpen={setModalGoalIsOpen}
+      />
     </>
   );
 };
