@@ -171,6 +171,7 @@ const SignUp = ({ authenticated }) => {
           </form>
         </AnimationContainer>
       </SubContainer>
+      <Image />
     </Container>
   );
 };
