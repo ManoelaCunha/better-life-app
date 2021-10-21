@@ -19,7 +19,7 @@ import { Box, Container, Text, ButtonContainerDashboard } from "./style";
 import { Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AsideRight from "../../components/AsideRight";
-
+import { Filter, MenuItemCustom, FormControlCustom } from '../../styles/styleMaterial'
 
 const Dashboard = ({ authenticated, setAuthenticated }) => {
   const { getUser, userName, getUserName, user } = useContext(UserContext);
@@ -27,20 +27,28 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
   const { getSubscribedGroups } = useContext(GroupsContext);
   const [filterValue, setFilterValue] = useState('open')
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [filteredHabits, setFilteredHabits] = useState([]);
 
   useEffect(() => {
     if (authenticated) {
       getUser();
-    }
-  }, []);
-
-  useEffect(() => {
-    if (authenticated) {
       getHabits();
       getSubscribedGroups();
       getUserName();
     }
   }, [user]);
+
+  useEffect(() => {
+    let newHabits = habits;
+    console.log(filterValue)
+    if (filterValue === 'finished') {
+      newHabits = habits.filter((habit) => habit.achieved)
+    }
+    if (filterValue === 'open') {
+      newHabits = habits.filter((habit) => !habit.achieved)
+    }
+    setFilteredHabits(newHabits)
+  }, [habits, filterValue]);
 
   const schema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
@@ -99,16 +107,15 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
 
   const handleChange = (event) => {
     setFilterValue(event.target.value);
-  }
+  };
+
   return (
     <>
-      <Menu setAuthenticated={setAuthenticated} />
+      <Menu setAuthenticated={setAuthenticated} handleAdd={openModal} />
       <Container>
         <Text>
           Bem vinda(o) de volta, <strong>{userName}</strong>
         </Text>
-
-
         <Box>
           <h1>Hábitos</h1>
           <ButtonContainerDashboard style={{ margin: "0px 5px" }}>
@@ -129,7 +136,20 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
             </button>
           </ButtonContainerDashboard>
         </Box>
-        {habits.map((habit) => (
+        <FormControlCustom variant='outlined'>
+          <Filter
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={filterValue}
+            label="Filtro"
+            onChange={handleChange}
+          >
+            <MenuItemCustom value={"open"} >Abertos</MenuItemCustom>
+            <MenuItemCustom value={"finished"}>Concluidos</MenuItemCustom>
+            <MenuItemCustom value={"all"}>Todos</MenuItemCustom>
+          </Filter>
+        </FormControlCustom>
+        {filteredHabits.map((habit) => (
           <HabitCard key={habit.id} habit={habit} />
         ))}
       </Container>
