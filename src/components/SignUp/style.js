@@ -96,12 +96,15 @@ export const AnimationContainer = styled.div`
 
     margin: 50px auto;
 
-    width: 340px;
+    width: 320px;
     text-align: center;
     background: var(--white);
     padding: 40px;
     border-radius: 30px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+
+    @media (min-width: 768px) {
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    }
 
     h2 {
       font-size: 16px;

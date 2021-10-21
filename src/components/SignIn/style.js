@@ -11,7 +11,6 @@ export const Background = styled.div`
     flex: 1;
     background: url(${LoginImg});
     background-size: auto;
-    /* background-color: #72a1f9; */
     background-repeat: no-repeat;
     background-position: center;
     height: 100vh;
@@ -43,12 +42,16 @@ export const AnimationContainer = styled.div`
   animation: ${leftAnimation} 1.5s;
   form {
     margin: 100px 0;
-    width: 340px;
+    width: 320px;
     text-align: center;
     background: var(--white);
     padding: 40px;
     border-radius: 30px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+
+    @media (min-width: 768px) {
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    }
+
     button {
       margin: 20px auto;
     }
@@ -70,6 +73,5 @@ export const AnimationContainer = styled.div`
     margin-top: 25px;
     margin-bottom: -55px;
     width: 250px;
-    
   }
 `;
