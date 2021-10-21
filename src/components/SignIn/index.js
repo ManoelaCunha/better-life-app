@@ -56,7 +56,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
             <h2>
               Olá,
               <br />
-              <span>Bem vindo(a)!</span>
+              <span>bem vindo(a)!</span>
             </h2>
             <div>
               <TextField

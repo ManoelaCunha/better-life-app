@@ -7,9 +7,6 @@ import {
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
 import { BsHeart } from "react-icons/bs";
-import HeartGiff from "../../assets/icons/1249-heart-beat-outline.gif";
-import Exit from "../../assets/icons/icons8-sign-out-50.png";
-import People from "../../assets/icons/people (2).png";
 import Button from "../Button";
 import Logo from "../../assets/img/logo.png";
 import { useHistory, useLocation } from "react-router-dom";

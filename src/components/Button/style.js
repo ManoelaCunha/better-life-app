@@ -10,7 +10,6 @@ export const ButtonContainer = styled.div`
     border-radius: 30px;
     border: none;
     color: #ffffff;
-    text-transform: capitalize;
     font-size: 18px;
     font-family: "Poppins", sans-serif;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),

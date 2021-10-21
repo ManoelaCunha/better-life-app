@@ -120,8 +120,8 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
         {habits.map((habit) => (
           <HabitCard key={habit.id} habit={habit} />
         ))}
-      </Container>
          <AsideRight />
+      </Container>
 
       <Modal
         modalIsOpen={modalIsOpen}
