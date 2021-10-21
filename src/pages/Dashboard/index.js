@@ -30,7 +30,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
       getSubscribedGroups();
       getUserName();
     }
-  }, [user]);
+  }, [user, filteredHabits]);
 
   useEffect(() => {
     let newHabits = habits;
