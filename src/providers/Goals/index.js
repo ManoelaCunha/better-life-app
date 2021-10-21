@@ -17,7 +17,7 @@ export const GoalsProvider = ({ children }) => {
   };
 
   const removeGoal = (id) => {
-    const token = localStorage.getItem("@BetterLife:token") || "";
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
     api
       .delete(`/goals/${id}/`, {
         headers: {
@@ -32,7 +32,7 @@ export const GoalsProvider = ({ children }) => {
 
   const updateGoalProgress = (id, newProgress) => {
     let isAchieved = false;
-    const token = localStorage.getItem("@BetterLife:token") || "";
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
 
     if (newProgress >= 100) {
       isAchieved = true;
@@ -56,9 +56,31 @@ export const GoalsProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
+  const createGoals = (data) => {
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
+    api
+      .post("/goals/", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setGoals([...goals, response.data]);
+        toast.success("Meta cadastrada com sucesso!");
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <GoalsContext.Provider
-      value={{ goals, getGoals, updateGoalProgress, removeGoal }}
+      value={{
+        goals,
+        getGoals,
+        createGoals,
+        updateGoalProgress,
+        removeGoal,
+        setGoals,
+      }}
     >
       {children}
     </GoalsContext.Provider>

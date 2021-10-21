@@ -1,6 +1,7 @@
+import Button from "../Button";
 import { useContext, useEffect, useState } from "react";
 
-import { CardGroupDetailBody, ActivityContainer } from "./style";
+import { CardGroupDetailBody, ActivityContainer, GoalContainer } from "./style";
 import { ButtonContainer } from "../Button/style";
 
 import { GroupsContext } from "../../providers/Groups";
@@ -10,10 +11,12 @@ import { ActivitiesContext } from "../../providers/Activities";
 import ModalCreateActivities from "../ModalCreateActivities";
 import GoalCard from "../GoalCard";
 import ActivityCard from "../ActivityCard";
-import Button from "../Button";
+
+import CreateGroupGoalModal from "../../components/CreateGroupGoal";
 
 const GroupDetailCard = ({ groupId, authenticated }) => {
   const { goals, getGoals } = useContext(GoalsContext);
+
   const { activities, getActivities, removeActivity } =
     useContext(ActivitiesContext);
   const {
@@ -24,6 +27,7 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
   } = useContext(GroupsContext);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [modalActivityIsOpen, setModalActivityIsOpen] = useState(false);
+  const [modalGoalIsOpen, setModalGoalIsOpen] = useState(false);
 
   useEffect(() => {
     if (authenticated) {
@@ -50,6 +54,10 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
     setModalActivityIsOpen(true);
   };
 
+  const openModalGoal = () => {
+    setModalGoalIsOpen(true);
+  };
+
   return (
     <>
       <CardGroupDetailBody>
@@ -74,9 +82,16 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
         <p>Descrição do Grupo</p>
         <div>
           <h3>Metas</h3>
-          {goals.map((goal) => (
-            <GoalCard goal={goal} key={goal.id} isSubscribed={isSubscribed} />
-          ))}
+          <ButtonContainer style={{ margin: "0px" }}>
+            {isSubscribed && (
+              <button onClick={openModalGoal}>Criar Meta</button>
+            )}
+          </ButtonContainer>
+          <GoalContainer>
+            {goals.map((goal) => (
+              <GoalCard goal={goal} key={goal.id} isSubscribed={isSubscribed} />
+            ))}
+          </GoalContainer>
         </div>
         <div>
           <h3>Atividades</h3>
@@ -105,6 +120,11 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
         groupId={groupId}
         modalActivityIsOpen={modalActivityIsOpen}
         setModalActivityIsOpen={setModalActivityIsOpen}
+      />
+      <CreateGroupGoalModal
+        groupId={groupId}
+        modalGoalIsOpen={modalGoalIsOpen}
+        setModalGoalIsOpen={setModalGoalIsOpen}
       />
     </>
   );

@@ -71,7 +71,7 @@ const GoalCard = ({ goal, isSubscribed = false }) => {
             <h3>Voçe quer excluir esta Meta?</h3>
             <Button
               text="Excluir"
-              style={{ width: "150px", fontSize: "16px" }}
+              style={{ width: "150px", fontSize: "16px", marginTop: "25px" }}
               onClick={() => {
                 removeGoal(id);
               }}

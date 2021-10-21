@@ -65,7 +65,7 @@ const ActivityCard = ({
             <h3>Voçe quer excluir esta Atividade?</h3>
             <Button
               text="Excluir"
-              style={{ width: "150px", fontSize: "16px" }}
+              style={{ width: "150px", fontSize: "16px", marginTop: "25px" }}
               onClick={() => {
                 removeActivity(id);
               }}
