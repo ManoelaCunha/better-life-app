@@ -15,6 +15,7 @@ const Homepage = ({ authenticated }) => {
     return <Redirect to="/welcome" />;
   }
 
+
   return (
     <>
       <Container>
