@@ -51,6 +51,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
     frequency: yup.string().oneOf(["Diário", "Semanal", "Quinzenal", "Mensal"]).required("Campo obrigatório"),
   });
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
@@ -72,6 +73,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
     };
     addNewHabit(newHabit);
     setIsOpen(false);
+    reset()
   };
 
   const openModal = () => {

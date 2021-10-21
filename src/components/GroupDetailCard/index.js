@@ -128,7 +128,6 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
         </ButtonContainer>
         <p>Descrição do Grupo</p>
         <p>{specificGroup.description}</p>
-
         <hr />
         <div>
           <GoalContainerTitle>
@@ -161,7 +160,6 @@ const GroupDetailCard = ({ groupId, authenticated }) => {
               )}
             </ButtonContainer>
           </ActivityContainerTitle>
-
           <ActivityContainer>
             <ul>
               {activities.map((activity, index) => (

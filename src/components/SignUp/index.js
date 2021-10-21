@@ -120,7 +120,7 @@ const SignUp = ({ authenticated }) => {
           </form>
         </AnimationContainer>
       </SubContainer>
-      <Image>{/* <img className="signupImage" src={signupImage} alt="signup" /> */}</Image>
+      <Image></Image>
     </Container>
   );
 };
