@@ -20,6 +20,7 @@ export const CardGroupDetailBody = styled.div`
   width: 100%;
   padding: 15px;
   p {
+    margin-top: 5px;
     color: #7b6f72;
   }
 
@@ -48,6 +49,18 @@ export const CardGroupDetailBody = styled.div`
     cursor: pointer;
     color: #40518c;
   }
+  .alignButton {
+    display:flex;
+      button {
+        margin-left: 5px;
+      }
+}
+
+  hr {
+    opacity: 0.5;
+    margin: 10px 0;
+  }
+
 `;
 
 
@@ -58,4 +71,39 @@ export const GoalContainer = styled.div`
   li {
     height: 60px;
   }
+`;
+
+export const MembersContainer = styled.div`
+  text-transform: capitalize;
+  p {
+    margin-left: 10px;
+  }
+`;
+
+export const GoalContainerTitle = styled.div`
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
+  h3 {
+    margin: 10px 0;
+  }
+  button {
+  background: #fff;
+  color: #000
+}
+`;
+
+export const ActivityContainerTitle = styled.div`
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
+  h3 {
+    margin: 10px 0;
+  }
+  button {
+  background: #fff;
+  color: #000
+}
 `;

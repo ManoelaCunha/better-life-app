@@ -167,7 +167,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
               </Select>
             </FormControl>
 
-            <Button text='Criar grupo' style={{ width: "150px", fontSize: "16px" }} type='submit' />
+            <Button text='Criar hábito' style={{ width: "150px", fontSize: "16px" }} type='submit' />
           </form>
         }
       />

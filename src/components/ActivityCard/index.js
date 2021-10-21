@@ -5,6 +5,7 @@ import { ButtonContainer } from "../Button/style";
 import Button from "../../components/Button";
 import ModalUpdateActivities from "../ModalUpdateActivities";
 import ModalAlert from "../Modal";
+import { ListContainer } from "./style";
 
 const ActivityCard = ({
   activity,
@@ -33,26 +34,31 @@ const ActivityCard = ({
 
   return (
     <>
-      <li key={id}>
-        <h4>{title}</h4>
-        <p>Data Limite: {newDate}</p>
-        <ButtonContainer style={{ margin: "0px" }}>
-          {isSubscribed && (
-            <button
-              onClick={() => {
-                openModalActivityUpdate();
-              }}
-              style={{ width: "130px" }}
-            >
-              Atualizar atividade
-            </button>
-          )}
-        </ButtonContainer>
+      <ListContainer key={id}>
+        <div className='ActivityTitleContainer'>
+          <div>
+            <h4>{title}</h4>
+            <p>Data Limite: {newDate}</p>
+          </div>
+          <ButtonContainer style={{ margin: "0px" }}>
+            {isSubscribed && (
+              <button
+                onClick={() => {
+                  openModalActivityUpdate();
+                }}
+                style={{ width: "130px" }}
+              >
+                Atualizar Atividade
+              </button>
+            )}
+          </ButtonContainer>
+        </div>
+
         {isSubscribed && (
           <TiDelete onClick={openModalAlert} className="closeActivity" />
         )}
         <hr style={{ opacity: 0.2, margin: "5px" }} />
-      </li>
+      </ListContainer>
 
       <ModalAlert
         modalIsOpen={modalAlert}

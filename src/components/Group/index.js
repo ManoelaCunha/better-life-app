@@ -9,7 +9,7 @@ import { useHistory } from "react-router";
 
 const Group = ({ group, groupId }) => {
   const { name, category, description } = group;
-  const { subscribedGroups, subscribeGroup } = useContext(GroupsContext);
+  const { subscribedGroups, subscribeGroup, getInfoGroup } = useContext(GroupsContext);
   const [isSubscribed, setIsSubscribed] = useState(false);
 
   useEffect(() => {
@@ -41,7 +41,9 @@ const Group = ({ group, groupId }) => {
         <ButtonContainer style={{ margin: "15px" }}>
           <button
             onClick={() => {
-              history.push(`/groups/${groupId}`)
+              history.push(`/groups/${groupId}`);
+              getInfoGroup(groupId);
+
             }}
             style={{
               width: "130px",
