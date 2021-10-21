@@ -18,6 +18,7 @@ export default createGlobalStyle`
         width: 100%;
         height: 100%;
         font-family: "Poppins", sans-serif;
+        letter-spacing: 0.8px;
     }
     h1,h2,h3,h4,h5{
         font-family: 'Montserrat', sans-serif;
