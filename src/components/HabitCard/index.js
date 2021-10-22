@@ -9,7 +9,7 @@ import ModalAlert from "../Modal";
 
 const HabitCard = ({ habit }) => {
   let { id, title, category, difficulty, how_much_achieved } = habit;
-  const { removeHabits, updateHabitProgress } = useContext(HabitsContext);
+  const { removeHabits, updateHabitProgress, getHabits } = useContext(HabitsContext);
   const matches = useMediaQuery("(min-width:768px)");
   const [achieved, setAchieved] = useState(how_much_achieved);
   const [progressBarSize, setProgressBarSize] = useState(75);
@@ -22,6 +22,7 @@ const HabitCard = ({ habit }) => {
   const handleClickAddAchieved = () => {
     updateHabitProgress(id, achieved + 10);
     setAchieved(achieved + 10);
+    getHabits()
   };
 
   const openModalAlert = () => {
@@ -41,7 +42,7 @@ const HabitCard = ({ habit }) => {
         <h3>{title}</h3>
         <p><strong>Categoria</strong> - {category}</p>
         <p>
-        <strong>Dificuldade</strong> - <span style={{ color: `${difficultyColors[difficulty]}`}}>{difficulty}</span>
+          <strong>Dificuldade</strong> - <span style={{ color: `${difficultyColors[difficulty]}` }}>{difficulty}</span>
         </p>
         {achieved < 100 && (
           <ButtonContainer>

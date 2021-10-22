@@ -43,6 +43,7 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
       newHabits = habits.filter((habit) => !habit.achieved);
     }
     setFilteredHabits(newHabits);
+    console.log('update')
   }, [habits, filterValue]);
 
   const schema = yup.object().shape({
