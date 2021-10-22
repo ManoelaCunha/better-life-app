@@ -21,6 +21,7 @@ export const ActivitiesProvider = ({ children }) => {
   };
 
   const removeActivity = (id) => {
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
     api
       .delete(`/activities/${id}/`, {
         headers: {
@@ -34,6 +35,7 @@ export const ActivitiesProvider = ({ children }) => {
   };
 
   const createActivities = (data) => {
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
     api
       .post("activities/", data, {
         headers: {
@@ -48,6 +50,7 @@ export const ActivitiesProvider = ({ children }) => {
   };
 
   const updateActivity = (data, id, index) => {
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
     api
       .patch(`activities/${id}/`, data, {
         headers: {
