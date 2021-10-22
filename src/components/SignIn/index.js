@@ -46,7 +46,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
         const { access } = response.data;
         localStorage.setItem("@BetterLife:token", JSON.stringify(access));
         setAuthenticated(true);
-        getUser(access)
+        getUser(access);
         return history.push("/welcome");
       })
 

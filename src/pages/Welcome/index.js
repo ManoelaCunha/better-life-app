@@ -6,22 +6,25 @@ import ImgWelcome from "../../assets/img/Group.png";
 import Button from "../../components/Button";
 import { Redirect, useHistory } from "react-router";
 import { ContactsOutlined } from "@material-ui/icons";
+import { HabitsContext } from "../../providers/Habits";
+import { GroupsContext } from "../../providers/Groups";
 
 // A prop authenticated será usada para autenticar para qe o ussuário não vá direto pra o core da aplicação
 const Welcome = ({ authenticated }) => {
-  const { userName, getUserName, user } = useContext(UserContext);
+  const { userName } = useContext(UserContext);
+  const { getHabits } = useContext(HabitsContext);
+  const { getSubscribedGroups } = useContext(GroupsContext);
   const history = useHistory();
-
-  const handleNavigation = (path) => {
-    history.push(path);
-  };
 
   useEffect(() => {
     if (authenticated) {
-      getUserName();
+      getHabits();
+      getSubscribedGroups();
     }
-  }, [user]);
-
+  }, []);
+  const handleNavigation = (path) => {
+    history.push(path);
+  };
 
   if (!authenticated) {
     return <Redirect to="/" />;

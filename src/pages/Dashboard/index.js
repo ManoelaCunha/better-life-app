@@ -35,14 +35,6 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
   const [filteredHabits, setFilteredHabits] = useState([]);
 
   useEffect(() => {
-    if (authenticated) {
-      getHabits();
-      getSubscribedGroups();
-      getUserName();
-    }
-  }, []);
-
-  useEffect(() => {
     let newHabits = habits;
     if (filterValue === "finished") {
       newHabits = habits.filter((habit) => habit.achieved);

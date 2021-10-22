@@ -25,9 +25,6 @@ export const GroupsProvider = ({ children }) => {
   });
 
 
-  const [token] = useState(
-    JSON.parse(localStorage.getItem("@BetterLife:token"))
-  );
 
   const getGroups = () => {
     api
@@ -44,6 +41,7 @@ export const GroupsProvider = ({ children }) => {
   }, [next]);
 
   const createGroup = (data) => {
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
     api
       .post("groups/", data, {
         headers: { Authorization: `Bearer ${token}` },
@@ -58,6 +56,7 @@ export const GroupsProvider = ({ children }) => {
   };
 
   const subscribeGroup = (id) => {
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
     api
       .post(
         `groups/${id}/subscribe/`,
@@ -74,6 +73,7 @@ export const GroupsProvider = ({ children }) => {
   };
 
   const unsubscribeGroup = (id) => {
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
     api
       .delete(`groups/${id}/unsubscribe/`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -90,6 +90,7 @@ export const GroupsProvider = ({ children }) => {
   };
 
   const getSubscribedGroups = () => {
+    const token = JSON.parse(localStorage.getItem("@BetterLife:token"));
     api
       .get("groups/subscriptions/", {
         headers: { Authorization: `Bearer ${token}` },
